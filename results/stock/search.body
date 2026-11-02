@@ -1,0 +1,1 @@
+{"took":6,"timed_out":false,"_shards":{"total":1,"successful":1,"skipped":0,"failed":0},"hits":{"total":{"value":128,"relation":"eq"},"max_score":1.0,"hits":[{"_index":"fixture","_id":"0","_score":1.0}]}}

@@ -1,0 +1,100 @@
+{
+  "title": "Late search-probe p99 under common-paced update-by-query",
+  "unit": "milliseconds",
+  "source": {
+    "archive_sha256": "12c1459c95c653ab276165551d9e9c81e1a9091c2952dc7e4854b572f686b79f",
+    "official_analysis_member": "raw/experiments/scroll-lifecycle-v2/results/scroll-lifecycle-v2-20261021T061647Z-d4c6511c/completed-work-analysis.json",
+    "official_analysis_sha256": "afcf89479ddc1b72faa1388e68eac9e3b0966f1598dbea591bc9d3185a2b7889",
+    "independent_raw_verification_member": "raw/experiments/scroll-lifecycle-v2/results/session-20261021T060203070348Z-69847df73c914428ab0de8c7c8c60bb6/independent-raw-verification.json",
+    "independent_raw_verification_sha256": "d88e82d542ba8948c1fed632774f69edcc4b65c2f496c464d9c2edf9c7fd8232",
+    "archive_id": "scroll-lifecycle-v2-20261021T061647Z-d4c6511c.tar.gz"
+  },
+  "design": {
+    "sequence": [
+      "A1 baseline",
+      "B1 cleanup candidate",
+      "B2 cleanup candidate",
+      "A2 baseline"
+    ],
+    "pacing": "225 acknowledged updates/s common pacing control in all arms",
+    "comparison": "late acknowledged-progress window 150,000\u2013180,000 updates; paired ABBA comparisons",
+    "not_stock_baseline": true,
+    "not_independent_replications": true
+  },
+  "pairs": [
+    {
+      "pair": "A1 / B1",
+      "baseline_arm": "A1",
+      "cleanup_arm": "B1",
+      "baseline_p99_ms": {
+        "lower": 31.175575,
+        "upper": 31.175575
+      },
+      "cleanup_p99_ms": {
+        "lower": 9.500166,
+        "upper": 9.500166
+      },
+      "absolute_reduction_ms": {
+        "lower": 21.675409,
+        "upper": 21.675409
+      },
+      "reduction_percent": {
+        "lower": 69.5268941,
+        "upper": 69.5268941
+      },
+      "late_window_exposure_updates": {
+        "baseline": 28200,
+        "cleanup": 28200
+      },
+      "late_probe_coverage": {
+        "baseline_known": 2501,
+        "baseline_nominal": 2501,
+        "cleanup_known": 2501,
+        "cleanup_nominal": 2501
+      }
+    },
+    {
+      "pair": "A2 / B2",
+      "baseline_arm": "A2",
+      "cleanup_arm": "B2",
+      "baseline_p99_ms": {
+        "lower": 24.674248,
+        "upper": 24.674248
+      },
+      "cleanup_p99_ms": {
+        "lower": 9.386961,
+        "upper": 9.593277
+      },
+      "absolute_reduction_ms": {
+        "lower": 15.080971,
+        "upper": 15.287287
+      },
+      "reduction_percent": {
+        "lower": 61.1202862,
+        "upper": null,
+        "meaning": "reported lower bound only"
+      },
+      "late_window_exposure_updates": {
+        "baseline": 28200,
+        "cleanup": 28100
+      },
+      "late_probe_coverage": {
+        "baseline_known": 2501,
+        "baseline_nominal": 2501,
+        "cleanup_known": 2500,
+        "cleanup_nominal": 2501
+      },
+      "missing_or_boundary_slots": {
+        "late_missing": 1,
+        "early_boundary_crossing": 1
+      },
+      "bounds_method": "missing-aware nearest-rank p99 with conservative zero/infinity rank padding; bounds are not confidence intervals"
+    }
+  ],
+  "method_limits": [
+    "One tracking-on ABBA sequence provides two order pairs, not independent replication or a population estimate.",
+    "The timing comparison uses a common pacing control in both variants; it is not an unmodified-stock baseline.",
+    "Within-arm probes are not independent replicate units.",
+    "The experiment supports an intervention contribution in this workload; it does not establish dominant cause, production generality, wire-byte attribution, or universal plugin safety."
+  ]
+}

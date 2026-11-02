@@ -1,0 +1,1 @@
+{"body":null,"headers":["X-Opaque-Id: tiny-health"],"method":"GET","path":"/_cluster/health?wait_for_status=green&wait_for_nodes=1&timeout=2s"}

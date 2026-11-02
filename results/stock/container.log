@@ -1,0 +1,444 @@
+Disabling OpenSearch Security Plugin
+Enabling execution of OPENSEARCH_HOME/bin/opensearch-performance-analyzer/performance-analyzer-agent-cli for OpenSearch Performance Analyzer Plugin
+[2026-10-25T05:35:45,392][INFO ][o.o.n.Node               ] [run-[redacted]-node] version[2.19.0], pid[1], build[tar/fd9a9d90df25bea1af2c6a85039692e815b894f5/2025-02-05T16:13:36.244552508Z], OS[Linux/6.18.40.1-microsoft-standard-WSL2/amd64], JVM[Eclipse Adoptium/OpenJDK 64-Bit Server VM/21.0.6/21.0.6+7-LTS]
+[2026-10-25T05:35:45,393][INFO ][o.o.n.Node               ] [run-[redacted]-node] JVM home [/usr/share/opensearch/jdk], using bundled JDK/JRE [true]
+[2026-10-25T05:35:45,393][INFO ][o.o.n.Node               ] [run-[redacted]-node] JVM arguments [-Xshare:auto, -Dopensearch.networkaddress.cache.ttl=60, -Dopensearch.networkaddress.cache.negative.ttl=10, -XX:+AlwaysPreTouch, -Xss1m, -Djava.awt.headless=true, -Dfile.encoding=UTF-8, -Djna.nosys=true, -XX:-OmitStackTraceInFastThrow, -XX:+ShowCodeDetailsInExceptionMessages, -Dio.netty.noUnsafe=true, -Dio.netty.noKeySetOptimization=true, -Dio.netty.recycler.maxCapacityPerThread=0, -Dio.netty.allocator.numDirectArenas=0, -Dlog4j.shutdownHookEnabled=false, -Dlog4j2.disable.jmx=true, -Djava.security.manager=allow, -Djava.locale.providers=SPI,COMPAT, -Xms1g, -Xmx1g, -XX:+UseG1GC, -XX:G1ReservePercent=25, -XX:InitiatingHeapOccupancyPercent=30, -Djava.io.tmpdir=/tmp/opensearch-[redacted], -XX:+HeapDumpOnOutOfMemoryError, -XX:HeapDumpPath=data, -XX:ErrorFile=logs/hs_err_pid%p.log, -Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m, -Djava.security.manager=allow, --add-modules=jdk.incubator.vector, -Djava.util.concurrent.ForkJoinPool.common.threadFactory=org.opensearch.secure_sm.SecuredForkJoinWorkerThreadFactory, -Dclk.tck=100, -Djdk.attach.allowAttachSelf=true, -Djava.security.policy=/usr/share/opensearch/config/opensearch-performance-analyzer/opensearch_security.policy, --add-opens=jdk.attach/sun.tools.attach=ALL-UNNAMED, -Dopensearch.cgroups.hierarchy.override=/, -Xms512m, -Xmx512m, -XX:MaxDirectMemorySize=268435456, -Dopensearch.path.home=/usr/share/opensearch, -Dopensearch.path.conf=/usr/share/opensearch/config, -Dopensearch.distribution.type=tar, -Dopensearch.bundled_jdk=true]
+[2026-10-25T05:35:45,523][INFO ][o.a.l.i.v.PanamaVectorizationProvider] [run-[redacted]-node] Java vector incubator API enabled; uses preferredBitSize=512; FMA enabled
+[2026-10-25T05:35:46,448][INFO ][o.o.s.s.t.SSLConfig      ] [run-[redacted]-node] SSL dual mode is disabled
+[2026-10-25T05:35:46,449][WARN ][o.o.s.OpenSearchSecurityPlugin] [run-[redacted]-node] OpenSearch Security plugin installed but disabled. This can expose your configuration (including passwords) to the public.
+[2026-10-25T05:35:47,269][INFO ][o.o.p.c.c.PluginSettings ] [run-[redacted]-node] Config: metricsLocation: /dev/shm/performanceanalyzer/, metricsDeletionInterval: 1, httpsEnabled: false, cleanup-metrics-db-files: true, batch-metrics-retention-period-minutes: 7, rpc-port: 9650, webservice-port 9600
+[2026-10-25T05:35:47,685][INFO ][o.o.i.r.ReindexPlugin    ] [run-[redacted]-node] ReindexPlugin reloadSPI called
+[2026-10-25T05:35:47,685][INFO ][o.o.i.r.ReindexPlugin    ] [run-[redacted]-node] Unable to find any implementation for RemoteReindexExtension
+[2026-10-25T05:35:47,725][INFO ][o.o.j.JobSchedulerPlugin ] [run-[redacted]-node] Loaded scheduler extension: reports-scheduler, index: .opendistro-reports-definitions
+[2026-10-25T05:35:47,725][INFO ][o.o.j.JobSchedulerPlugin ] [run-[redacted]-node] Loaded scheduler extension: opensearch_time_series_analytics, index: .opendistro-anomaly-detector-jobs
+[2026-10-25T05:35:47,726][INFO ][o.o.j.JobSchedulerPlugin ] [run-[redacted]-node] Loaded scheduler extension: opendistro-index-management, index: .opendistro-ism-config
+[2026-10-25T05:35:47,728][INFO ][o.o.j.JobSchedulerPlugin ] [run-[redacted]-node] Loaded scheduler extension: checkBatchJobTaskStatus, index: .ml_commons_task_polling_job
+[2026-10-25T05:35:47,729][INFO ][o.o.j.JobSchedulerPlugin ] [run-[redacted]-node] Loaded scheduler extension: scheduler_geospatial_ip2geo_datasource, index: .scheduler-geospatial-ip2geo-datasource
+[2026-10-25T05:35:47,729][INFO ][o.o.j.JobSchedulerPlugin ] [run-[redacted]-node] Loaded scheduler extension: opensearch_sap_job, index: .opensearch-sap--job
+[2026-10-25T05:35:47,730][INFO ][o.o.j.JobSchedulerPlugin ] [run-[redacted]-node] Loaded scheduler extension: async-query-scheduler, index: .async-query-scheduler
+[2026-10-25T05:35:47,743][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [aggs-matrix-stats]
+[2026-10-25T05:35:47,743][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [analysis-common]
+[2026-10-25T05:35:47,743][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [cache-common]
+[2026-10-25T05:35:47,743][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [geo]
+[2026-10-25T05:35:47,743][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [ingest-common]
+[2026-10-25T05:35:47,743][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [ingest-geoip]
+[2026-10-25T05:35:47,743][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [ingest-user-agent]
+[2026-10-25T05:35:47,743][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [lang-expression]
+[2026-10-25T05:35:47,743][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [lang-mustache]
+[2026-10-25T05:35:47,743][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [lang-painless]
+[2026-10-25T05:35:47,743][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [mapper-extras]
+[2026-10-25T05:35:47,743][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [opensearch-dashboards]
+[2026-10-25T05:35:47,743][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [parent-join]
+[2026-10-25T05:35:47,744][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [percolator]
+[2026-10-25T05:35:47,744][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [rank-eval]
+[2026-10-25T05:35:47,744][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [reindex]
+[2026-10-25T05:35:47,744][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [repository-url]
+[2026-10-25T05:35:47,744][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [search-pipeline-common]
+[2026-10-25T05:35:47,744][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [systemd]
+[2026-10-25T05:35:47,744][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded module [transport-netty4]
+[2026-10-25T05:35:47,744][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-alerting]
+[2026-10-25T05:35:47,744][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-anomaly-detection]
+[2026-10-25T05:35:47,744][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-asynchronous-search]
+[2026-10-25T05:35:47,744][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-cross-cluster-replication]
+[2026-10-25T05:35:47,744][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-custom-codecs]
+[2026-10-25T05:35:47,744][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-flow-framework]
+[2026-10-25T05:35:47,744][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-geospatial]
+[2026-10-25T05:35:47,744][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-index-management]
+[2026-10-25T05:35:47,744][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-job-scheduler]
+[2026-10-25T05:35:47,745][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-knn]
+[2026-10-25T05:35:47,745][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-ltr]
+[2026-10-25T05:35:47,745][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-ml]
+[2026-10-25T05:35:47,745][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-neural-search]
+[2026-10-25T05:35:47,745][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-notifications]
+[2026-10-25T05:35:47,745][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-notifications-core]
+[2026-10-25T05:35:47,745][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-observability]
+[2026-10-25T05:35:47,745][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-performance-analyzer]
+[2026-10-25T05:35:47,745][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-reports-scheduler]
+[2026-10-25T05:35:47,745][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-security]
+[2026-10-25T05:35:47,745][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-security-analytics]
+[2026-10-25T05:35:47,745][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-skills]
+[2026-10-25T05:35:47,745][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-sql]
+[2026-10-25T05:35:47,746][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [opensearch-system-templates]
+[2026-10-25T05:35:47,746][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] loaded plugin [query-insights]
+[2026-10-25T05:35:47,805][WARN ][stderr                   ] [run-[redacted]-node] WARNING: A restricted method in java.lang.foreign.Linker has been called
+[2026-10-25T05:35:47,805][WARN ][stderr                   ] [run-[redacted]-node] WARNING: java.lang.foreign.Linker::downcallHandle has been called by the unnamed module
+[2026-10-25T05:35:47,805][WARN ][stderr                   ] [run-[redacted]-node] WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for this module
+[2026-10-25T05:35:47,838][INFO ][o.a.l.s.MemorySegmentIndexInputProvider] [run-[redacted]-node] Using MemorySegmentIndexInput and native madvise support with Java 21 or later; to disable start with -Dorg.apache.lucene.store.MMapDirectory.enableMemorySegments=false
+[2026-10-25T05:35:47,843][INFO ][o.o.e.NodeEnvironment    ] [run-[redacted]-node] using [1] data paths, mounts [[/usr/share/opensearch/data (tmpfs)]], net usable_space [255.9mb], net total_space [256mb], types [tmpfs]
+[2026-10-25T05:35:47,843][INFO ][o.o.e.NodeEnvironment    ] [run-[redacted]-node] heap size [512mb], compressed ordinary object pointers [true]
+[2026-10-25T05:35:47,862][INFO ][o.o.n.Node               ] [run-[redacted]-node] node name [run-[redacted]-node], node ID [[node-id]], cluster name [run-[redacted]], roles [ingest, remote_cluster_client, data, cluster_manager]
+[2026-10-25T05:35:47,897][INFO ][o.o.e.ExtensionsManager  ] [run-[redacted]-node] ExtensionsManager initialized
+[2026-10-25T05:35:48,863][DEPRECATION][o.o.d.c.s.Settings       ] [run-[redacted]-node] [index.store.hybrid.mmap.extensions] setting was deprecated in OpenSearch and will be removed in a future release! See the breaking changes documentation for the next major version.
+[2026-10-25T05:35:49,307][INFO ][o.o.n.p.NeuralSearch     ] [run-[redacted]-node] Registering hybrid query phase searcher with feature flag [plugins.neural_search.hybrid_search_disabled]
+[2026-10-25T05:35:49,572][INFO ][o.o.l.b.LTRCircuitBreakerService] [run-[redacted]-node] Registered memory breaker.
+[2026-10-25T05:35:49,595][INFO ][o.o.r.m.c.i.SdkClientFactory] [run-[redacted]-node] Using local opensearch cluster as metadata store.
+[2026-10-25T05:35:49,679][INFO ][o.o.t.b.CircuitBreakerService] [run-[redacted]-node] Registered memory breaker.
+[2026-10-25T05:35:49,925][INFO ][o.o.r.m.c.i.SdkClientFactory] [run-[redacted]-node] Using local opensearch cluster as metadata store.
+[2026-10-25T05:35:49,935][INFO ][o.o.m.b.MLCircuitBreakerService] [run-[redacted]-node] Registered ML memory breaker.
+[2026-10-25T05:35:49,935][INFO ][o.o.m.b.MLCircuitBreakerService] [run-[redacted]-node] Registered ML disk breaker.
+[2026-10-25T05:35:49,935][INFO ][o.o.m.b.MLCircuitBreakerService] [run-[redacted]-node] Registered ML native memory breaker.
+[2026-10-25T05:35:49,991][INFO ][o.r.Reflections          ] [run-[redacted]-node] Reflections took 29 ms to scan 1 urls, producing 27 keys and 67 values 
+[2026-10-25T05:35:50,002][INFO ][o.r.Reflections          ] [run-[redacted]-node] Reflections took 1 ms to scan 1 urls, producing 3 keys and 5 values 
+[2026-10-25T05:35:50,106][WARN ][o.o.s.p.SQLPlugin        ] [run-[redacted]-node] Master key is a required config for using create and update datasource APIs. Please set plugins.query.datasources.encryption.masterkey config in opensearch.yml in all the cluster nodes. More details can be found here: https://github.com/opensearch-project/sql/blob/main/docs/user/ppl/admin/datasources.rst#master-key-config-for-encrypting-credential-information
+[2026-10-25T05:35:50,547][INFO ][o.o.t.NettyAllocator     ] [run-[redacted]-node] creating NettyAllocator with the following configs: [name=unpooled, suggested_max_allocation_size=256kb, factors={opensearch.unsafe.use_unpooled_allocator=null, g1gc_enabled=true, g1gc_region_size=1mb, heap_size=512mb}]
+[2026-10-25T05:35:50,613][INFO ][o.o.d.DiscoveryModule    ] [run-[redacted]-node] using discovery type [single-node] and seed hosts providers [settings]
+[2026-10-25T05:35:50,922][WARN ][o.o.g.DanglingIndicesState] [run-[redacted]-node] gateway.auto_import_dangling_indices is disabled, dangling indices will not be automatically detected or imported and must be managed manually
+[2026-10-25T05:35:51,290][INFO ][o.o.p.h.c.PerformanceAnalyzerConfigAction] [run-[redacted]-node] PerformanceAnalyzer Enabled: false
+[2026-10-25T05:35:51,313][INFO ][o.o.n.Node               ] [run-[redacted]-node] initialized
+[2026-10-25T05:35:51,313][INFO ][o.o.n.Node               ] [run-[redacted]-node] starting ...
+[2026-10-25T05:35:51,328][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [windows_logtype.json] log type
+[2026-10-25T05:35:51,328][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [waf_logtype.json] log type
+[2026-10-25T05:35:51,328][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [vpcflow_logtype.json] log type
+[2026-10-25T05:35:51,329][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [test_windows_logtype.json] log type
+[2026-10-25T05:35:51,329][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [s3_logtype.json] log type
+[2026-10-25T05:35:51,329][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [others_web_logtype.json] log type
+[2026-10-25T05:35:51,329][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [others_proxy_logtype.json] log type
+[2026-10-25T05:35:51,329][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [others_macos_logtype.json] log type
+[2026-10-25T05:35:51,330][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [others_compliance_logtype.json] log type
+[2026-10-25T05:35:51,330][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [others_cloud_logtype.json] log type
+[2026-10-25T05:35:51,330][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [others_apt_logtype.json] log type
+[2026-10-25T05:35:51,330][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [others_application_logtype.json] log type
+[2026-10-25T05:35:51,330][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [okta_logtype.json] log type
+[2026-10-25T05:35:51,331][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [network_logtype.json] log type
+[2026-10-25T05:35:51,331][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [netflow_logtype.json] log type
+[2026-10-25T05:35:51,331][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [m365_logtype.json] log type
+[2026-10-25T05:35:51,331][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [linux_logtype.json] log type
+[2026-10-25T05:35:51,331][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [gworkspace_logtype.json] log type
+[2026-10-25T05:35:51,332][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [github_logtype.json] log type
+[2026-10-25T05:35:51,332][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [dns_logtype.json] log type
+[2026-10-25T05:35:51,332][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [cloudtrail_logtype.json] log type
+[2026-10-25T05:35:51,332][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [azure_logtype.json] log type
+[2026-10-25T05:35:51,333][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [apache_access_logtype.json] log type
+[2026-10-25T05:35:51,333][INFO ][o.o.s.l.BuiltinLogTypeLoader] [run-[redacted]-node] Loaded [ad_ldap_logtype.json] log type
+[2026-10-25T05:35:51,399][INFO ][o.o.t.TransportService   ] [run-[redacted]-node] publish_address {[container-ip]:9300}, bound_addresses {[::]:9300}
+[2026-10-25T05:35:51,400][INFO ][o.o.t.TransportService   ] [run-[redacted]-node] Remote clusters initialized successfully.
+[2026-10-25T05:35:51,463][INFO ][o.o.c.c.Coordinator      ] [run-[redacted]-node] setting initial configuration to VotingConfiguration{[node-id]}
+[2026-10-25T05:35:51,559][INFO ][o.o.c.s.MasterService    ] [run-[redacted]-node] Tasks batched with key: org.opensearch.cluster.coordination.JoinHelper, count:3 and sample tasks: elected-as-cluster-manager ([1] nodes joined)[{run-[redacted]-node}{[node-id]}{[ephemeral-node-token]}{[container-ip]}{[container-ip]:9300}{dimr}{shard_indexing_pressure_enabled=true} elect leader, _BECOME_CLUSTER_MANAGER_TASK_, _FINISH_ELECTION_], term: 1, version: 1, delta: cluster-manager node changed {previous [], current [{run-[redacted]-node}{[node-id]}{[ephemeral-node-token]}{[container-ip]}{[container-ip]:9300}{dimr}{shard_indexing_pressure_enabled=true}]}
+[2026-10-25T05:35:51,571][INFO ][o.o.c.c.CoordinationState] [run-[redacted]-node] cluster UUID set to [kqmXiLvYTrKw-OGDVQnFjQ]
+[2026-10-25T05:35:51,577][INFO ][o.o.c.s.ClusterApplierService] [run-[redacted]-node] cluster-manager node changed {previous [], current [{run-[redacted]-node}{[node-id]}{[ephemeral-node-token]}{[container-ip]}{[container-ip]:9300}{dimr}{shard_indexing_pressure_enabled=true}]}, term: 1, version: 1, reason: Publication{term=1, version=1}
+[2026-10-25T05:35:51,580][INFO ][o.o.t.i.IndexManagement  ] [run-[redacted]-node] Candidate custom result indices are empty.
+[2026-10-25T05:35:51,581][INFO ][o.o.t.i.IndexManagement  ] [run-[redacted]-node] Candidate custom result indices are empty.
+[2026-10-25T05:35:51,581][INFO ][o.o.t.c.ClusterEventListener] [run-[redacted]-node] Cluster is not recovered yet.
+[2026-10-25T05:35:51,593][INFO ][o.o.i.i.ManagedIndexCoordinator] [run-[redacted]-node] Cache cluster manager node onClusterManager time: 1792906551593
+[2026-10-25T05:35:51,597][WARN ][o.o.p.c.s.h.ConfigOverridesClusterSettingHandler] [run-[redacted]-node] Config override setting update called with empty string. Ignoring.
+[2026-10-25T05:35:51,601][INFO ][o.o.d.PeerFinder         ] [run-[redacted]-node] setting findPeersInterval to [1s] as node commission status = [true] for local node [{run-[redacted]-node}{[node-id]}{[ephemeral-node-token]}{[container-ip]}{[container-ip]:9300}{dimr}{shard_indexing_pressure_enabled=true}]
+[2026-10-25T05:35:51,602][WARN ][o.o.c.r.a.AllocationService] [run-[redacted]-node] Falling back to single shard assignment since batch mode disable or multiple custom allocators set
+[2026-10-25T05:35:51,605][WARN ][o.o.c.r.a.AllocationService] [run-[redacted]-node] Falling back to single shard assignment since batch mode disable or multiple custom allocators set
+[2026-10-25T05:35:51,608][INFO ][o.o.h.AbstractHttpServerTransport] [run-[redacted]-node] publish_address {[container-ip]:9200}, bound_addresses {[::]:9200}
+[2026-10-25T05:35:51,608][INFO ][o.o.n.Node               ] [run-[redacted]-node] started
+[2026-10-25T05:35:51,609][INFO ][o.o.s.OpenSearchSecurityPlugin] [run-[redacted]-node] 0 OpenSearch Security modules loaded so far: []
+[2026-10-25T05:35:51,610][INFO ][o.o.t.c.HashRing         ] [run-[redacted]-node] Node added: [[node-id]]
+[2026-10-25T05:35:51,612][INFO ][o.o.t.c.HashRing         ] [run-[redacted]-node] Add data node to version hash ring: [node-id]
+[2026-10-25T05:35:51,613][INFO ][o.o.t.c.HashRing         ] [run-[redacted]-node] All nodes with known version: {[node-id]=ADNodeInfo{version=2.19.0, isEligibleDataNode=true}}
+[2026-10-25T05:35:51,613][INFO ][o.o.t.c.HashRing         ] [run-[redacted]-node] Rebuild hash ring for realtime with cooldown, nodeChangeEvents size 0
+[2026-10-25T05:35:51,613][INFO ][o.o.t.c.HashRing         ] [run-[redacted]-node] Build version hash ring successfully
+[2026-10-25T05:35:51,613][INFO ][o.o.t.c.ADDataMigrator   ] [run-[redacted]-node] Start migrating AD data
+[2026-10-25T05:35:51,613][INFO ][o.o.t.c.ADDataMigrator   ] [run-[redacted]-node] AD job index doesn't exist, no need to migrate
+[2026-10-25T05:35:51,613][INFO ][o.o.t.c.ClusterEventListener] [run-[redacted]-node] Init version hash ring successfully
+[2026-10-25T05:35:51,619][INFO ][o.o.g.GatewayService     ] [run-[redacted]-node] recovered [0] indices into cluster_state
+[2026-10-25T05:35:51,631][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] PluginService:onIndexModule index:[.opensearch-sap-log-types-config/ZlneelPPQTawP1qDNYvyfA]
+[2026-10-25T05:35:51,695][INFO ][o.o.c.m.MetadataCreateIndexService] [run-[redacted]-node] [.opensearch-sap-log-types-config] creating index, cause [auto(sap-logtype api)], templates [], shards [1]/[1]
+[2026-10-25T05:35:51,699][INFO ][o.o.c.r.a.AllocationService] [run-[redacted]-node] updating number_of_replicas to [0] for indices [.opensearch-sap-log-types-config]
+[2026-10-25T05:35:51,699][WARN ][o.o.c.r.a.AllocationService] [run-[redacted]-node] Falling back to single shard assignment since batch mode disable or multiple custom allocators set
+[2026-10-25T05:35:51,716][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] PluginService:onIndexModule index:[.opensearch-sap-log-types-config/ZlneelPPQTawP1qDNYvyfA]
+[2026-10-25T05:35:51,737][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] PluginService:onIndexModule index:[.opensearch-observability/RiAqjUrNRnGuYY08--vYyg]
+[2026-10-25T05:35:51,743][INFO ][o.o.c.m.MetadataCreateIndexService] [run-[redacted]-node] [.opensearch-observability] creating index, cause [api], templates [], shards [1]/[0]
+[2026-10-25T05:35:51,743][WARN ][o.o.c.r.a.AllocationService] [run-[redacted]-node] Falling back to single shard assignment since batch mode disable or multiple custom allocators set
+[2026-10-25T05:35:51,750][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] PluginService:onIndexModule index:[.opensearch-observability/RiAqjUrNRnGuYY08--vYyg]
+[2026-10-25T05:35:51,805][INFO ][o.o.s.l.LogTypeService   ] [run-[redacted]-node] Loading builtin types!
+[2026-10-25T05:35:51,806][INFO ][o.o.s.l.LogTypeService   ] [run-[redacted]-node] Indexing [432] fieldMappingDocs from logTypes: 24
+[2026-10-25T05:35:51,821][INFO ][o.o.c.r.a.AllocationService] [run-[redacted]-node] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[.opensearch-observability][0]]]).
+[2026-10-25T05:35:51,826][INFO ][o.o.o.i.ObservabilityIndex] [run-[redacted]-node] observability:Index .opensearch-observability creation Acknowledged
+[2026-10-25T05:35:51,826][WARN ][o.o.c.r.a.AllocationService] [run-[redacted]-node] Falling back to single shard assignment since batch mode disable or multiple custom allocators set
+[2026-10-25T05:35:51,842][INFO ][o.o.s.l.LogTypeService   ] [run-[redacted]-node] Indexing [432] fieldMappingDocs
+[2026-10-25T05:35:51,885][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] PluginService:onIndexModule index:[.opensearch-sap-log-types-config/ZlneelPPQTawP1qDNYvyfA]
+[2026-10-25T05:35:51,890][INFO ][o.o.c.m.MetadataMappingService] [run-[redacted]-node] [.opensearch-sap-log-types-config/ZlneelPPQTawP1qDNYvyfA] update_mapping [_doc]
+[2026-10-25T05:35:51,909][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] PluginService:onIndexModule index:[.opensearch-sap-log-types-config/ZlneelPPQTawP1qDNYvyfA]
+[2026-10-25T05:35:51,912][INFO ][o.o.c.m.MetadataMappingService] [run-[redacted]-node] [.opensearch-sap-log-types-config/ZlneelPPQTawP1qDNYvyfA] update_mapping [_doc]
+[2026-10-25T05:35:52,093][INFO ][o.o.s.l.LogTypeService   ] [run-[redacted]-node] Loaded [432] field mapping docs successfully!
+[2026-10-25T05:35:52,102][INFO ][o.o.s.l.LogTypeService   ] [run-[redacted]-node] Indexing [23] customLogTypes
+[2026-10-25T05:35:52,116][INFO ][o.o.s.l.LogTypeService   ] [run-[redacted]-node] Loaded [23] customLogType docs successfully!
+[2026-10-25T05:35:52,116][INFO ][o.o.s.SecurityAnalyticsPlugin] [run-[redacted]-node] LogType config index successfully created and builtin log types loaded
+[2026-10-25T05:35:52,195][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] PluginService:onIndexModule index:[fixture/WzOd4lI7TSqmnJWygcQUcw]
+[2026-10-25T05:35:52,197][INFO ][o.o.c.m.MetadataCreateIndexService] [run-[redacted]-node] [fixture] creating index, cause [api], templates [], shards [1]/[0]
+[2026-10-25T05:35:52,198][WARN ][o.o.c.r.a.AllocationService] [run-[redacted]-node] Falling back to single shard assignment since batch mode disable or multiple custom allocators set
+[2026-10-25T05:35:52,203][INFO ][o.o.p.PluginsService     ] [run-[redacted]-node] PluginService:onIndexModule index:[fixture/WzOd4lI7TSqmnJWygcQUcw]
+[2026-10-25T05:35:52,205][DEPRECATION][o.o.d.c.s.Settings       ] [run-[redacted]-node] [index.store.hybrid.mmap.extensions] setting was deprecated in OpenSearch and will be removed in a future release! See the breaking changes documentation for the next major version.
+[2026-10-25T05:35:52,211][INFO ][o.o.c.r.a.AllocationService] [run-[redacted]-node] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[fixture][0]]]).
+[2026-10-25T05:35:52,216][WARN ][o.o.c.r.a.AllocationService] [run-[redacted]-node] Falling back to single shard assignment since batch mode disable or multiple custom allocators set
+[2026-10-25T05:35:52,395][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,400][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,404][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,408][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,413][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,417][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,421][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,424][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,470][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,472][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,474][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,475][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,477][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,478][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,480][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,482][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,484][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,485][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,486][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,488][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,489][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,491][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,492][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,494][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,495][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,496][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,498][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,500][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,501][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,503][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,504][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,506][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,507][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,509][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,510][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,511][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,513][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,514][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,516][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,518][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,519][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,521][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,522][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,523][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,525][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,526][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,528][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,529][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,531][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,532][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,533][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,535][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,536][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,537][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,539][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,540][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,542][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,544][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,545][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,547][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,549][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,551][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,552][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,554][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,555][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,556][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,558][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,559][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,561][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,582][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,583][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,585][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,587][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,588][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,589][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,591][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,592][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,593][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,595][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,596][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,598][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,599][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,600][INFO ][o.o.s.i.DetectorIndexManagementService] [run-[redacted]-node] info deleteOldIndices
+[2026-10-25T05:35:52,601][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,601][INFO ][o.o.s.l.LogTypeService   ] [run-[redacted]-node] Indexing [23] customLogTypes
+[2026-10-25T05:35:52,601][INFO ][o.o.s.i.DetectorIndexManagementService] [run-[redacted]-node] No Old Correlation Indices to delete
+[2026-10-25T05:35:52,602][INFO ][o.o.s.i.DetectorIndexManagementService] [run-[redacted]-node] info deleteOldIndices
+[2026-10-25T05:35:52,602][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,602][INFO ][o.o.s.i.DetectorIndexManagementService] [run-[redacted]-node] No Old IOC Findings Indices to delete
+[2026-10-25T05:35:52,603][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,604][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,605][INFO ][o.o.s.l.LogTypeService   ] [run-[redacted]-node] Indexing [23] customLogTypes
+[2026-10-25T05:35:52,606][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,612][INFO ][o.o.s.l.LogTypeService   ] [run-[redacted]-node] Loaded [23] customLogType docs successfully!
+[2026-10-25T05:35:52,614][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,616][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,617][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,618][INFO ][o.o.s.l.LogTypeService   ] [run-[redacted]-node] Loaded [23] customLogType docs successfully!
+[2026-10-25T05:35:52,618][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,620][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,621][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,622][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,623][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,625][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,626][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,627][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,628][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,629][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,631][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,694][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,695][INFO ][o.o.s.i.DetectorIndexManagementService] [run-[redacted]-node] info deleteOldIndices
+[2026-10-25T05:35:52,695][INFO ][o.o.s.i.DetectorIndexManagementService] [run-[redacted]-node] info deleteOldIndices
+[2026-10-25T05:35:52,696][INFO ][o.o.s.i.DetectorIndexManagementService] [run-[redacted]-node] No Old Finding Indices to delete
+[2026-10-25T05:35:52,696][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,696][INFO ][o.o.s.i.DetectorIndexManagementService] [run-[redacted]-node] No Old Alert Indices to delete
+[2026-10-25T05:35:52,697][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,698][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,699][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,701][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,702][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,703][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,705][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,706][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,708][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,709][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,711][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,712][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,713][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,715][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,716][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,718][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,719][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,720][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,721][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,723][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,724][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,725][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,727][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,728][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,729][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,731][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,732][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,733][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,734][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,735][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,737][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,738][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,739][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,767][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,769][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,770][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,771][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,773][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,781][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,782][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,784][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,785][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,786][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,788][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,789][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,790][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,792][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,793][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,794][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,795][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,797][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,798][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,799][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,800][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,801][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,803][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,804][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,805][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,806][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,807][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,808][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,809][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,811][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,812][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,813][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,815][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,816][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,817][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,818][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,819][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,821][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,822][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,823][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,824][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,825][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,827][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,828][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,829][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,830][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,831][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,832][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,833][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,835][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,836][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,837][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,838][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,839][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,840][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,841][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,843][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,844][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,845][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,846][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,847][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,848][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,849][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,850][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,851][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,853][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,854][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,855][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,856][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,881][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,882][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,883][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,885][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,886][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,887][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,888][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,889][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,890][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,891][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,893][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,894][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,895][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,896][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,897][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,898][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,899][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,900][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,901][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,903][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,904][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,905][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,906][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,907][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,908][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,909][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,910][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,911][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,913][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,914][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,915][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,916][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,917][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,919][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,920][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,921][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,922][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,923][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,924][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,925][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,926][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,927][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,929][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,930][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,931][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,932][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,933][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,934][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,935][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,937][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,938][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,939][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,940][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,941][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,942][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,943][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,944][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,945][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour 
+[2026-10-25T05:35:52,946][WARN ][o.o.w.QueryGroupTask     ] [run-[redacted]-node] QueryGroup _id can't be null, It should be set before accessing it. This is abnormal behaviour

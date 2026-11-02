@@ -1,0 +1,1 @@
+{"body":null,"headers":["X-Opaque-Id: tiny-nodes"],"method":"GET","path":"/_nodes/settings,os,jvm?flat_settings=true"}
