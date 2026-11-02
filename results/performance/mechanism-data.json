@@ -1,0 +1,73 @@
+{
+  "title": "TASK_RESOURCE_USAGE continuation history: observed counts, diagnostic, and proposed cleanup",
+  "unit": "header entries / observed continuation",
+  "stock_observation": {
+    "kind": "observed stock response-header line counts",
+    "source_archive_sha256": "3a7478fbf718d447c09bec76b8e3e155b9843d5795203c90f6665b8c21a0ef98",
+    "observations": [
+      {
+        "case": "ordinary search",
+        "count": 0,
+        "member": "payload/run/search.headers",
+        "member_sha256": "fdd0ae8cdbb46de9e660c34a56a338e0f87ca219ec66afae28bd0c47b9973db2"
+      },
+      {
+        "case": "UBQ, scroll size 16",
+        "count": 8,
+        "member": "payload/run/ubq-b16.headers",
+        "member_sha256": "449f8f4776cc95f6980b28271c0ccb618954f3bfe473eb74cc962b20a8dd761f"
+      },
+      {
+        "case": "UBQ, scroll size 1 (first)",
+        "count": 128,
+        "member": "payload/run/ubq-b1-first.headers",
+        "member_sha256": "c9d5fbbf4e790af38527bb2d8ba92acd9d505386956b9c063efef8ec30ae902f"
+      },
+      {
+        "case": "UBQ, scroll size 1 (repeat)",
+        "count": 128,
+        "member": "payload/run/ubq-b1-repeat.headers",
+        "member_sha256": "59453ff6973e93b7ee185f6783042b1b1b79cc3d9e1c73cd49c3e30cc7d4f381"
+      }
+    ],
+    "accounting": "128 acknowledged updates per UBQ; line counts are raw TASK_RESOURCE_USAGE response-header observations, not bytes or a complete resource total",
+    "source_archive_id": "minimized-stock-20261025T053542Z/raw-evidence.tar.gz"
+  },
+  "instrumented_diagnostic": {
+    "kind": "separate live, instrumented 128-document continuation diagnostic",
+    "source_archive_sha256": "12c1459c95c653ab276165551d9e9c81e1a9091c2952dc7e4854b572f686b79f",
+    "member": "raw/experiments/scroll-lifecycle-v2/results/scroll-lifecycle-v2-20261021T061647Z-d4c6511c/diagnostic-receipt.json",
+    "member_sha256": "20a9e7f68349346b1e56642dc857722a8f9fa74dd9d143e8ae2e84119d0b3f0b",
+    "arms": {
+      "baseline": {
+        "n": 128,
+        "sequence": {
+          "start": 0,
+          "step": 1,
+          "end": 127
+        }
+      },
+      "cleanup_candidate": {
+        "n": 128,
+        "sequence": {
+          "constant": 0
+        }
+      }
+    },
+    "instrument": "entries in the actual client ThreadContext TASK_RESOURCE_USAGE response-header list immediately before each next-scroll call",
+    "limitation": "diagnostic instrumentation is separate from timing; it is not a wire-byte or latency measurement",
+    "source_archive_id": "scroll-lifecycle-v2-20261021T061647Z-d4c6511c.tar.gz",
+    "measurement_note": "Values are read at doStartNextScroll entry before client.searchScroll; this is a context-list length observation, not direct measurement of a capture operation."
+  },
+  "proposed_cleanup": {
+    "kind": "proposed cleanup boundary represented by candidate patch",
+    "source_file": "experiments/scroll-lifecycle-v2/lifecycle.patch",
+    "source_archive_member": "raw/experiments/scroll-lifecycle-v2/results/scroll-lifecycle-v2-build-20261021T060212535053Z-b1ca9585f3844b3bb1f7b118050992af/sources/lifecycle.patch",
+    "source_file_sha256": "f602ffd78f5bdf46062e726ae805b241c4b21bcd155e3e25921aa5fbb1ed8b99",
+    "mechanism_source_member": "raw/experiments/scroll-lifecycle-v2/results/scroll-lifecycle-v2-build-20261021T060212535053Z-b1ca9585f3844b3bb1f7b118050992af/sources/SOURCE_FINDING.md",
+    "mechanism_source_member_sha256": "24c59a60154886e3bf8ab0ca2ed16ea22043e888efe5a79b252986f647aabe8f",
+    "operation": "remove only TASK_RESOURCE_USAGE from ThreadContext response headers immediately before the delegated listener runs",
+    "location": "TransportSearchScrollAction.doExecute listener wrapper (candidate patch)",
+    "status": "proposed change under evaluation; not a production deployment or broad safety claim"
+  }
+}

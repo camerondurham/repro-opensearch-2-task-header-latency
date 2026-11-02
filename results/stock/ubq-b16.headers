@@ -1,0 +1,13 @@
+HTTP/1.1 200 OK
+X-Opaque-Id: tiny-ubq-b16
+TASK_RESOURCE_USAGE: {"action":"indices:data/read/search[phase/query+fetch/scroll]","taskId":121,"parentTaskId":120,"nodeId":"9uhhOUypQMiCHvcmK5npBQ","taskResourceUsage":{"cpu_time_in_nanos":217813,"memory_in_bytes":7816}}
+TASK_RESOURCE_USAGE: {"action":"indices:data/read/search[phase/query+fetch/scroll]","taskId":114,"parentTaskId":113,"nodeId":"9uhhOUypQMiCHvcmK5npBQ","taskResourceUsage":{"cpu_time_in_nanos":590040,"memory_in_bytes":39336}}
+TASK_RESOURCE_USAGE: {"action":"indices:data/read/search[phase/query+fetch/scroll]","taskId":107,"parentTaskId":106,"nodeId":"9uhhOUypQMiCHvcmK5npBQ","taskResourceUsage":{"cpu_time_in_nanos":411892,"memory_in_bytes":39336}}
+TASK_RESOURCE_USAGE: {"action":"indices:data/read/search[phase/query+fetch/scroll]","taskId":100,"parentTaskId":99,"nodeId":"9uhhOUypQMiCHvcmK5npBQ","taskResourceUsage":{"cpu_time_in_nanos":481655,"memory_in_bytes":39336}}
+TASK_RESOURCE_USAGE: {"action":"indices:data/read/search[phase/query+fetch/scroll]","taskId":93,"parentTaskId":92,"nodeId":"9uhhOUypQMiCHvcmK5npBQ","taskResourceUsage":{"cpu_time_in_nanos":444193,"memory_in_bytes":39336}}
+TASK_RESOURCE_USAGE: {"action":"indices:data/read/search[phase/query+fetch/scroll]","taskId":86,"parentTaskId":85,"nodeId":"9uhhOUypQMiCHvcmK5npBQ","taskResourceUsage":{"cpu_time_in_nanos":415718,"memory_in_bytes":39336}}
+TASK_RESOURCE_USAGE: {"action":"indices:data/read/search[phase/query+fetch/scroll]","taskId":79,"parentTaskId":78,"nodeId":"9uhhOUypQMiCHvcmK5npBQ","taskResourceUsage":{"cpu_time_in_nanos":427402,"memory_in_bytes":39336}}
+TASK_RESOURCE_USAGE: {"action":"indices:data/read/search[phase/query+fetch/scroll]","taskId":72,"parentTaskId":71,"nodeId":"9uhhOUypQMiCHvcmK5npBQ","taskResourceUsage":{"cpu_time_in_nanos":1133482,"memory_in_bytes":65040}}
+content-type: application/json; charset=UTF-8
+content-length: 233
+

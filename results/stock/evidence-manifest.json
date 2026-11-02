@@ -1,0 +1,355 @@
+{
+  "evidence": "stock OpenSearch 2.19.0 bounded reproduction, 2026-10-25",
+  "field_level_projection": {
+    "cleanup.inspect.json": {
+      "dropped": [
+        "All other fields, including Docker daemon paths, graph driver metadata, host paths, process/network state and unrelated config"
+      ],
+      "retained": [
+        "Id",
+        "Name",
+        "Config.Labels.com.opensearch.regression.reproducer"
+      ]
+    },
+    "commands.jsonl": {
+      "dropped": "21 curl command records, including request payload argv and temporary output paths; Docker context inspect endpoint is replaced with a generic redaction. Raw HTTP request/response files remain intact.",
+      "retained": "11 Docker lifecycle records; argv and return codes, launch container ID stdout, initial/final scoped listing stdout, default context display, and a redacted default Unix socket context label."
+    },
+    "container.inspect.json": {
+      "dropped": [
+        "Top-level fields other than Id/Image/Name/Config/HostConfig/Mounts/NetworkSettings",
+        "Config fields other than listed fields",
+        "HostConfig fields other than listed fields",
+        "NetworkSettings.SandboxID",
+        "NetworkSettings.SandboxKey",
+        "NetworkSettings.Networks.bridge fields including IP/gateway/MAC/endpoint/network IDs"
+      ],
+      "retained": [
+        "Id",
+        "Image",
+        "Name",
+        "Config.Image",
+        "Config.Entrypoint",
+        "Config.Cmd",
+        "Config.User",
+        "Config.WorkingDir",
+        "Config.Env",
+        "Config.Labels.com.opensearch.regression.reproducer",
+        "HostConfig.NanoCpus",
+        "HostConfig.Memory",
+        "HostConfig.MemorySwap",
+        "HostConfig.Mounts",
+        "HostConfig.NetworkMode",
+        "HostConfig.PortBindings",
+        "Mounts",
+        "NetworkSettings.Networks.bridge (empty object)",
+        "NetworkSettings.Ports"
+      ]
+    },
+    "container.log": {
+      "reason": "Redacts container network address, generated run/node identifiers, and container-local random JVM temp path; container.log is read for presence only by --verify and is not a measurement input.",
+      "replacement_scope": "Original bridge address, generated run/node identifiers and JVM temporary-directory path. Original literal values are withheld; successful HTTP measurement values and required ownership records remain intact.",
+      "replacements": {
+        "redacted_original_log_value_1": "/tmp/opensearch-[redacted]",
+        "redacted_original_log_value_2": "[container-ip]",
+        "redacted_original_log_value_3": "[node-id]",
+        "redacted_original_log_value_4": "[ephemeral-node-token]",
+        "redacted_original_log_value_5": "run-[redacted]"
+      },
+      "retained": "Saved OpenSearch container log with the same message order and timestamps."
+    },
+    "image.inspect.json": {
+      "dropped": [
+        "Architecture",
+        "Comment",
+        "Created",
+        "GraphDriver (includes Docker host overlay paths)",
+        "Metadata",
+        "Os",
+        "RepoTags",
+        "RootFS",
+        "Size",
+        "Config fields other than the listed fields"
+      ],
+      "retained": [
+        "Id",
+        "RepoDigests",
+        "Config.Entrypoint",
+        "Config.Cmd",
+        "Config.User",
+        "Config.WorkingDir",
+        "Config.Env",
+        "Os",
+        "Architecture",
+        "Size"
+      ]
+    },
+    "nodes.body": {
+      "dropped": [
+        "Node host/IP/transport_address, build metadata, roles, attributes, remaining settings, host OS name/release/kernel/architecture, JVM version/vendor/arguments including random temporary path and unrelated process metrics"
+      ],
+      "retained": [
+        "cluster_name",
+        "_nodes",
+        "nodes.<node-id>.name",
+        "nodes.<node-id>.version",
+        "nodes.<node-id>.settings.task_resource_tracking.enabled",
+        "nodes.<node-id>.settings.node.processors",
+        "nodes.<node-id>.os.allocated_processors",
+        "nodes.<node-id>.jvm.mem.heap_init_in_bytes",
+        "nodes.<node-id>.jvm.mem.heap_max_in_bytes"
+      ]
+    },
+    "optional_files_omitted": {
+      "readiness_attempts": "Nine failed readiness attempts: 27 ready-* request/header/error files and their 9 curl command records. Retained qualification report records these failures.",
+      "research_material": "Controller receipts, raw-audit/replay outputs, source-review notes, seal helper scripts and unrelated historical archives."
+    }
+  },
+  "files": {
+    "REPORT.md": {
+      "bytes": 2630,
+      "sealed_raw_sha256": null,
+      "sha256": "3c39e8e87451896c1e48124606a859d2106bf33ea922efe2275680b7cb6e6cda"
+    },
+    "bulk.body": {
+      "bytes": 24136,
+      "sealed_raw_sha256": "0696de9a0ee3d4a5081f357d7639109ac880d8aeccbee941b6918e135be2872c",
+      "sha256": "0696de9a0ee3d4a5081f357d7639109ac880d8aeccbee941b6918e135be2872c"
+    },
+    "bulk.headers": {
+      "bytes": 113,
+      "sealed_raw_sha256": "9a717a1bc99d3685dd76254c303a397265b43aef8428057351d6f6cca1519c46",
+      "sha256": "9a717a1bc99d3685dd76254c303a397265b43aef8428057351d6f6cca1519c46"
+    },
+    "bulk.request.json": {
+      "bytes": 13479,
+      "sealed_raw_sha256": "894b58a95f85368b4b4bea8eba747c067ffa4f2eb4a9e758f68a7e6ece594c1d",
+      "sha256": "894b58a95f85368b4b4bea8eba747c067ffa4f2eb4a9e758f68a7e6ece594c1d"
+    },
+    "cleanup.inspect.json": {
+      "bytes": 226,
+      "sealed_raw_sha256": "ea0d48ce7dea0fcd644ed6ebef386562eaa1534b0e5f8caabc581d067c036e4f",
+      "sha256": "6cfdd88dad2031d700c560e3ce859a7116dbc80dac3a70c759c8d83302775606"
+    },
+    "cleanup.json": {
+      "bytes": 168,
+      "sealed_raw_sha256": "cec2e5cc05b82ddee1d286e4e725e0d9e6224f926a57fe584aadc29e9f3ba9df",
+      "sha256": "cec2e5cc05b82ddee1d286e4e725e0d9e6224f926a57fe584aadc29e9f3ba9df"
+    },
+    "commands.jsonl": {
+      "bytes": 2629,
+      "sealed_raw_sha256": "5daf2ed446cc1b2a2521e94dc290fd2d7411e43dc07997dcc3ddbddb76c86911",
+      "sha256": "145e652878389bb3ba90b6b15daacee9b6f7d11336db3b83923023c5a913c02d"
+    },
+    "container.inspect.json": {
+      "bytes": 1668,
+      "sealed_raw_sha256": "ea0d48ce7dea0fcd644ed6ebef386562eaa1534b0e5f8caabc581d067c036e4f",
+      "sha256": "81e283a9c48f6f3a11c6cfdeda29594adfeb7b922d9ed9c740596573f8e1db25"
+    },
+    "container.log": {
+      "bytes": 75089,
+      "sealed_raw_sha256": "a0e825be4f42a14647cf6eb27223dbf095ef01663cc6a0d201a34df7700497f5",
+      "sha256": "fde27659d513eb5351ca46a1d1edcb37e6c849a3098b28db42db34db0b72e43c"
+    },
+    "create.body": {
+      "bytes": 66,
+      "sealed_raw_sha256": "73c7b37492c98b950fb57b10afab7fb46c1bfdf255cbad649476dddda40380d9",
+      "sha256": "73c7b37492c98b950fb57b10afab7fb46c1bfdf255cbad649476dddda40380d9"
+    },
+    "create.headers": {
+      "bytes": 112,
+      "sealed_raw_sha256": "313795c907de171e474e1d7e5696c7a5766852e1fb723a0da06281d71ab6661c",
+      "sha256": "313795c907de171e474e1d7e5696c7a5766852e1fb723a0da06281d71ab6661c"
+    },
+    "create.request.json": {
+      "bytes": 312,
+      "sealed_raw_sha256": "79f32bd19ccd4bfd05f6490ad4630de9505dc140e4ce4ec4910999de61362b30",
+      "sha256": "79f32bd19ccd4bfd05f6490ad4630de9505dc140e4ce4ec4910999de61362b30"
+    },
+    "health.body": {
+      "bytes": 471,
+      "sealed_raw_sha256": "2ea2f685b6698f94366948dbafeb98b9b1e8ef59dd9b37d6ef77b657b668bac5",
+      "sha256": "2ea2f685b6698f94366948dbafeb98b9b1e8ef59dd9b37d6ef77b657b668bac5"
+    },
+    "health.headers": {
+      "bytes": 113,
+      "sealed_raw_sha256": "eac663c46cec181022e200cf0f84c52f075920c2ac2a7598d2363ec1a9ec38bd",
+      "sha256": "eac663c46cec181022e200cf0f84c52f075920c2ac2a7598d2363ec1a9ec38bd"
+    },
+    "health.request.json": {
+      "bytes": 144,
+      "sealed_raw_sha256": "ee77a77d8802535b3b32cd86e47fa04edb639eceebcc49f885cc31c335499aa2",
+      "sha256": "ee77a77d8802535b3b32cd86e47fa04edb639eceebcc49f885cc31c335499aa2"
+    },
+    "image.inspect.json": {
+      "bytes": 625,
+      "sealed_raw_sha256": "dbaf7e7def5f3c658d8a352901bd90df3243b785650f03ae43d806a96a584bb4",
+      "sha256": "015a7ba7fe728bf8086d165d153439cbb18cc505a4bca2142d58d0a6a2504842"
+    },
+    "initial.body": {
+      "bytes": 205,
+      "sealed_raw_sha256": "ed6e41f5378140364f2a43a38ff3d84ec2d252373f01dd407b45456a9cc91c48",
+      "sha256": "ed6e41f5378140364f2a43a38ff3d84ec2d252373f01dd407b45456a9cc91c48"
+    },
+    "initial.headers": {
+      "bytes": 114,
+      "sealed_raw_sha256": "6ab416ace7dc04387dff282ff06ef730a6e5fafc52442a631d5ef44782f53414",
+      "sha256": "6ab416ace7dc04387dff282ff06ef730a6e5fafc52442a631d5ef44782f53414"
+    },
+    "initial.request.json": {
+      "bytes": 218,
+      "sealed_raw_sha256": "96b025150559fa9e9e76b3f740a18962ff0a6bfbe112c6faf7410d186e3410e0",
+      "sha256": "96b025150559fa9e9e76b3f740a18962ff0a6bfbe112c6faf7410d186e3410e0"
+    },
+    "launch.json": {
+      "bytes": 968,
+      "sealed_raw_sha256": "feb05ac6bc546fe45128b7400035497cadb327db8cd8a25bef8bf041f1a1ea9d",
+      "sha256": "feb05ac6bc546fe45128b7400035497cadb327db8cd8a25bef8bf041f1a1ea9d"
+    },
+    "nodes.body": {
+      "bytes": 394,
+      "sealed_raw_sha256": "8cf383004ed2ff1b2d2ff5570d416523bee38c2a62bc45d671d878974ede879f",
+      "sha256": "c121ce3565013356371ca2175b7166f8c27f0e336f6af46ee9fbf9fa6624f244"
+    },
+    "nodes.headers": {
+      "bytes": 113,
+      "sealed_raw_sha256": "74f03fc3997fcfe3e2cc5ea0ede15ba331f3a1f9412addbefe7b77e9fb42a2e7",
+      "sha256": "74f03fc3997fcfe3e2cc5ea0ede15ba331f3a1f9412addbefe7b77e9fb42a2e7"
+    },
+    "nodes.request.json": {
+      "bytes": 119,
+      "sealed_raw_sha256": "676636a1dad8c39a049685fc58c1191f31ad9d248b2991b8d3ed53a81d7f196e",
+      "sha256": "676636a1dad8c39a049685fc58c1191f31ad9d248b2991b8d3ed53a81d7f196e"
+    },
+    "receipt.json": {
+      "bytes": 164,
+      "sealed_raw_sha256": "cf2ecb8c17f5aefdb3803c4d328028f477a3006ef16123153821bf6a169e8275",
+      "sha256": "cf2ecb8c17f5aefdb3803c4d328028f477a3006ef16123153821bf6a169e8275"
+    },
+    "reproduce.py": {
+      "bytes": 23605,
+      "sealed_raw_sha256": "9cc16c37f044ae209578b639b7e6f2fa6214899b5c01f97d28de42829920838f",
+      "sha256": "9cc16c37f044ae209578b639b7e6f2fa6214899b5c01f97d28de42829920838f"
+    },
+    "search.body": {
+      "bytes": 204,
+      "sealed_raw_sha256": "767c3d2e6420bb7733cbc97b36bc71652e9b2213a13d0d6bdfd189778b111fa3",
+      "sha256": "767c3d2e6420bb7733cbc97b36bc71652e9b2213a13d0d6bdfd189778b111fa3"
+    },
+    "search.headers": {
+      "bytes": 113,
+      "sealed_raw_sha256": "fdd0ae8cdbb46de9e660c34a56a338e0f87ca219ec66afae28bd0c47b9973db2",
+      "sha256": "fdd0ae8cdbb46de9e660c34a56a338e0f87ca219ec66afae28bd0c47b9973db2"
+    },
+    "search.request.json": {
+      "bytes": 205,
+      "sealed_raw_sha256": "ecd65aedf814a7577d19ce716a42ec74ea9f9ed18cc5edfafc4323689e5a8217",
+      "sha256": "ecd65aedf814a7577d19ce716a42ec74ea9f9ed18cc5edfafc4323689e5a8217"
+    },
+    "ubq-b1-first-sum.body": {
+      "bytes": 206,
+      "sealed_raw_sha256": "e536ec0baa3cc2d38b0b791441741aa79767ea428466f8f26882aa0c4fca7eea",
+      "sha256": "e536ec0baa3cc2d38b0b791441741aa79767ea428466f8f26882aa0c4fca7eea"
+    },
+    "ubq-b1-first-sum.headers": {
+      "bytes": 123,
+      "sealed_raw_sha256": "57d6400a440b25fcff45508940f0f487287e16fe9708526cc6ad30d7f4794211",
+      "sha256": "57d6400a440b25fcff45508940f0f487287e16fe9708526cc6ad30d7f4794211"
+    },
+    "ubq-b1-first-sum.request.json": {
+      "bytes": 227,
+      "sealed_raw_sha256": "5af7f6dec71f40a738474f2e52688a9432a348a32c04039aabd736074aa832ac",
+      "sha256": "5af7f6dec71f40a738474f2e52688a9432a348a32c04039aabd736074aa832ac"
+    },
+    "ubq-b1-first.body": {
+      "bytes": 235,
+      "sealed_raw_sha256": "8908d769db0b68aaad778d26a3195d1842b85582800cedd87990d9c79ec7eff6",
+      "sha256": "8908d769db0b68aaad778d26a3195d1842b85582800cedd87990d9c79ec7eff6"
+    },
+    "ubq-b1-first.headers": {
+      "bytes": 28932,
+      "sealed_raw_sha256": "c9d5fbbf4e790af38527bb2d8ba92acd9d505386956b9c063efef8ec30ae902f",
+      "sha256": "c9d5fbbf4e790af38527bb2d8ba92acd9d505386956b9c063efef8ec30ae902f"
+    },
+    "ubq-b1-first.request.json": {
+      "bytes": 388,
+      "sealed_raw_sha256": "91d343204f22aae60d9e66bdd53065b19189125526698a87e4d304b98f315f6d",
+      "sha256": "91d343204f22aae60d9e66bdd53065b19189125526698a87e4d304b98f315f6d"
+    },
+    "ubq-b1-repeat-sum.body": {
+      "bytes": 206,
+      "sealed_raw_sha256": "1e70d9142cb72f1119a865c420779375b38c4bd5042bd6629221ff1ef82e9272",
+      "sha256": "1e70d9142cb72f1119a865c420779375b38c4bd5042bd6629221ff1ef82e9272"
+    },
+    "ubq-b1-repeat-sum.headers": {
+      "bytes": 124,
+      "sealed_raw_sha256": "9e23f50196a2239ba02fec72880744c15ce034251f0bda70fd8e27e8385d7045",
+      "sha256": "9e23f50196a2239ba02fec72880744c15ce034251f0bda70fd8e27e8385d7045"
+    },
+    "ubq-b1-repeat-sum.request.json": {
+      "bytes": 228,
+      "sealed_raw_sha256": "fe77b21494e10238d24f783e5ca2925a0afaf2d90b8b33cc41f48312aaf48db0",
+      "sha256": "fe77b21494e10238d24f783e5ca2925a0afaf2d90b8b33cc41f48312aaf48db0"
+    },
+    "ubq-b1-repeat.body": {
+      "bytes": 235,
+      "sealed_raw_sha256": "04f09fe0598bec499330b4a59f749404d7ffe98aaa87fbfe65d9010fbad28d8a",
+      "sha256": "04f09fe0598bec499330b4a59f749404d7ffe98aaa87fbfe65d9010fbad28d8a"
+    },
+    "ubq-b1-repeat.headers": {
+      "bytes": 29175,
+      "sealed_raw_sha256": "59453ff6973e93b7ee185f6783042b1b1b79cc3d9e1c73cd49c3e30cc7d4f381",
+      "sha256": "59453ff6973e93b7ee185f6783042b1b1b79cc3d9e1c73cd49c3e30cc7d4f381"
+    },
+    "ubq-b1-repeat.request.json": {
+      "bytes": 389,
+      "sealed_raw_sha256": "59e63f2a0cb996065247be7e870ee126ce9a330525b66c8ea2eaa5b2f04d10d4",
+      "sha256": "59e63f2a0cb996065247be7e870ee126ce9a330525b66c8ea2eaa5b2f04d10d4"
+    },
+    "ubq-b16-sum.body": {
+      "bytes": 206,
+      "sealed_raw_sha256": "d6385dd0e411172674d8d859bb5dd6db097a050c5d18a466f4f4106752a91597",
+      "sha256": "d6385dd0e411172674d8d859bb5dd6db097a050c5d18a466f4f4106752a91597"
+    },
+    "ubq-b16-sum.headers": {
+      "bytes": 118,
+      "sealed_raw_sha256": "d81545a018ee177ae65a1bb3564ae9465b5bd4a2c5413e9bafd18fd89ca6295c",
+      "sha256": "d81545a018ee177ae65a1bb3564ae9465b5bd4a2c5413e9bafd18fd89ca6295c"
+    },
+    "ubq-b16-sum.request.json": {
+      "bytes": 222,
+      "sealed_raw_sha256": "794040b1cab33a1592260c581f3327dbd69aeee427c97d252628358ebc3da2ea",
+      "sha256": "794040b1cab33a1592260c581f3327dbd69aeee427c97d252628358ebc3da2ea"
+    },
+    "ubq-b16.body": {
+      "bytes": 233,
+      "sealed_raw_sha256": "640b26e01c7791a8afef9806a9f9c050546ebfa1c971d916af75f9998bd56204",
+      "sha256": "640b26e01c7791a8afef9806a9f9c050546ebfa1c971d916af75f9998bd56204"
+    },
+    "ubq-b16.headers": {
+      "bytes": 1905,
+      "sealed_raw_sha256": "449f8f4776cc95f6980b28271c0ccb618954f3bfe473eb74cc962b20a8dd761f",
+      "sha256": "449f8f4776cc95f6980b28271c0ccb618954f3bfe473eb74cc962b20a8dd761f"
+    },
+    "ubq-b16.request.json": {
+      "bytes": 384,
+      "sealed_raw_sha256": "4b4f5a21330c3c4b10b4ee94e1435cb2459a291d5577e5809ad1fd464757e8b4",
+      "sha256": "4b4f5a21330c3c4b10b4ee94e1435cb2459a291d5577e5809ad1fd464757e8b4"
+    }
+  },
+  "redactions": [
+    "Dropped optional readiness retry artifacts (not read by --verify).",
+    "Projected Docker image/container inspect JSON to fields consumed by verifier, removing Docker host filesystem paths, daemon IDs, bridge address/MAC, PID, and unrelated environment metadata.",
+    "Projected nodes response to fields consumed by verifier; removed host kernel/version and JVM temporary directory arguments.",
+    "Reduced commands.jsonl to Docker lifecycle records used by verifier; omitted curl command argv and transient output paths because raw HTTP requests/responses are retained separately; redacted local Docker socket endpoint."
+  ],
+  "source_commit": "f832e64c870034206a674acb51bab61808d2f522",
+  "source_sha256": "9cc16c37f044ae209578b639b7e6f2fa6214899b5c01f97d28de42829920838f",
+  "upstream_sealed_archive": {
+    "bytes": 74407,
+    "seal_payloads": 86,
+    "sha256": "3a7478fbf718d447c09bec76b8e3e155b9843d5795203c90f6665b8c21a0ef98",
+    "source_reference": "private reviewed stock qualification archive (not included in public tree)"
+  },
+  "verification": "Canonical reproduce.py --verify passed on the transparent projection. All fields used in acceptance predicates are preserved; container.log and nonessential command transcript output are redacted as documented. This verifier is shared live/offline logic, not authentication."
+}

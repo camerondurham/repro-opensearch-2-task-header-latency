@@ -1,0 +1,1 @@
+{"took":281,"timed_out":false,"total":128,"updated":128,"deleted":0,"batches":128,"version_conflicts":0,"noops":0,"retries":{"bulk":0,"search":0},"throttled_millis":0,"requests_per_second":-1.0,"throttled_until_millis":0,"failures":[]}

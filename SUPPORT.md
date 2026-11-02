@@ -1,0 +1,15 @@
+# Maintainer / AWS Support note
+
+`TASK_RESOURCE_USAGE` is a response header with task resource metadata (task IDs, CPU time, and memory usage). In the tested update-by-query path, entries from earlier scroll batches survived into later continuations and the final response: on the same 128-document fixture, stock OpenSearch 2.19.0 returned 8 header lines with scroll size 16, 128 with size 1, and 128 on a repeated size-1 request; ordinary search returned zero. Each update-by-query updated all 128 documents. Each count is from one request’s final response; the repeated request reproduces the size-1 behavior and is not evidence of accumulation across separate requests. The count table and retained HTTP responses are in [`README.md`](README.md#stock-result) and [`results/stock/`](results/stock/). These are response-header occurrences, not task totals or resource accounting.
+
+The pinned [`TaskResourceTrackingService`](https://github.com/opensearch-project/OpenSearch/blob/fd9a9d90df25bea1af2c6a85039692e815b894f5/server/src/main/java/org/opensearch/tasks/TaskResourceTrackingService.java#L283-L325) updates the current header value. Pinned [`ThreadContext`](https://github.com/opensearch-project/OpenSearch/blob/fd9a9d90df25bea1af2c6a85039692e815b894f5/server/src/main/java/org/opensearch/common/util/concurrent/ThreadContext.java#L322-L365) preserves response headers in saved contexts and merges incoming and saved values on restoration ([merge implementation](https://github.com/opensearch-project/OpenSearch/blob/fd9a9d90df25bea1af2c6a85039692e815b894f5/server/src/main/java/org/opensearch/common/util/concurrent/ThreadContext.java#L790-L808)). Separately, an instrumented diagnostic sampled context immediately before `client.searchScroll`: across 128 successive next-scroll hooks, the baseline held 0 through 127 distinct values and the candidate held zero. The hook does not directly inspect every continuation capture. See the [README mechanism explanation](README.md#why-scroll-continuations-can-carry-earlier-entries) and retained instrumented records in [`results/performance/`](results/performance/).
+
+[`proposed-fix.patch`](proposed-fix.patch) removes only `TASK_RESOURCE_USAGE` before terminal listener delegation. The single common-paced ABBA performance campaign is supporting intervention evidence; it is not stock latency evidence or a production-safety finding. See the [README limits](README.md#proposed-cleanup-and-performance-evidence).
+
+Could maintainers please advise:
+
+1. What is the intended lifetime and consumer contract for `TASK_RESOURCE_USAGE`? Should earlier entries persist across scroll continuations, or should the header contain only values for the current request/task?
+2. Which maintained branch and target version should be used to review this behavior and any cleanup?
+3. Are there supported plugins, out-of-tree consumers, distributed scroll callbacks, or cancellation paths that require these entries at the proposed terminal boundary?
+
+The proposal still needs review against external consumers and lifecycle paths that bypass terminal listener delegation.

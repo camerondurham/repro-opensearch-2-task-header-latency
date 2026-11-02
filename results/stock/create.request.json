@@ -1,0 +1,1 @@
+{"body":"{\"mappings\":{\"properties\":{\"payload\":{\"type\":\"keyword\"},\"revision\":{\"type\":\"long\"},\"uid\":{\"type\":\"keyword\"}}},\"settings\":{\"number_of_replicas\":0,\"number_of_shards\":1}}","headers":["X-Opaque-Id: tiny-create","Content-Type: application/json"],"method":"PUT","path":"/fixture"}
