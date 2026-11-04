@@ -1,0 +1,24 @@
+name: Verify published reproduction evidence
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify retained stock OpenSearch responses (offline)
+        run: python3 reproduce.py --verify results/stock
+      - name: Recompute published late-window p99 from sanitized samples
+        run: python3 results/performance/recompute_late_p99.py
