@@ -1,6 +1,10 @@
 # `TASK_RESOURCE_USAGE` response headers in update-by-query scrolls
 
-In stock OpenSearch 2.19.0, a 128-document update-by-query returned 8 `TASK_RESOURCE_USAGE` header lines with scroll size 16 and 128 lines with scroll size 1. `TASK_RESOURCE_USAGE` is JSON task metadata containing task IDs and CPU-time and memory-usage values; it is not a document count or total resource accounting ([producer source](https://github.com/opensearch-project/OpenSearch/blob/fd9a9d90df25bea1af2c6a85039692e815b894f5/server/src/main/java/org/opensearch/tasks/TaskResourceTrackingService.java#L283-L325)). In the tested path, smaller scroll batches returned more entries, and an instrumented diagnostic observed earlier distinct entries carried into later scroll continuations. The stock counts and diagnostic are separate evidence. The stock requests and responses are retained in [`results/stock/`](results/stock/).
+During a long-running update-by-query (UBQ), searches running on the same OpenSearch cluster can get progressively slower. This repository investigates one possible contributor on OpenSearch 2.19: task-resource response headers carried forward across internal scroll requests.
+
+**What can be reproduced on stock OpenSearch:** a 128-document UBQ returned **8 `TASK_RESOURCE_USAGE` header lines** with scroll size 16, but **128 lines** with scroll size 1. These headers contain task IDs and CPU/memory-usage values ([producer source](https://github.com/opensearch-project/OpenSearch/blob/fd9a9d90df25bea1af2c6a85039692e815b894f5/server/src/main/java/org/opensearch/tasks/TaskResourceTrackingService.java#L283-L325)). They are not document counts or total resource accounting. A separate instrumented diagnostic observed earlier values surviving into later scroll continuations.
+
+**Why latency matters:** in a separate, controlled experiment with task tracking enabled and matched update throughput, a proposed scroll-header cleanup reduced *late-stage concurrent-search p99* by **69.5% and at least 61.1%** in two order pairs. This does **not** mean that the tiny stock reproduction measures latency, or that the result is a production-wide improvement. The [figures](#proposed-cleanup-and-performance-evidence), [source-level explanation](#why-scroll-continuations-can-carry-earlier-entries), and [saved results](results/) separate those claims.
 
 ## Reproduce
 
@@ -18,10 +22,10 @@ python3 reproduce.py --verify results/stock
 
 The live run and offline verification share the same validator; this is not independent verification or a signed attestation. The runner restricts Docker work to its owned container and requires clean initial/final container checks; see [`reproduce.py`](reproduce.py) and [`run-reproduction.sh`](run-reproduction.sh).
 
-To clone this publication branch:
+To start from a fresh checkout:
 
 ```sh
-git clone --branch public-repro --single-branch https://github.com/camerondurham/repro-opensearch-2-task-header-latency.git
+git clone https://github.com/camerondurham/repro-opensearch-2-task-header-latency.git
 cd repro-opensearch-2-task-header-latency
 ./run-reproduction.sh
 ```
@@ -55,7 +59,7 @@ The stock reproduction, the instrumented diagnostic, and the performance campaig
 
 ![Late-progress p99 for one common-paced ABBA campaign](figures/late-search-latency.svg)
 
-Late-progress p99 fell 69.5% in A1/B1 and at least 61.1% in A2/B2. Recompute the saved late-window values offline with `python3 results/performance/recompute_late_p99.py`; see [`results/performance/`](results/performance/) for data and method. This is conditional intervention evidence from one campaign, not a population estimate, confidence interval, proof that cleanup is the dominant cause, or a production-wide speedup. The historical unpaced experiment remains inconclusive. Equal updated-document totals establish document work, not resource-accounting invariance or universal plugin/cancellation safety.
+Late-progress p99 fell 69.5% in A1/B1 and at least 61.1% in A2/B2. Recompute the saved late-window values offline with `python3 results/performance/recompute_late_p99.py`; see [`results/performance/`](results/performance/) for data and method. The public performance projection contains **late-window samples only**, not the complete UBQ timeline; it cannot produce an honest full-duration latency ramp without additional reviewed measurements. [Figure follow-up](https://github.com/camerondurham/repro-opensearch-2-task-header-latency/issues/1). This is conditional intervention evidence from one campaign, not a population estimate, confidence interval, proof that cleanup is the dominant cause, or a production-wide speedup. The historical unpaced experiment remains inconclusive. Equal updated-document totals establish document work, not resource-accounting invariance or universal plugin/cancellation safety.
 
 ## Source pin, license, and support
 
