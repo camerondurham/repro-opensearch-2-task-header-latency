@@ -3,13 +3,14 @@
 import hashlib
 import copy
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
 import urllib.request
 import zipfile
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(os.environ.get('OSB_REPO_ROOT', Path(__file__).resolve().parents[1])).resolve()
 OUT = ROOT / '.local/osb/build'
 IMAGE = 'opensearchproject/opensearch@sha256:1f8b88245a6af61e7aa500afe0e87d43401e4b33140bb47230a919428ce3f7cb'
 SOURCE = 'fd9a9d90df25bea1af2c6a85039692e815b894f5'

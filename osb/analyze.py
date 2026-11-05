@@ -52,7 +52,7 @@ def analyze_unit(unit):
     need(search_rows and all(r['meta'].get('hits') == docs and r['meta'].get('hits_relation') == 'eq'
                             for r in search_rows), 'Missing/incorrect search hit accounting')
     summary = dict(variant=receipt['variant'], smoke=receipt['smoke'], control=receipt['control'],
-                   documents=docs, revision_sum=expected, errors=errors, timeouts=timeouts)
+                   documents=docs, revision_sum=expected, osb_operation_errors=errors, osb_operation_timeouts=timeouts)
     if receipt['smoke']:
         h = [e for e in events if e['kind'] == 'headers']
         counts = [0, 0, 0, 0] if receipt['variant'] == 'candidate' else [0, 8, 128, 128]
@@ -70,7 +70,8 @@ def analyze_unit(unit):
             need(len(found) == 1 and found[0]['status'] == status and found[0]['opaque'] == opaque
                  and not found[0]['headers'], 'Scroll failure contract')
         need(errors == timeouts == 0, 'Smoke request errors')
-        return dict(summary, header_counts=counts, default_client=expected_outcome)
+        return dict(summary, header_counts=counts, default_client=expected_outcome,
+                    expected_client_parser_rejections=int(expected_outcome == 'client-parser-rejection'))
     prefix = 'control' if receipt['control'] else 'ubq'
     starts, ends = ([e for e in events if e['kind'] == prefix + '-' + s] for s in ('start', 'end'))
     need(len(starts) == len(ends) == 1, 'Missing/duplicate load boundaries')
@@ -146,6 +147,18 @@ def analyze_unit(unit):
 
 def analyze(root):
     order = json.loads((root / 'order.json').read_text())
+    source_manifest = root/'source-manifest.json'
+    if source_manifest.exists():
+        source = json.loads(source_manifest.read_text())
+        for name, expected in source['files'].items():
+            need(hashlib.sha256((root/'code'/name).read_bytes()).hexdigest() == expected, 'Frozen code mismatch: '+name)
+        need(hashlib.sha256((root/'build.json').read_bytes()).hexdigest() == source['build_manifest_sha256'],
+             'Frozen build manifest mismatch')
+        for name, *_ in order:
+            receipt = json.loads((root/name/'receipt.json').read_text())
+            need(receipt['source_manifest_sha256'] == hashlib.sha256(source_manifest.read_bytes()).hexdigest()
+                 and receipt['sources'] == source['files'] and receipt['start_commit'] == source['start_commit'],
+                 'Unit executable provenance differs from frozen campaign')
     units = {name: analyze_unit(root / name) for name, *_ in order}
     result = {'runs': units}
     if all(u['smoke'] or u.get('quick') for u in units.values()):

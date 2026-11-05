@@ -6,6 +6,7 @@ import hashlib
 import importlib.metadata
 import json
 import os
+import platform
 import resource
 from pathlib import Path
 import shutil
@@ -21,6 +22,17 @@ from build import IMAGE, ROOT, DOCKER, sha
 from generate import generate
 
 LABEL = 'org.osb-task-header.owner'
+CODE = Path(__file__).resolve().parent
+
+
+def verify_snapshot(root):
+    manifest = json.loads((root/'source-manifest.json').read_text())
+    if sha(root/'build.json') != manifest['build_manifest_sha256']:
+        raise RuntimeError('Frozen build manifest changed')
+    for name, expected in manifest['files'].items():
+        if sha(root/'code'/name) != expected:
+            raise RuntimeError('Frozen executable input changed: ' + name)
+    return manifest
 
 
 def command(args, timeout=60):
@@ -51,12 +63,73 @@ def preflight():
         raise RuntimeError('Need 8 logical CPUs, 12 GiB available RAM and 8 GiB disk')
     if psutil.cpu_percent(interval=1) > 15:
         raise RuntimeError('Host busy before run (>15% CPU); no other jobs will be stopped')
-    return dict(logical_cpus=os.cpu_count(), available_memory_bytes=psutil.virtual_memory().available,
-                disk_free_bytes=shutil.disk_usage(ROOT).free, platform='Linux x86_64 / NixOS / WSL2',
+    cpu_model = next((line.split(':', 1)[1].strip() for line in Path('/proc/cpuinfo').read_text().splitlines()
+                      if line.startswith('model name')), 'unknown')
+    distro = platform.freedesktop_os_release()
+    return dict(logical_cpus=os.cpu_count(), physical_cpus=psutil.cpu_count(logical=False),
+                available_memory_bytes=psutil.virtual_memory().available, disk_free_bytes=shutil.disk_usage(ROOT).free,
+                system=platform.system(), architecture=platform.machine(), kernel_release=platform.release(),
+                os_id=distro.get('ID'), os_version_id=distro.get('VERSION_ID'), cpu_model=cpu_model,
                 docker_endpoint='default local Unix socket')
 
 
+def cleanup_owned(owner, network, known_containers, private, child):
+    """Attempt every cleanup independently; an inspection failure never authorizes removal."""
+    errors = []
+    def attempt(label, action):
+        try:
+            return action()
+        except BaseException as exc:
+            errors.append(label + ': ' + type(exc).__name__ + ': ' + str(exc))
+            return None
+    if child is not None and child.poll() is None:
+        attempt('terminate OSB group', lambda: os.killpg(child.pid, signal.SIGTERM))
+        try:
+            child.wait(10)
+        except subprocess.TimeoutExpired:
+            attempt('kill timed-out OSB group', lambda: os.killpg(child.pid, signal.SIGKILL))
+            attempt('reap OSB', lambda: child.wait(10))
+        except BaseException as exc:
+            errors.append('reap OSB: ' + str(exc))
+    listing = attempt('list owned containers', lambda: command(DOCKER + [
+        'ps', '-aq', '--no-trunc', '--filter', 'label=' + LABEL + '=' + owner]))
+    owned = set(known_containers) | set((listing or '').split())
+    for cid in sorted(owned):
+        inspected = attempt('inspect owned container', lambda: json.loads(command(DOCKER + ['inspect', cid]))[0])
+        if inspected is None:
+            continue
+        valid = attempt('validate container ownership', lambda: inspected['Config']['Labels'].get(LABEL) == owner
+                        and inspected['Name'] in ['/' + owner + '-n' + str(i) for i in range(3)])
+        if valid is not True:
+            errors.append('container ownership mismatch; removal refused')
+            continue
+        def collect_log():
+            (private / (inspected['Name'][1:] + '.log')).write_text(command(DOCKER + ['logs', cid]))
+        attempt('collect owned container log', collect_log)
+        attempt('remove owned container', lambda: command(DOCKER + ['rm', '-f', cid]))
+    networks = attempt('list owned networks', lambda: command(DOCKER + [
+        'network', 'ls', '-q', '--filter', 'label=' + LABEL + '=' + owner]))
+    for nid in (networks or '').split():
+        inspected = attempt('inspect owned network', lambda: json.loads(command(DOCKER + ['network', 'inspect', nid]))[0])
+        if inspected is None:
+            continue
+        valid = attempt('validate network ownership', lambda: inspected['Labels'].get(LABEL) == owner
+                        and inspected['Name'] == network and not inspected['Containers'])
+        if valid is not True:
+            errors.append('network ownership mismatch or remaining attachment; removal refused')
+            continue
+        attempt('remove owned network', lambda: command(DOCKER + ['network', 'rm', nid]))
+    remaining = attempt('final owned container listing', lambda: command(DOCKER + [
+        'ps', '-aq', '--filter', 'label=' + LABEL + '=' + owner]))
+    remaining_networks = attempt('final owned network listing', lambda: command(DOCKER + [
+        'network', 'ls', '-q', '--filter', 'label=' + LABEL + '=' + owner]))
+    if remaining or remaining_networks:
+        errors.append('owned resources remain after cleanup')
+    return errors
+
+
 def run_unit(root, name, variant, smoke, control, quick=False):
+    frozen = verify_snapshot(root)
     pre = preflight()
     unit = root / name
     unit.mkdir()
@@ -64,23 +137,26 @@ def run_unit(root, name, variant, smoke, control, quick=False):
     private.mkdir()
     capture = unit / 'raw'
     capture.mkdir()
-    manifest = json.loads((ROOT / '.local/osb/build/manifest.json').read_text())
+    manifest = json.loads((root / 'build.json').read_text())
     image = IMAGE if variant == 'stock' else manifest['variants'][variant]['image_id']
+    expected_image_id = command(DOCKER + ['image', 'inspect', '--format', '{{.Id}}', image])
+    if manifest['patch_sha256'] != sha(CODE/'proposed-fix.patch') or manifest['sole_intervention_entries'] != [
+            'org/opensearch/action/search/TransportSearchScrollAction.class']:
+        raise RuntimeError('Build intervention manifest mismatch')
     owner = 'osbth-' + uuid.uuid4().hex[:12]
     network = owner + '-net'
-    containers, child, network_created = [], None, False
+    containers, child = [], None
     receipt = dict(name=name, variant=variant, smoke=smoke, control=control, quick=quick, preflight=pre,
                    image=image, start=time.time(), nodes=1 if smoke else 3, errors=[], clean=False,
                    osb_version=importlib.metadata.version('opensearch-benchmark'), python=sys.version.split()[0],
                    limits=dict(node_cpus=2, node_memory_bytes=3*2**30, heap_bytes=2**30, data_bytes=512*2**20),
                    config=dict(batch=10, ubq_rate=120, search_rate=50, search_clients=2,
                                warmup=2 if smoke or quick else 20, deadline=240, recovery=2 if smoke or quick else 10),
-                   sources={str(p.relative_to(ROOT)): sha(p) for p in sorted((ROOT / 'osb').rglob('*'))
-                            if p.is_file() and '__pycache__' not in str(p)})
+                   source_manifest_sha256=sha(root/'source-manifest.json'),
+                   start_commit=frozen['start_commit'], sources=frozen['files'])
     receipt.update(generate(unit / 'workload', smoke=smoke, candidate=variant == 'candidate', control=control, quick=quick))
     try:
         command(DOCKER + ['network', 'create', '--label', LABEL + '=' + owner, network])
-        network_created = True
         for i in range(receipt['nodes']):
             cname = owner + '-n' + str(i)
             args = DOCKER + ['run', '-d', '--pull', 'never', '--name', cname, '--hostname', 'n' + str(i),
@@ -106,6 +182,15 @@ def run_unit(root, name, variant, smoke, control, quick=False):
         (private / 'containers.json').write_text(json.dumps(inspection, indent=2))
         target = 'http://127.0.0.1:' + inspection[0]['NetworkSettings']['Ports']['9200/tcp'][0]['HostPort']
         receipt['engine_image_ids'] = [n['Image'] for n in inspection]
+        effective = []
+        for i, node in enumerate(inspection):
+            host = node['HostConfig']
+            if node['Image'] != expected_image_id or host['NanoCpus'] != 2*10**9 or host['Memory'] != 3*2**30 or \
+                    host['MemorySwap'] != 3*2**30 or host['CpusetCpus'] != f'{i*2},{i*2+1}':
+                raise RuntimeError('Actual engine image/resource limits differ from requested configuration')
+            effective.append({k: host[k] for k in ('NanoCpus', 'Memory', 'MemorySwap', 'CpusetCpus')})
+        receipt['effective_engine_limits'] = effective
+        receipt['driver_limits'] = {'cpus': [6, 7], 'virtual_address_bytes_per_process': 8*2**30}
         deadline = time.monotonic() + 120
         while True:
             try:
@@ -132,9 +217,9 @@ def run_unit(root, name, variant, smoke, control, quick=False):
         home.mkdir()
         env = dict(os.environ, HOME=str(home), BENCHMARK_HOME=str(home),
                    OSB_CAPTURE=str(capture), OSB_TARGET=target,
-                   PYTHONPATH=str(ROOT / 'osb/capture'), OPENBLAS_NUM_THREADS='1', OMP_NUM_THREADS='1')
+                   PYTHONPATH=str(CODE / 'capture'), OPENBLAS_NUM_THREADS='1', OMP_NUM_THREADS='1')
         exe = str(Path(sys.executable).parent / 'opensearch-benchmark')
-        argv = [exe, 'run', '--pipeline=benchmark-only', '--offline', '--enable-assertions',
+        argv = [exe, 'run', '--pipeline=benchmark-only', '--offline', '--quiet', '--enable-assertions',
                 '--workload-path=' + str(unit / 'workload'), '--target-hosts=' + target.removeprefix('http://'),
                 '--on-error=abort', '--test-run-id=' + str(uuid.uuid4()),
                 '--client-options=timeout:30,max_retries:0,retry_on_timeout:false',
@@ -163,35 +248,30 @@ def run_unit(root, name, variant, smoke, control, quick=False):
                 raise RuntimeError('OSB failed; inspect private/osb.log')
         if not list(capture.glob('metrics-*.jsonl')):
             raise RuntimeError('OSB raw capture absent')
+        log_text = '\n'.join(p.read_text(errors='replace') for p in home.rglob('*.log'))
+        receipt['metric_drop_warning_count'] = log_text.count('Dropping sample for [')
+        receipt['memory_store_drop_warning_count'] = log_text.count('not adding additional entries')
+        if receipt['metric_drop_warning_count'] or receipt['memory_store_drop_warning_count']:
+            raise RuntimeError('OSB reported dropped measurements')
         receipt['after_stats'] = stats('after')
+        verify_snapshot(root)
         receipt['execution_ok'] = True
     except BaseException as exc:
         receipt['execution_ok'] = False
         receipt['errors'].append(type(exc).__name__ + ': ' + str(exc))
         raise
     finally:
-        if child is not None and child.poll() is None:
-            os.killpg(child.pid, signal.SIGTERM)
-            try:
-                child.wait(10)
-            except subprocess.TimeoutExpired:
-                os.killpg(child.pid, signal.SIGKILL)
-                child.wait(10)
-        owned = command(DOCKER + ['ps', '-aq', '--filter', 'label=' + LABEL + '=' + owner]).split()
-        for cid in owned:
-            inspected = json.loads(command(DOCKER + ['inspect', cid]))[0]
-            if inspected['Config']['Labels'].get(LABEL) != owner or not inspected['Name'].startswith('/' + owner + '-n'):
-                raise RuntimeError('Cleanup owner mismatch')
-            (private / (inspected['Name'][1:] + '.log')).write_text(command(DOCKER + ['logs', cid]))
-            command(DOCKER + ['rm', '-f', cid])
-        if network_created:
-            inspected = json.loads(command(DOCKER + ['network', 'inspect', network]))[0]
-            if inspected['Labels'].get(LABEL) != owner or inspected['Containers']:
-                raise RuntimeError('Network owner mismatch or unexpected attachment')
-            command(DOCKER + ['network', 'rm', network])
-        receipt['clean'] = not command(DOCKER + ['ps', '-aq', '--filter', 'label=' + LABEL + '=' + owner])
-        receipt['end'] = time.time()
-        (unit / 'receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
+        try:
+            receipt['cleanup_errors'] = cleanup_owned(owner, network, containers, private, child)
+        except BaseException as exc:
+            # Preserve the primary failure and a durable receipt even if cleanup itself has a programming error.
+            receipt['cleanup_errors'] = ['unexpected cleanup failure: ' + type(exc).__name__ + ': ' + str(exc)]
+        finally:
+            receipt['clean'] = not receipt.get('cleanup_errors', ['cleanup incomplete'])
+            receipt['end'] = time.time()
+            (unit / 'receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
+        if not receipt['clean']:
+            raise RuntimeError('Cleanup errors recorded in receipt; inspect owned resources before retrying')
     print(name + ': completed and cleaned', flush=True)
 
 
@@ -199,16 +279,17 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('mode', choices=['smoke', 'parallel-smoke', 'campaign'])
     args = parser.parse_args()
+    if not os.environ.get('OSB_RUN_ROOT') or CODE != Path(os.environ['OSB_RUN_ROOT'])/'code':
+        raise SystemExit('Use ./osb/run.sh: execution requires a captured source snapshot')
     if importlib.metadata.version('opensearch-benchmark') != '2.5.0':
         raise SystemExit('Install pinned requirements with Python 3.11 first')
     # Cooperate with the existing reproduction lock; never kill an existing runner.
     with open('/tmp/opensearch-regression-lab.lock', 'a') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        root = ROOT / '.local/osb' / (args.mode + '-' + time.strftime('%Y%m%dT%H%M%SZ', time.gmtime()))
-        root.mkdir()
+        root = Path(os.environ['OSB_RUN_ROOT'])
+        verify_snapshot(root)
         print(root, flush=True)
-        shutil.copyfile(ROOT / '.local/osb/build/manifest.json', root / 'build.json')
-        shutil.copyfile(ROOT / 'osb/PROTOCOL.md', root / 'PROTOCOL.md')
+        shutil.copyfile(CODE / 'PROTOCOL.md', root / 'PROTOCOL.md')
         order = [('parallel-baseline', 'baseline', False, False), ('parallel-candidate', 'candidate', False, False)] if args.mode == 'parallel-smoke' else [('stock', 'stock', True, False), ('baseline', 'baseline', True, False),
                  ('candidate', 'candidate', True, False)] if args.mode == 'smoke' else [
                      ('control-before', 'baseline', False, True),

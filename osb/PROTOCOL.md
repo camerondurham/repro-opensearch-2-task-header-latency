@@ -52,6 +52,9 @@ uses aiohttp because OSB's client hides duplicate HTTP response headers. A narro
 metrics-store hook retains original OSB per-request latency/service-time records;
 it does not schedule requests. Native OSB latency includes scheduler queue delay;
 service time is client-observed request time, not server `took`.
+Use OSB's official `--quiet` option: the 2.5.0 progress display attempts to index
+a float at parallel completion (`update_progress_message`); quiet mode bypasses
+that display path without patching OSB or changing scheduling/measurement.
 
 Each fresh cluster uses disabled automatic refresh, explicit refresh after load,
 one initial force merge, warmup and a final refresh for revision checks. Preserve

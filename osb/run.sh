@@ -18,7 +18,7 @@ case "${1:-help}" in
   smoke|parallel-smoke|campaign)
     [[ -x .local/osb/venv311/bin/python ]] || { echo 'Run ./osb/run.sh setup first.' >&2; exit 2; }
     [[ -f .local/osb/build/manifest.json ]] || { echo 'Run ./osb/run.sh build first.' >&2; exit 2; }
-    exec .local/osb/venv311/bin/python osb/run.py "$1"
+    exec .local/osb/venv311/bin/python osb/freeze.py "$1"
     ;;
   test)
     exec .local/osb/venv311/bin/python -m unittest discover -s osb -v

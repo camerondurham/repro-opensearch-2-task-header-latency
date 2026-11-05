@@ -1,0 +1,55 @@
+{
+  "runs": {
+    "stock": {
+      "variant": "stock",
+      "smoke": true,
+      "control": false,
+      "documents": 128,
+      "revision_sum": 512,
+      "osb_operation_errors": 0,
+      "osb_operation_timeouts": 0,
+      "header_counts": [
+        0,
+        8,
+        128,
+        128
+      ],
+      "default_client": "client-parser-rejection",
+      "expected_client_parser_rejections": 1
+    },
+    "baseline": {
+      "variant": "baseline",
+      "smoke": true,
+      "control": false,
+      "documents": 128,
+      "revision_sum": 512,
+      "osb_operation_errors": 0,
+      "osb_operation_timeouts": 0,
+      "header_counts": [
+        0,
+        8,
+        128,
+        128
+      ],
+      "default_client": "client-parser-rejection",
+      "expected_client_parser_rejections": 1
+    },
+    "candidate": {
+      "variant": "candidate",
+      "smoke": true,
+      "control": false,
+      "documents": 128,
+      "revision_sum": 512,
+      "osb_operation_errors": 0,
+      "osb_operation_timeouts": 0,
+      "header_counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "default_client": "accepted",
+      "expected_client_parser_rejections": 0
+    }
+  }
+}

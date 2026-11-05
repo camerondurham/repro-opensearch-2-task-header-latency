@@ -1,0 +1,8 @@
+{"documents": 128, "kind": "correctness", "revision_sum": 0.0, "time": 1793894136.0326838}
+{"documents": 128, "kind": "ubq-start", "time": 1793894148.0376754}
+{"batches": 0, "completed": false, "kind": "progress", "request_start": 1793894148.0491886, "time": 1793894148.0527043, "updated": 0}
+{"batches": 5, "completed": false, "kind": "progress", "request_start": 1793894148.5533664, "time": 1793894148.5548036, "updated": 50}
+{"batches": 10, "completed": false, "kind": "progress", "request_start": 1793894149.0554707, "time": 1793894149.056671, "updated": 100}
+{"batches": 13, "completed": true, "kind": "progress", "request_start": 1793894149.5573282, "time": 1793894149.5665843, "updated": 128}
+{"duration": 1.5291872024536133, "kind": "ubq-end", "response": {"batches": 13, "created": 0, "deleted": 0, "failures": [], "noops": 0, "requests_per_second": 120.0, "retries": {"bulk": 0, "search": 0}, "throttled": "1s", "throttled_millis": 1066, "throttled_until": "0s", "throttled_until_millis": 0, "timed_out": false, "took": 1274, "total": 128, "updated": 128, "version_conflicts": 0}, "time": 1793894149.5666451}
+{"documents": 128, "kind": "correctness", "revision_sum": 128.0, "time": 1793894159.0880992}

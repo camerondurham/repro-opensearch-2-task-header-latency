@@ -1,0 +1,30 @@
+{
+  "runs": {
+    "parallel-baseline": {
+      "variant": "baseline",
+      "smoke": false,
+      "control": false,
+      "documents": 128,
+      "revision_sum": 128,
+      "osb_operation_errors": 0,
+      "osb_operation_timeouts": 0,
+      "duration_seconds": 1.5289697647094727,
+      "ubq_rate": 83.71650176112013,
+      "batches": 13,
+      "quick": true
+    },
+    "parallel-candidate": {
+      "variant": "candidate",
+      "smoke": false,
+      "control": false,
+      "documents": 128,
+      "revision_sum": 128,
+      "osb_operation_errors": 0,
+      "osb_operation_timeouts": 0,
+      "duration_seconds": 1.5331623554229736,
+      "ubq_rate": 83.48757034586005,
+      "batches": 13,
+      "quick": true
+    }
+  }
+}

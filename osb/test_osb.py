@@ -18,6 +18,7 @@ from osbenchmark.workload.loader import WorkloadFileReader
 from analyze import paired_interval, p99, verify_hashes
 from generate import generate
 from workload import check_ubq, ubq
+from run import cleanup_owned, LABEL
 
 
 def good_response():
@@ -126,6 +127,52 @@ class AnalysisTests(unittest.TestCase):
             (root/'raw.json').write_text('changed')
             (root/'SHA256.json').write_text(json.dumps({'raw.json': '0'*64}))
             with self.assertRaisesRegex(ValueError, 'checksum mismatch'): verify_hashes(root)
+
+
+class CleanupTests(unittest.TestCase):
+    def simulate(self, fail_inspect=False, wrong_owner=False):
+        owner = 'osbth-test'
+        calls, remaining = [], {'one', 'two'}
+        network = [True]
+        def command(args):
+            args = args[3:]  # docker --context default
+            calls.append(args)
+            if args[0] == 'ps': return ' '.join(sorted(remaining))
+            if args[:2] == ['network', 'ls']: return 'net' if network[0] else ''
+            if args[0] == 'inspect':
+                if fail_inspect and args[1] == 'one': raise RuntimeError('inspect unavailable')
+                return json.dumps([{'Config': {'Labels': {LABEL: 'foreign' if wrong_owner and args[1] == 'one' else owner}},
+                                    'Name': '/' + owner + ('-n0' if args[1] == 'one' else '-n1')}])
+            if args[0] == 'logs': raise RuntimeError('log collection unavailable')
+            if args[:2] == ['rm', '-f']:
+                remaining.remove(args[2]); return ''
+            if args[:2] == ['network', 'inspect']:
+                return json.dumps([{'Labels': {LABEL: owner}, 'Name': owner+'-net', 'Containers': list(remaining)}])
+            if args[:2] == ['network', 'rm']:
+                network[0] = False; return ''
+            raise AssertionError(args)
+        with tempfile.TemporaryDirectory() as temp, patch('run.command', command):
+            errors = cleanup_owned(owner, owner+'-net', ['one', 'two'], Path(temp), None)
+        return calls, errors, remaining, network[0]
+
+    def test_log_failure_does_not_prevent_other_cleanup(self):
+        calls, errors, remaining, network = self.simulate()
+        self.assertFalse(remaining or network)
+        self.assertEqual(len(errors), 2)
+        self.assertIn(['network', 'rm', 'net'], calls)
+
+    def test_inspection_failure_keeps_unverified_resource_but_cleans_other(self):
+        calls, errors, remaining, network = self.simulate(fail_inspect=True)
+        self.assertEqual(remaining, {'one'})
+        self.assertIn(['rm', '-f', 'two'], calls)
+        self.assertNotIn(['rm', '-f', 'one'], calls)
+        self.assertTrue(network and errors)
+
+    def test_owner_mismatch_never_removes_foreign_resource(self):
+        calls, errors, remaining, network = self.simulate(wrong_owner=True)
+        self.assertEqual(remaining, {'one'})
+        self.assertNotIn(['rm', '-f', 'one'], calls)
+        self.assertTrue(network and errors)
 
 
 if __name__ == '__main__':

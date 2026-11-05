@@ -15,6 +15,10 @@ def publish(source, destination):
     destination.mkdir(parents=True, exist_ok=False)
     for name in ('order.json', 'build.json', 'PROTOCOL.md'):
         shutil.copyfile(source/name, destination/name)
+    if (source/'source-manifest.json').exists():
+        for name in ('source-manifest.json', 'software.json'):
+            shutil.copyfile(source/name, destination/name)
+        shutil.copytree(source/'code', destination/'code', ignore=shutil.ignore_patterns('__pycache__'))
     for name in report['runs']:
         unit, out = source/name, destination/name
         (out/'raw').mkdir(parents=True)
