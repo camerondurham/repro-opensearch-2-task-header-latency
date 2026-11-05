@@ -5,10 +5,10 @@ from pathlib import Path
 import shutil
 
 
-def generate(path, *, smoke=False, candidate=False, control=False):
+def generate(path, *, smoke=False, candidate=False, control=False, quick=False):
     path = Path(path)
     path.mkdir(parents=True)
-    docs = 128 if smoke else 12000
+    docs = 128 if smoke or quick else 12000
     corpus = ''.join(json.dumps({'uid': i, 'revision': 0, 'group': i % 32,
                                'payload': 'synthetic-' + str(i % 97)}, separators=(',', ':')) + '\n'
                      for i in range(docs)).encode()
@@ -32,7 +32,7 @@ def generate(path, *, smoke=False, candidate=False, control=False):
                 {'operation': {'operation-type': 'force-merge', 'index': 'fixture', 'max-num-segments': 1}},
                 {'name': 'initial-correctness', 'operation': {'operation-type': 'verify-corpus', 'docs': docs, 'revision': 0}}]
     warm = search('warmup-search', 1)
-    warm['warmup-time-period'] = 2 if smoke else 20
+    warm['warmup-time-period'] = 2 if smoke or quick else 20
     schedule.append(warm)
     if smoke:
         schedule.append({'operation': {'operation-type': 'header-lifecycle', 'candidate': candidate}})
@@ -44,7 +44,7 @@ def generate(path, *, smoke=False, candidate=False, control=False):
             search('concurrent-search', 250), {'name': 'load', 'operation': operation, 'clients': 1, 'iterations': 1}]}})
         revision = 0 if control else docs
     schedule.extend([{'name': 'final-correctness', 'operation': {'operation-type': 'verify-corpus', 'docs': docs, 'revision': revision}},
-                     search('recovery-search', 2 if smoke else 10)])
+                     search('recovery-search', 2 if smoke or quick else 10)])
     workload = {'version': 2, 'description': 'Synthetic scroll task-header lifecycle and concurrent search',
         'indices': [{'name': 'fixture', 'body': 'index.json'}],
         'corpora': [{'name': 'synthetic', 'documents': [{'source-file': 'corpus.json', 'document-count': docs,

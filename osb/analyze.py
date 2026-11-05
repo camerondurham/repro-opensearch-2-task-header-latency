@@ -2,6 +2,7 @@
 """Recompute run-level evidence from retained OSB observations (stdlib only)."""
 import argparse
 import hashlib
+import gzip
 import json
 import math
 from pathlib import Path
@@ -14,7 +15,8 @@ def need(ok, message):
 
 
 def rows(path):
-    return [json.loads(line) for line in path.read_text().splitlines()]
+    text = gzip.decompress(path.read_bytes()).decode() if path.suffix == '.gz' else path.read_text()
+    return [json.loads(line) for line in text.splitlines()]
 
 
 def p99(values):
@@ -40,7 +42,7 @@ def analyze_unit(unit):
     expected = 512 if receipt['smoke'] else 0 if receipt['control'] else docs
     need([e['revision_sum'] for e in correctness] == [0, expected] and
          all(e['documents'] == docs for e in correctness), 'Incorrect final corpus/revision total')
-    metrics = [r for p in sorted((unit / 'raw').glob('metrics-*.jsonl')) for r in rows(p)]
+    metrics = [r for p in sorted((unit / 'raw').glob('metrics*.jsonl*')) for r in rows(p)]
     need(bool(metrics), 'Missing OSB metrics')
     # Keep every observation, including coincident equal values; never deduplicate samples.
     need(all(math.isfinite(r['value']) and r['value'] >= 0 for r in metrics), 'Nonfinite/negative metric')
@@ -91,6 +93,10 @@ def analyze_unit(unit):
         lower = next(e['time'] for e in progress if e['updated'] >= .75 * docs)
         upper = max(e['request_start'] for e in progress if e['updated'] <= .95 * docs)
         summary.update(ubq_rate=docs/duration, batches=body['batches'])
+        if receipt.get('quick'):
+            need(errors == timeouts == 0, 'Parallel smoke request errors')
+            need(any(r.get('task') == 'concurrent-search' for r in metrics), 'Missing parallel OSB search')
+            return dict(summary, quick=True)
     need(lower < upper, 'Empty progress window')
     groups = {}
     for row in metrics:
@@ -142,7 +148,7 @@ def analyze(root):
     order = json.loads((root / 'order.json').read_text())
     units = {name: analyze_unit(root / name) for name, *_ in order}
     result = {'runs': units}
-    if all(u['smoke'] for u in units.values()):
+    if all(u['smoke'] or u.get('quick') for u in units.values()):
         return result
     pairs = []
     for pair in range(1, 5):

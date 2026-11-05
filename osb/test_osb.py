@@ -5,6 +5,10 @@ import math
 import os
 from pathlib import Path
 import tempfile
+import importlib.util
+import logging
+import pickle
+import zlib
 import unittest
 from unittest.mock import AsyncMock, patch
 
@@ -26,7 +30,7 @@ class WorkloadTests(unittest.TestCase):
         cfg = config.Config()
         cfg.add(config.Scope.application, 'node', 'benchmark.root', str(Path(osbenchmark.__file__).parent))
         with tempfile.TemporaryDirectory() as temp:
-            for index, options in enumerate((dict(smoke=True), dict(smoke=True, candidate=True), {}, dict(control=True))):
+            for index, options in enumerate((dict(smoke=True), dict(smoke=True, candidate=True), {}, dict(control=True), dict(quick=True))):
                 path = Path(temp) / str(index)
                 generate(path, **options)
                 work = WorkloadFileReader(cfg).read('synthetic', str(path / 'workload.json'), str(path))
@@ -82,6 +86,29 @@ class WorkloadTests(unittest.TestCase):
 
 
 class AnalysisTests(unittest.TestCase):
+    def test_metrics_capture_does_not_duplicate_native_store_transfers(self):
+        from osbenchmark.metrics import MetricsStore
+        class Store:
+            bulk_add = MetricsStore.bulk_add
+            def __init__(self):
+                self.docs = []
+                self.logger = logging.getLogger('capture-test')
+            def _add(self, doc):
+                self.docs.append(doc)
+        with tempfile.TemporaryDirectory() as temp, patch.dict(os.environ, OSB_CAPTURE=temp), \
+                patch('osbenchmark.metrics.InMemoryMetricsStore', Store):
+            spec = importlib.util.spec_from_file_location('capture_test', Path(__file__).parent/'capture/sitecustomize.py')
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            store = Store()
+            doc = {'name': 'service_time', 'value': 2, 'meta': {'success': True, 'private': 'must not publish'}}
+            store._add(doc)
+            store.bulk_add(zlib.compress(pickle.dumps([doc])))
+            self.assertEqual(store.docs, [doc, doc])
+            captured = [json.loads(line) for p in Path(temp).glob('metrics-*') for line in p.read_text().splitlines()]
+            self.assertEqual(len(captured), 1)
+            self.assertNotIn('private', captured[0]['meta'])
+
     def test_nearest_rank_and_invalid_samples(self):
         self.assertEqual(p99(list(range(100))), 98)
         for bad in ([], [math.nan], [math.inf], [-1]):

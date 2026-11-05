@@ -56,7 +56,7 @@ def preflight():
                 docker_endpoint='default local Unix socket')
 
 
-def run_unit(root, name, variant, smoke, control):
+def run_unit(root, name, variant, smoke, control, quick=False):
     pre = preflight()
     unit = root / name
     unit.mkdir()
@@ -69,15 +69,15 @@ def run_unit(root, name, variant, smoke, control):
     owner = 'osbth-' + uuid.uuid4().hex[:12]
     network = owner + '-net'
     containers, child, network_created = [], None, False
-    receipt = dict(name=name, variant=variant, smoke=smoke, control=control, preflight=pre,
+    receipt = dict(name=name, variant=variant, smoke=smoke, control=control, quick=quick, preflight=pre,
                    image=image, start=time.time(), nodes=1 if smoke else 3, errors=[], clean=False,
                    osb_version=importlib.metadata.version('opensearch-benchmark'), python=sys.version.split()[0],
                    limits=dict(node_cpus=2, node_memory_bytes=3*2**30, heap_bytes=2**30, data_bytes=512*2**20),
                    config=dict(batch=10, ubq_rate=120, search_rate=50, search_clients=2,
-                               warmup=2 if smoke else 20, deadline=240, recovery=2 if smoke else 10),
+                               warmup=2 if smoke or quick else 20, deadline=240, recovery=2 if smoke or quick else 10),
                    sources={str(p.relative_to(ROOT)): sha(p) for p in sorted((ROOT / 'osb').rglob('*'))
                             if p.is_file() and '__pycache__' not in str(p)})
-    receipt.update(generate(unit / 'workload', smoke=smoke, candidate=variant == 'candidate', control=control))
+    receipt.update(generate(unit / 'workload', smoke=smoke, candidate=variant == 'candidate', control=control, quick=quick))
     try:
         command(DOCKER + ['network', 'create', '--label', LABEL + '=' + owner, network])
         network_created = True
@@ -197,7 +197,7 @@ def run_unit(root, name, variant, smoke, control):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('mode', choices=['smoke', 'campaign'])
+    parser.add_argument('mode', choices=['smoke', 'parallel-smoke', 'campaign'])
     args = parser.parse_args()
     if importlib.metadata.version('opensearch-benchmark') != '2.5.0':
         raise SystemExit('Install pinned requirements with Python 3.11 first')
@@ -209,7 +209,7 @@ def main():
         print(root, flush=True)
         shutil.copyfile(ROOT / '.local/osb/build/manifest.json', root / 'build.json')
         shutil.copyfile(ROOT / 'osb/PROTOCOL.md', root / 'PROTOCOL.md')
-        order = [('stock', 'stock', True, False), ('baseline', 'baseline', True, False),
+        order = [('parallel-baseline', 'baseline', False, False), ('parallel-candidate', 'candidate', False, False)] if args.mode == 'parallel-smoke' else [('stock', 'stock', True, False), ('baseline', 'baseline', True, False),
                  ('candidate', 'candidate', True, False)] if args.mode == 'smoke' else [
                      ('control-before', 'baseline', False, True),
                      *[(f'pair{pair}-{variant}', variant, False, False) for pair in range(1, 5)
@@ -217,7 +217,7 @@ def main():
                      ('control-after', 'baseline', False, True)]
         (root / 'order.json').write_text(json.dumps(order))
         for name, variant, smoke, control in order:
-            run_unit(root, name, variant, smoke, control)
+            run_unit(root, name, variant, smoke, control, quick=args.mode == 'parallel-smoke')
 
 
 if __name__ == '__main__':

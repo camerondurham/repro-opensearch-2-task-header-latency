@@ -1,0 +1,131 @@
+{
+  "name": "stock",
+  "variant": "stock",
+  "smoke": true,
+  "control": false,
+  "preflight": {
+    "logical_cpus": 16,
+    "available_memory_bytes": 45557829632,
+    "disk_free_bytes": 879410499584,
+    "platform": "Linux x86_64 / NixOS / WSL2",
+    "docker_endpoint": "default local Unix socket"
+  },
+  "image": "opensearchproject/opensearch@sha256:1f8b88245a6af61e7aa500afe0e87d43401e4b33140bb47230a919428ce3f7cb",
+  "start": 1793893399.0880907,
+  "nodes": 1,
+  "errors": [
+    "RuntimeError: OSB failed; inspect private/osb.log"
+  ],
+  "clean": true,
+  "osb_version": "2.5.0",
+  "python": "3.11.16",
+  "limits": {
+    "node_cpus": 2,
+    "node_memory_bytes": 3221225472,
+    "heap_bytes": 1073741824,
+    "data_bytes": 536870912
+  },
+  "config": {
+    "batch": 10,
+    "ubq_rate": 120,
+    "search_rate": 50,
+    "search_clients": 2,
+    "warmup": 2,
+    "deadline": 240,
+    "recovery": 2
+  },
+  "sources": {
+    "osb/LifecycleContract.java": "4c3dfaa9a966d55617a98ee983c79aa4c483dff6c4d8f734104fd0811a2eb06b",
+    "osb/PROTOCOL.md": "d3f8e0bc5e79dafe5ff464fd6d353c824d798bbe5533e98c73d02e7358303a78",
+    "osb/analyze.py": "7e4f7aa4f0b984b6fd8d888d7c3c2f2b850470b3497a4a610b7b43fad85d7858",
+    "osb/build.py": "27dda1b52c0bf1c1d1f70456a82e485435f1c876a35eed1b74392ed9b6714c5a",
+    "osb/capture/sitecustomize.py": "251c9a3099bb47fb74de7b3a959769fe5cfefd901621e9aad90b204c23893e94",
+    "osb/generate.py": "6a0933e1dc2157d7bce9431566729bfe6525c7629e9d461e697e76aaf18d33cf",
+    "osb/requirements.in": "33bc64b9377937609e6756c954a3d22e68a5c7f892f76631a33a15758e55fb47",
+    "osb/requirements.lock": "1c5184f2e26dbd7f3b2c6fb680b1d4316f7f225e85a31976bdd23c75c34ad5bd",
+    "osb/run.py": "619ea64c87d0f4550acee0346efba4dc74accc97482ce55b2a4bf126135a3a09",
+    "osb/test_osb.py": "5beaf0eb6d5b1f4186ebd6ea76fb2489f56b06058c26fdd5818739ad34ece7ec",
+    "osb/workload.py": "00a5f2da829ad41499d4bde1b522dab1d7c6f14601b4430c2aea6c82a4b2d6ea"
+  },
+  "documents": 128,
+  "corpus_sha256": "459c5e79d0166ed7add5556aeb62cb729d04f70d0106cb329ad3362fd6a2ad07",
+  "workload_sha256": "7c649f00192dc13a356a259ff7d7f5f9e99cbf728f527f3de93344c34a60be2a",
+  "engine_image_ids": [
+    "sha256:6db639f27ec51b557b5abe39ccba65b3fae848d8cc4bd12dde724b8074e7ac91"
+  ],
+  "engine_version": {
+    "distribution": "opensearch",
+    "number": "2.19.0",
+    "build_type": "tar",
+    "build_hash": "fd9a9d90df25bea1af2c6a85039692e815b894f5",
+    "build_date": "2025-02-05T16:13:36.244552508Z",
+    "build_snapshot": false,
+    "lucene_version": "9.12.1",
+    "minimum_wire_compatibility_version": "7.10.0",
+    "minimum_index_compatibility_version": "7.0.0"
+  },
+  "before_stats": {
+    "indices": {},
+    "nodes": [
+      {
+        "indices": {
+          "merges": {
+            "current": 0,
+            "current_docs": 0,
+            "current_size_in_bytes": 0,
+            "total": 0,
+            "total_time_in_millis": 0,
+            "total_docs": 0,
+            "total_size_in_bytes": 0,
+            "total_stopped_time_in_millis": 0,
+            "total_throttled_time_in_millis": 0,
+            "total_auto_throttle_in_bytes": 41943040,
+            "unreferenced_file_cleanups_performed": 0
+          },
+          "refresh": {
+            "total": 6,
+            "total_time_in_millis": 70,
+            "external_total": 6,
+            "external_total_time_in_millis": 71,
+            "listeners": 0
+          }
+        },
+        "jvm": {
+          "gc": {
+            "collectors": {
+              "young": {
+                "collection_count": 15,
+                "collection_time_in_millis": 102
+              },
+              "G1 Concurrent GC": {
+                "collection_count": 8,
+                "collection_time_in_millis": 30
+              },
+              "old": {
+                "collection_count": 0,
+                "collection_time_in_millis": 0
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "osb_command": [
+    "$REPO/.local/osb/venv311/bin/opensearch-benchmark",
+    "run",
+    "--pipeline=benchmark-only",
+    "--offline",
+    "--enable-assertions",
+    "--workload-path=$REPO/.local/osb/smoke-20261105T154318Z/stock/workload",
+    "--target-hosts=$OWNED_LOOPBACK",
+    "--on-error=abort",
+    "--test-run-id=e9ab07f8-c691-4d8f-bf13-aab961ce02ed",
+    "--client-options=timeout:30,max_retries:0,retry_on_timeout:false",
+    "--results-format=csv",
+    "--results-file=$REPO/.local/osb/smoke-20261105T154318Z/stock/private/summary.csv"
+  ],
+  "osb_exitcode": 64,
+  "execution_ok": false,
+  "end": 1793893461.3380065
+}

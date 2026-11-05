@@ -1,0 +1,12 @@
+{
+  "attempt": "smoke-20261105T154318Z/stock",
+  "classification": "client parser rejection; server HTTP status not observed by this client",
+  "aiohttp": "3.14.5",
+  "default_max_headers": 128,
+  "error_excerpt": "Error: Cannot run task [header-lifecycle]: 400, message='Too many headers received'",
+  "excerpt_projection": "URL removed; diagnostic 400 belongs to aiohttp parser exception, not server response",
+  "original_private_log_sha256": "9a0fbdb8f917eae0b7fc2110239fdb7026fe19e3e069adfe8b6fa8d7fdae8764",
+  "original_error_line_sha256": "b80178c969776c7d303511c5f7b73e28b2ef2e26bfbd7c150649dff4a1212965",
+  "benchmark_success": false,
+  "retained_files": "Original receipt, pre-failure events, exact workload plugin and generated workload. Private stdout and full diagnostic logs remain local."
+}

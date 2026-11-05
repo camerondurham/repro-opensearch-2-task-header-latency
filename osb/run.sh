@@ -15,7 +15,7 @@ case "${1:-help}" in
     for tool in docker patch python3; do command -v "$tool" >/dev/null || { echo "Missing $tool" >&2; exit 2; }; done
     python3 osb/build.py
     ;;
-  smoke|campaign)
+  smoke|parallel-smoke|campaign)
     [[ -x .local/osb/venv311/bin/python ]] || { echo 'Run ./osb/run.sh setup first.' >&2; exit 2; }
     [[ -f .local/osb/build/manifest.json ]] || { echo 'Run ./osb/run.sh build first.' >&2; exit 2; }
     exec .local/osb/venv311/bin/python osb/run.py "$1"
@@ -23,5 +23,5 @@ case "${1:-help}" in
   test)
     exec .local/osb/venv311/bin/python -m unittest discover -s osb -v
     ;;
-  *) echo 'Usage: ./osb/run.sh {setup|build|smoke|campaign|test}'; exit 2 ;;
+  *) echo 'Usage: ./osb/run.sh {setup|build|smoke|parallel-smoke|campaign|test}'; exit 2 ;;
 esac
