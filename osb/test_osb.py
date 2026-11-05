@@ -49,6 +49,9 @@ class WorkloadTests(unittest.TestCase):
             self.assertEqual(a['corpus_sha256'], b['corpus_sha256'])
             self.assertEqual(a['corpus_sha256'], c['corpus_sha256'])
             self.assertEqual(a['workload_sha256'], b['workload_sha256'])
+            lines = [json.loads(line) for line in (Path(temp)/'a/corpus.json').read_text().splitlines()]
+            self.assertEqual([row['index']['_id'] for row in lines[::2]], [str(i) for i in range(12000)])
+            self.assertTrue(all(row['revision'] == 0 for row in lines[1::2]))
 
     def test_failed_or_partial_updates_rejected(self):
         check_ubq(good_response(), 128)

@@ -41,6 +41,10 @@ requests/s**, 20 seconds search warmup plus one baseline measurement second
 10 seconds recovery. Each node gets 2 CPUs, 3 GiB memory/no extra swap, 1 GiB
 heap and 512 MiB ephemeral data. Nodes use CPU sets 0–1, 2–3 and 4–5;
 the OSB driver uses 6–7 and an 8 GiB per-process virtual-address bound.
+The corpus includes explicit `_id` values `0..11999` so shard placement is
+deterministic across fresh clusters. An initial control using automatic IDs was
+stopped before paired timing and excluded; the document-ID correction changes
+the fixture implementation, not the endpoints or effect thresholds.
 No worker pacing modification. Two baseline
 search-only controls bracket the timing pairs for 100 seconds each. A stock
 smoke and matched-build smoke precede timing and are not performance replicates.

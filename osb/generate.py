@@ -9,9 +9,9 @@ def generate(path, *, smoke=False, candidate=False, control=False, quick=False):
     path = Path(path)
     path.mkdir(parents=True)
     docs = 128 if smoke or quick else 12000
-    corpus = ''.join(json.dumps({'uid': i, 'revision': 0, 'group': i % 32,
-                               'payload': 'synthetic-' + str(i % 97)}, separators=(',', ':')) + '\n'
-                     for i in range(docs)).encode()
+    corpus = ''.join(json.dumps(row, separators=(',', ':')) + '\n' for i in range(docs) for row in (
+        {'index': {'_index': 'fixture', '_id': str(i)}},
+        {'uid': i, 'revision': 0, 'group': i % 32, 'payload': 'synthetic-' + str(i % 97)})).encode()
     (path / 'corpus.json').write_bytes(corpus)
     index = {'settings': {'number_of_shards': 1 if smoke else 3, 'number_of_replicas': 0,
                           'refresh_interval': '-1'}, 'mappings': {'properties': {
@@ -48,7 +48,7 @@ def generate(path, *, smoke=False, candidate=False, control=False, quick=False):
     workload = {'version': 2, 'description': 'Synthetic scroll task-header lifecycle and concurrent search',
         'indices': [{'name': 'fixture', 'body': 'index.json'}],
         'corpora': [{'name': 'synthetic', 'documents': [{'source-file': 'corpus.json', 'document-count': docs,
-                     'uncompressed-bytes': len(corpus), 'target-index': 'fixture'}]}],
+                     'uncompressed-bytes': len(corpus), 'includes-action-and-meta-data': True, 'target-index': 'fixture'}]}],
         'test_procedures': [{'name': 'controlled', 'default': True, 'schedule': schedule}]}
     (path / 'workload.json').write_text(json.dumps(workload, indent=2) + '\n')
     shutil.copyfile(Path(__file__).with_name('workload.py'), path / 'workload.py')
