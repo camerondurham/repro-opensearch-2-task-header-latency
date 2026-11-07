@@ -10,7 +10,7 @@ import time
 import unittest
 import uuid
 from unittest.mock import Mock, patch
-from processes import owned_processes, stop_owned_processes
+from processes import owned_processes, stop_owned_processes, assert_actor_port_unused
 from run import cleanup_owned
 
 
@@ -61,6 +61,16 @@ while True: time.sleep(1)
                     finally:
                         foreign.terminate()
                         foreign.wait(5)
+
+    def test_existing_actor_port_blocks_without_touching_service(self):
+        with socket.socket() as service:
+            service.bind(('127.0.0.1', 0))
+            service.listen()
+            port = service.getsockname()[1]
+            with self.assertRaisesRegex(RuntimeError, 'leaving existing service untouched'):
+                assert_actor_port_unused(port)
+            self.assertGreaterEqual(service.fileno(), 0)
+        assert_actor_port_unused(port)
 
     def test_identity_mismatch_is_not_killed(self):
         process = Mock()

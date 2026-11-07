@@ -21,7 +21,7 @@ import psutil
 from build import IMAGE, ROOT, DOCKER, sha
 from generate import generate
 from evidence import validate_completion
-from processes import stop_owned_processes
+from processes import stop_owned_processes, assert_actor_port_unused
 
 LABEL = 'org.osb-task-header.owner'
 CODE = Path(__file__).resolve().parent
@@ -56,6 +56,7 @@ def resource_sample():
 
 
 def preflight():
+    assert_actor_port_unused()
     endpoint = command(DOCKER + ['context', 'inspect', 'default', '--format', '{{.Endpoints.docker.Host}}'])
     if endpoint != 'unix:///var/run/docker.sock':
         raise RuntimeError('Only default local Docker socket is permitted')
@@ -232,6 +233,7 @@ def run_unit(root, name, variant, smoke, control, quick=False):
                 '--client-options=timeout:30,max_retries:0,retry_on_timeout:false',
                 '--results-format=csv', '--results-file=' + str(private / 'summary.csv')]
         receipt['osb_command'] = [a.replace(str(ROOT), '$REPO').replace(target.removeprefix('http://'), '$OWNED_LOOPBACK') for a in argv]
+        assert_actor_port_unused()  # Recheck after engine setup, immediately before OSB starts.
         with (private / 'osb.log').open('w') as out:
             def driver_limits():
                 os.sched_setaffinity(0, {6, 7})
@@ -256,6 +258,8 @@ def run_unit(root, name, variant, smoke, control, quick=False):
         if not list(capture.glob('metrics-*.jsonl')):
             raise RuntimeError('OSB raw capture absent')
         log_text = '\n'.join(p.read_text(errors='replace') for p in home.rglob('*.log'))
+        if 'Actor system already running locally? [True]' in log_text:
+            raise RuntimeError('OSB joined a preexisting actor system; unit excluded, foreign actors left untouched')
         receipt['metric_drop_warning_count'] = log_text.count('Dropping sample for [')
         receipt['memory_store_drop_warning_count'] = log_text.count('not adding additional entries')
         if receipt['metric_drop_warning_count'] or receipt['memory_store_drop_warning_count']:

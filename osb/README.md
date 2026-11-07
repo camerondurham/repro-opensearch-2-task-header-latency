@@ -43,6 +43,9 @@ current cleanup separately verifies an inherited random owner marker, unit captu
 path, Python executable, user and launch-time bound, then performs bounded
 termination/rescans. Unknown or uninspectable live processes are never killed.
 The real detached-actor regression also proves that a different owner survives.
+A reserved OSB actor port (1900) blocks startup instead of joining another job's
+actor system; it is checked before setup and immediately before launch. A detected
+join race invalidates the unit and leaves that foreign system untouched.
 
 The build uses the stock image's Temurin 21.0.6 compiler with `--release 11`,
 compiles the pinned public `TransportSearchScrollAction.java` for both arms,

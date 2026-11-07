@@ -7,7 +7,17 @@ No command-name matching, global actor shutdown, or unknown-process killing.
 import os
 from pathlib import Path
 import time
+import socket
 import psutil
+
+
+def assert_actor_port_unused(port=1900):
+    """OSB otherwise joins an existing local Thespian system; never adopt one."""
+    with socket.socket() as probe:
+        try:
+            probe.bind(('127.0.0.1', port))
+        except OSError as exc:
+            raise RuntimeError('OSB actor port is in use or unavailable; leaving existing service untouched') from exc
 
 
 def owned_processes(owner):
