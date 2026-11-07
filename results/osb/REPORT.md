@@ -1,6 +1,16 @@
-# Native OSB evidence: three distinct conclusions
+# Native OSB evidence: both campaigns retained
 
-## Verdict
+**Current procedure:** the later process-private queue campaign did **not** meet
+the full predeclared performance criterion: ratio 0.661, 95% interval
+[0.408, 1.071], mean reduction 4.71 ms. All validation gates passed, but the interval
+includes no improvement. Header/client compatibility reproduction still passed.
+Read the [current-procedure report](ISOLATED_REPORT.md) first. Do not pool campaigns
+or use this earlier positive result to conceal the newer inconclusive result.
+
+The detail below is explicitly the **earlier TCP-actor campaign**; its raw data,
+source snapshots and numerical report are unchanged.
+
+## Verdict for the earlier TCP-actor campaign
 
 1. **Observed lifecycle/client symptom:** untouched stock OpenSearch 2.19.0 and
    the matched recompiled baseline returned 0/8/128/128 task-resource header lines;
@@ -173,15 +183,24 @@ verifies no live owned process remains, and leaves a different-owner process ali
 The exporter now rejects nonnumeric search timing/timeout fields and outcome-
 inappropriate default-client diagnostic fields. Negative mutation tests cover each.
 No leaked payload was found in the retained artifacts. Performance measurements
-were not rerun or rewritten to benefit from these fixes; the source snapshots
-disclose exactly which cleanup implementation ran. A [post-review stock/baseline/
-cleanup smoke](cleanup-smoke/report.json) verifies the final live runner at
+from this TCP campaign were not rewritten to benefit from these fixes; the source
+snapshots disclose exactly which cleanup implementation ran. An [intermediate
+stock/baseline/cleanup smoke](cleanup-smoke/report.json) verifies the runner at
 `0d614e2`: all expected header/client outcomes and 128/512 totals passed, and the
 stricter cleanup verified no live owned actors. A preceding qualification attempt
 correctly marked cleanup unsuccessful when it could not inspect the still-running
 owned engine's same-UID process; its raw attempt remains local/excluded. Cleanup
 now removes the owned engine before actor absence inspection rather than skipping
 an uninspectable process or falsely reporting success.
+
+Round-two review found a separate native TCP bootstrap race: a foreign actor
+administrator can appear after the occupancy check, be adopted and then shut down.
+The later port guard was therefore rejected, not claimed as a safety fix. The final
+runner selects process-private native queues and bypasses shared TCP discovery;
+its tests create no wildcard TCP actor listener. The [separate queue campaign](ISOLATED_REPORT.md)
+qualifies this changed driver and **does not meet** the performance uncertainty
+criterion. Both campaigns remain complete and unpooled. Earlier frozen TCP code
+is audit evidence, not a recommended safe live entry point; use the current runner.
 
 ## Recompute and audit
 

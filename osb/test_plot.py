@@ -24,6 +24,21 @@ class PlotTests(unittest.TestCase):
                                 for b in bins))
         verify(root, ROOT/'figures')
 
+    def test_current_procedure_result_is_not_replaced_by_earlier_positive_campaign(self):
+        from analyze import analyze
+        earlier = analyze(ROOT/'results/osb/campaign')
+        current = analyze(ROOT/'results/osb/isolated-campaign')
+        self.assertTrue(earlier['practically_meaningful_effect_supported'])
+        self.assertFalse(current['practically_meaningful_effect_supported'])
+        self.assertTrue(current['performance_gates_pass'])
+        self.assertGreater(current['ratio_95pct_t_interval'][1], 1)
+        root = ROOT/'results/osb/isolated-campaign'
+        for name, bins in series(root).items():
+            observed = sum(r['name'] == 'service_time' and r['operation'] == 'search'
+                           for r in rows(root/name/'raw/metrics.jsonl.gz'))
+            self.assertEqual(sum(b['count'] for b in bins), observed)
+        verify(root, ROOT/'figures/isolated')
+
     def test_compatibility_entrypoint_rejects_unknown_modes_without_work(self):
         for args in (['invalid'], ['smoke', 'extra']):
             result = subprocess.run(['bash', str(ROOT/'run-reproduction.sh'), *args], capture_output=True)

@@ -1,0 +1,11 @@
+{
+  "plot_script_sha256": "418efce9414bd51fe0675b996897acc011512b5471ca95a574bbc5c09fbb8b90",
+  "campaign_manifest_sha256": "637fa0b2a1f26cb2ef21691a67f27426ca4fe1a670bcd46a90b8da8ef2cc6b1c",
+  "matplotlib": "3.10.8",
+  "bin_seconds": 5,
+  "files": {
+    "osb-full-duration.svg": "a69761438f7517449f8f0c0f90bed6f614435352843c6112843770d9acb5da6c",
+    "osb-full-duration.png": "4f0fa13fd66a94c77f3058d7dc81a42423f10a429da12dcfe87333b30cdb9b04",
+    "osb-full-duration.json": "60b06ee1eee9a2d731066f880cc0a9a464827a56a9b3ab3c348841f76cf3f86d"
+  }
+}

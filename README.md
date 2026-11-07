@@ -7,8 +7,10 @@ In stock OpenSearch 2.19.0, a 128-document update-by-query returned 8 `TASK_RESO
 **Canonical live experiment:** pinned **OSB 2.5.0**, not an ad hoc runner wrapped
 in OSB. Start with the [evidence report](results/osb/REPORT.md),
 [predeclared protocol](osb/PROTOCOL.md), and [operator guide](osb/README.md).
-The new campaign supports a bounded performance effect; it is separate from the
-historical stock counts and common-paced campaign below.
+The current queue-actor campaign reproduces the header/client symptom but **does
+not meet the full predeclared performance criterion**. The earlier positive TCP
+campaign is retained separately, not pooled or selected instead. Neither is the
+historical stock/common-paced evidence below.
 
 ```sh
 git clone https://github.com/camerondurham/repro-opensearch-2-task-header-latency.git
@@ -63,7 +65,25 @@ A separate instrumented diagnostic sampled the response context at `doStartNextS
 
 Carrying more distinct header values can increase context copying, serialization, allocation, and transport work, which may affect concurrent latency. No profiler or isolated wire-byte attribution measured that mediation.
 
-## New native OSB results (2026-11-07)
+## Current native OSB results: performance remains inconclusive
+
+The final procedure uses process-private queue actors, avoiding a native TCP
+bootstrap race that could adopt/shut down an unrelated actor service. Its separate
+four-pair campaign retained the same hypotheses, ≥20%/≥2 ms endpoint and gates.
+Late-progress p99 service-time reductions were **39.9%, 53.3%, 3.6%, 29.5%**;
+geometric-mean ratio **0.661**, run-level 95% t interval **[0.408, 1.071]**; mean
+reduction **4.71 ms**. All correctness/load/resource gates passed, but the interval
+includes no improvement: **the full performance criterion was not met**.
+
+![Full-duration observations from the current queue-actor procedure](figures/isolated/osb-full-duration.svg)
+
+Stock/baseline still reproduced 0/8/128/128 headers and default-client rejection;
+cleanup produced 0/0/0/0 and acceptance, with exact 128/512 final totals in all arms.
+This is a demonstrated lifecycle/client symptom, not conclusive proof of the
+practical performance effect. Read [all runs and limitations](results/osb/ISOLATED_REPORT.md).
+No extra runs or altered thresholds were used to force a positive result.
+
+## Earlier native OSB TCP results (2026-11-07; retained separately)
 
 The stock and rebuilt-baseline smoke each returned **0/8/128/128** resource
 header lines; the cleanup returned **0/0/0/0**. Stock/baseline exceeded the pinned

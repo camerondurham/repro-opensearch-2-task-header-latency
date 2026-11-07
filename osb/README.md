@@ -96,7 +96,10 @@ unsent opportunity. A counterpart check rejects missing latency/service/processi
 records; native log checks reject known sampling drops. No imputation or request
 sample independence assumption is used.
 
-The recorded results and all limits are in [the evidence report](../results/osb/REPORT.md).
+The [current queue-mode report](../results/osb/ISOLATED_REPORT.md) records the
+inconclusive performance result and reproduced client symptom. The [earlier TCP
+report](../results/osb/REPORT.md) stays separately available, not pooled or selected
+instead. Frozen TCP code is audit evidence, not a recommended safe live runner.
 `python3 osb/plot.py --verify` checks the full-duration plot without plotting dependencies;
 regeneration instructions and the separate hash-locked plot environment are in the report.
 The historical `reproduce.py` stays byte-identical for provenance/offline checks;

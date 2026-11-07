@@ -1,0 +1,43 @@
+{
+  "runs": {
+    "parallel-control": {
+      "variant": "baseline",
+      "smoke": false,
+      "control": true,
+      "documents": 4800,
+      "revision_sum": 0,
+      "osb_operation_errors": 0,
+      "osb_operation_timeouts": 0,
+      "duration_seconds": 40.03547930717468,
+      "quick": true
+    },
+    "parallel-baseline": {
+      "variant": "baseline",
+      "smoke": false,
+      "control": false,
+      "documents": 4800,
+      "revision_sum": 4800,
+      "osb_operation_errors": 0,
+      "osb_operation_timeouts": 0,
+      "duration_seconds": 43.17796516418457,
+      "ubq_rate": 111.16781399373407,
+      "batches": 480,
+      "quick": true
+    },
+    "parallel-candidate": {
+      "variant": "candidate",
+      "smoke": false,
+      "control": false,
+      "documents": 4800,
+      "revision_sum": 4800,
+      "osb_operation_errors": 0,
+      "osb_operation_timeouts": 0,
+      "duration_seconds": 42.16556739807129,
+      "ubq_rate": 113.83695978011572,
+      "batches": 480,
+      "quick": true
+    }
+  },
+  "evidence_format": "parallel-smoke",
+  "capture_limitation": "Counterpart checks and offered-load tolerance detect partial loss, but whole-triplet loss cannot be categorically ruled out."
+}
