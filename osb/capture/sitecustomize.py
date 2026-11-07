@@ -1,7 +1,7 @@
-"""Pinned OSB 2.5.0 adapter: retain per-request metrics absent from CSV summary.
+"""Pinned OSB capture adapters: private actors and per-request metrics.
 
 No scheduling changes. The normal store still receives the unmodified record.
-Capture errors fail the OSB process instead of silently losing observations.
+Adapter errors fail the OSB process instead of silently losing observations.
 """
 import json
 import os
@@ -9,9 +9,13 @@ from pathlib import Path
 
 if os.environ.get('OSB_CAPTURE'):
     try:
-        from importlib.metadata import version
-        if version('opensearch-benchmark') != '2.5.0':
-            raise RuntimeError('Metrics adapter requires OSB 2.5.0')
+        # Load this exact sibling even when an external test imports this file
+        # directly, without capture/ on sys.path. No import-path mutation.
+        from importlib.util import module_from_spec, spec_from_file_location
+        spec = spec_from_file_location('_osb_actor_isolation', Path(__file__).with_name('actor_isolation.py'))
+        isolation = module_from_spec(spec)
+        spec.loader.exec_module(isolation)
+        isolation.install()  # Guards OSB 2.5.0 + Thespian 3.10.6 before benchmark imports.
         from osbenchmark.metrics import InMemoryMetricsStore
         original = InMemoryMetricsStore._add
         original_bulk = InMemoryMetricsStore.bulk_add

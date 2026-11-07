@@ -101,6 +101,7 @@ def frozen_fixture(root, campaign=False):
         receipt = load_json(unit/'receipt.json')
         nodes = 1 if smoke else 3
         receipt.update(generated, name=name, variant=variant, smoke=smoke, control=control, quick=False, nodes=nodes,
+            actor_system='multiprocQueueBase',
             config=dict(batch=10, ubq_rate=120, search_rate=50, search_clients=2,
                         warmup=2 if smoke else 20, deadline=240, recovery=2 if smoke else 10), limits=LIMITS,
             metric_drop_warning_count=0, memory_store_drop_warning_count=0, cleanup_errors=[],

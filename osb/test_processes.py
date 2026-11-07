@@ -2,7 +2,6 @@
 import os
 from pathlib import Path
 import signal
-import socket
 import subprocess
 import sys
 import tempfile
@@ -10,7 +9,7 @@ import time
 import unittest
 import uuid
 from unittest.mock import Mock, patch
-from processes import owned_processes, stop_owned_processes, assert_actor_port_unused
+from processes import owned_processes, stop_owned_processes
 from run import cleanup_owned
 
 
@@ -19,16 +18,13 @@ class ProcessCleanupTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             owner = dict(token=uuid.uuid4().hex, capture=temp, python=str(Path(sys.executable).resolve()),
                          started=time.time()-1)
-            with socket.socket() as sock:
-                sock.bind(('127.0.0.1', 0))
-                port = sock.getsockname()[1]
             env = dict(os.environ, OSB_PROCESS_OWNER=owner['token'], OSB_CAPTURE=temp,
-                       OSB_TEST_PORT=str(port), OSB_TEST_READY=str(Path(temp)/'ready'))
-            # Do not reuse a global OSB actor system: this port/system is private.
+                       OSB_TEST_READY=str(Path(temp)/'ready'))
+            # Queue transport is private to this process family, with no shared port.
             code = '''import os,time
 from pathlib import Path
 from thespian.actors import ActorSystem
-system=ActorSystem('multiprocTCPBase', capabilities={'Admin Port':int(os.environ['OSB_TEST_PORT'])}, transientUnique=True)
+system=ActorSystem('multiprocQueueBase', transientUnique=True)
 Path(os.environ['OSB_TEST_READY']).write_text('ready')
 while True: time.sleep(1)
 '''
@@ -61,16 +57,6 @@ while True: time.sleep(1)
                     finally:
                         foreign.terminate()
                         foreign.wait(5)
-
-    def test_existing_actor_port_blocks_without_touching_service(self):
-        with socket.socket() as service:
-            service.bind(('127.0.0.1', 0))
-            service.listen()
-            port = service.getsockname()[1]
-            with self.assertRaisesRegex(RuntimeError, 'leaving existing service untouched'):
-                assert_actor_port_unused(port)
-            self.assertGreaterEqual(service.fileno(), 0)
-        assert_actor_port_unused(port)
 
     def test_identity_mismatch_is_not_killed(self):
         process = Mock()

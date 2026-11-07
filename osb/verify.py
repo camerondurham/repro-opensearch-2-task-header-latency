@@ -66,13 +66,15 @@ def main():
     root = Path(__file__).resolve().parents[1]
     formats = {'smoke': 'legacy-smoke', 'parallel-smoke': 'legacy-parallel-smoke',
                'boundary-smoke': 'boundary-smoke-pre-build-inputs', 'validated-smoke': 'smoke',
-               'cleanup-smoke': 'smoke', 'campaign': 'campaign'}
+               'cleanup-smoke': 'smoke', 'campaign': 'campaign', 'isolated-smoke': 'smoke',
+               'isolated-boundary-smoke': 'parallel-smoke', 'isolated-campaign': 'campaign'}
     for directory, evidence_format in formats.items():
         report = verify_directory(root/'results/osb'/directory, legacy=directory in ('smoke', 'parallel-smoke'),
                                   expected_format=evidence_format)
         print('Verified OSB ' + directory + ' [' + report['evidence_format'] + ']')
     from plot import verify as verify_plot
     verify_plot(root/'results/osb/campaign', root/'figures')
+    verify_plot(root/'results/osb/isolated-campaign', root/'figures/isolated')
     print('Verified full-duration plot observations and artifact provenance')
     verify_excluded(root/'results/osb/excluded-timeout')
     print('Verified timeout attempt remains rejected (not a campaign)')

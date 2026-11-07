@@ -75,7 +75,7 @@ def validate_receipt(receipt):
     fields(receipt, '''name variant smoke control quick preflight image start end nodes errors clean osb_version python
         limits config sources documents corpus_sha256 workload_sha256 engine_image_ids engine_version before_stats
         osb_command osb_exitcode after_stats execution_ok cleanup_errors driver_limits effective_engine_limits
-        metric_drop_warning_count memory_store_drop_warning_count source_manifest_sha256 start_commit''', 'receipt')
+        metric_drop_warning_count memory_store_drop_warning_count source_manifest_sha256 start_commit actor_system''', 'receipt')
     need(receipt['errors'] == [] and receipt.get('cleanup_errors', []) == [], 'Private error text in receipt')
     fields(receipt['preflight'], '''logical_cpus physical_cpus available_memory_bytes disk_free_bytes platform
         docker_endpoint system architecture kernel_release os_id os_version_id cpu_model''', 'preflight')

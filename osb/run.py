@@ -21,7 +21,7 @@ import psutil
 from build import IMAGE, ROOT, DOCKER, sha
 from generate import generate
 from evidence import validate_completion
-from processes import stop_owned_processes, assert_actor_port_unused
+from processes import stop_owned_processes
 
 LABEL = 'org.osb-task-header.owner'
 CODE = Path(__file__).resolve().parent
@@ -56,7 +56,6 @@ def resource_sample():
 
 
 def preflight():
-    assert_actor_port_unused()
     endpoint = command(DOCKER + ['context', 'inspect', 'default', '--format', '{{.Endpoints.docker.Host}}'])
     if endpoint != 'unix:///var/run/docker.sock':
         raise RuntimeError('Only default local Docker socket is permitted')
@@ -157,6 +156,7 @@ def run_unit(root, name, variant, smoke, control, quick=False):
     receipt = dict(name=name, variant=variant, smoke=smoke, control=control, quick=quick, preflight=pre,
                    image=image, start=time.time(), nodes=1 if smoke else 3, errors=[], clean=False,
                    osb_version=importlib.metadata.version('opensearch-benchmark'), python=sys.version.split()[0],
+                   actor_system='multiprocQueueBase',
                    limits=dict(node_cpus=2, node_memory_bytes=3*2**30, heap_bytes=2**30, data_bytes=512*2**20),
                    config=dict(batch=10, ubq_rate=120, search_rate=50, search_clients=2,
                                warmup=2 if smoke or quick else 20, deadline=240, recovery=2 if smoke or quick else 10),
@@ -233,7 +233,6 @@ def run_unit(root, name, variant, smoke, control, quick=False):
                 '--client-options=timeout:30,max_retries:0,retry_on_timeout:false',
                 '--results-format=csv', '--results-file=' + str(private / 'summary.csv')]
         receipt['osb_command'] = [a.replace(str(ROOT), '$REPO').replace(target.removeprefix('http://'), '$OWNED_LOOPBACK') for a in argv]
-        assert_actor_port_unused()  # Recheck after engine setup, immediately before OSB starts.
         with (private / 'osb.log').open('w') as out:
             def driver_limits():
                 os.sched_setaffinity(0, {6, 7})
@@ -258,8 +257,9 @@ def run_unit(root, name, variant, smoke, control, quick=False):
         if not list(capture.glob('metrics-*.jsonl')):
             raise RuntimeError('OSB raw capture absent')
         log_text = '\n'.join(p.read_text(errors='replace') for p in home.rglob('*.log'))
-        if 'Actor system already running locally? [True]' in log_text:
-            raise RuntimeError('OSB joined a preexisting actor system; unit excluded, foreign actors left untouched')
+        if 'Starting actor system with system base [multiprocQueueBase]' not in log_text or \
+                'Actor system already running locally? [True]' in log_text:
+            raise RuntimeError('Expected process-private queue actor system; unit excluded')
         receipt['metric_drop_warning_count'] = log_text.count('Dropping sample for [')
         receipt['memory_store_drop_warning_count'] = log_text.count('not adding additional entries')
         if receipt['metric_drop_warning_count'] or receipt['memory_store_drop_warning_count']:

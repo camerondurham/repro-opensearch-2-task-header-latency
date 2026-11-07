@@ -1,5 +1,22 @@
 # Protocol frozen before live measurements
 
+## Safety amendment before the second campaign (2026-11-07)
+
+The completed TCP-actor campaign is retained unchanged under `results/osb/campaign`.
+Review found a native actor bootstrap race: a TCP administrator appearing after
+OSB's initial check can be adopted and later shut down as though OSB owned it.
+Port probes cannot guarantee ownership. Future live runs explicitly select OSB's
+existing process-private `multiprocQueueBase` and bypass TCP discovery through a
+version-checked adapter. HTTP clients, search scheduler, workload, limits, four
+counterbalanced pairs, controls, endpoint, thresholds and analysis remain the same.
+
+Because driver coordination changed, run a **separate** smoke/boundary qualification
+and ten-unit queue-actor campaign, retained as `isolated-campaign`. Do not overwrite,
+exclude, pool with or select between the two campaigns based on favorable results.
+Report both; if the new campaign fails the endpoint, state that the latest procedure
+does not replicate it. The second campaign is a same-host method replication,
+not an independent-machine replicate. Each retains its own frozen runtime sources.
+
 This campaign tests OpenSearch **2.19.0**, source
 `fd9a9d90df25bea1af2c6a85039692e815b894f5`, against the existing proposed
 scroll cleanup. It does not test issue #23162 (keyword sorting/max clauses),

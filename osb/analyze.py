@@ -64,7 +64,7 @@ def rows(path):
 
 
 CODE_FILES = {'run.py', 'build.py', 'generate.py', 'workload.py', 'capture/sitecustomize.py',
-              'PROTOCOL.md', 'requirements.lock', 'freeze.py', 'evidence.py', 'proposed-fix.patch', 'processes.py'}
+              'PROTOCOL.md', 'requirements.lock', 'freeze.py', 'evidence.py', 'proposed-fix.patch', 'processes.py', 'capture/actor_isolation.py'}
 JAVA = 'server/src/main/java/org/opensearch/action/search/TransportSearchScrollAction.java'
 BUILD_FILES = {'build.py', 'compile.sh', 'LifecycleContract.java', 'proposed-fix.patch',
                'baseline/' + JAVA, 'candidate/' + JAVA}
@@ -130,7 +130,8 @@ def locked_distributions(path):
 
 def validate_snapshot(root, build, boundary):
     source = load_json(safe_file(root, 'source-manifest.json'))
-    need(set(source['files']) in (CODE_FILES, CODE_FILES - {'processes.py'}), 'Unexpected frozen source inventory')
+    need(set(source['files']) in (CODE_FILES, CODE_FILES - {'capture/actor_isolation.py'},
+         CODE_FILES - {'processes.py', 'capture/actor_isolation.py'}), 'Unexpected frozen source inventory')
     need(source['worktree_status'] == [] and re.fullmatch('[0-9a-f]{40}', source['start_commit']),
          'Unclean/invalid start source')
     snapshot_files(root, 'code', source['files'], allow_cache=True)
@@ -233,6 +234,10 @@ def validate_design(root):
         if (root/name/'workload/corpus.json').exists():
             need(sha(safe_file(root, name+'/workload/corpus.json')) == corpus, 'Corpus bytes mismatch')
         if source:
+            if 'capture/actor_isolation.py' in source['files']:
+                need(receipt.get('actor_system') == 'multiprocQueueBase', 'Private actor isolation not recorded')
+            else:
+                need('actor_system' not in receipt, 'Historical actor provenance must not be retrofitted')
             need(receipt['source_manifest_sha256'] == sha(root/'source-manifest.json') and
                  receipt['sources'] == source['files'] and receipt['start_commit'] == source['start_commit'],
                  'Unit executable provenance differs from frozen campaign')

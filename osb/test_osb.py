@@ -128,7 +128,9 @@ class AnalysisTests(unittest.TestCase):
             def _add(self, doc):
                 self.docs.append(doc)
         with tempfile.TemporaryDirectory() as temp, patch.dict(os.environ, OSB_CAPTURE=temp), \
-                patch('osbenchmark.metrics.InMemoryMetricsStore', Store):
+                patch('osbenchmark.metrics.InMemoryMetricsStore', Store), \
+                patch('osbenchmark.actor.__SYSTEM_BASE', 'multiprocTCPBase'), \
+                patch('osbenchmark.actor.actor_system_already_running'):
             spec = importlib.util.spec_from_file_location('capture_test', Path(__file__).parent/'capture/sitecustomize.py')
             module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(module)

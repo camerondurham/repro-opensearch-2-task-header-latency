@@ -43,9 +43,11 @@ current cleanup separately verifies an inherited random owner marker, unit captu
 path, Python executable, user and launch-time bound, then performs bounded
 termination/rescans. Unknown or uninspectable live processes are never killed.
 The real detached-actor regression also proves that a different owner survives.
-A reserved OSB actor port (1900) blocks startup instead of joining another job's
-actor system; it is checked before setup and immediately before launch. A detected
-join race invalidates the unit and leaves that foreign system untouched.
+A version-checked adapter selects OSB's process-private queue actor mode and
+bypasses shared TCP actor discovery. There is no shared actor port to adopt or
+shut down. Port probes were rejected in review because bootstrap can race another
+service. Existing TCP-actor campaign evidence remains explicitly labelled; the
+separate queue-actor campaign qualifies the final procedure.
 
 The build uses the stock image's Temurin 21.0.6 compiler with `--release 11`,
 compiles the pinned public `TransportSearchScrollAction.java` for both arms,
@@ -66,7 +68,9 @@ headers plus ordinary HTTP headers exceed that default. The resulting parser
 exception's diagnostic 400 is not a server HTTP response status.
 
 OSB 2.5.0 has a parallel progress-display failure (`float` not subscriptable).
-The supported `--quiet` option avoids that display path; OSB code is unmodified.
+The supported `--quiet` option avoids that display path. Installed OSB source is
+unmodified; the explicit actor lifecycle adapter selects its existing queue mode
+and bypasses shared TCP discovery. It does not patch the scheduler or HTTP timing.
 `--enable-assertions` verifies exact search hits and timeout flags. The driver
 disables transport retries, checks UBQ retries/failures, and rejects native
 dropped-sample warnings. OSB's executor timeout path does not honor `on-error=abort`;
