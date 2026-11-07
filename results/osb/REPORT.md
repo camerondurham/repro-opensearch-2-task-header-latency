@@ -172,9 +172,16 @@ Its real Thespian test stops an already-detached administrator after the CLI exi
 verifies no live owned process remains, and leaves a different-owner process alive.
 The exporter now rejects nonnumeric search timing/timeout fields and outcome-
 inappropriate default-client diagnostic fields. Negative mutation tests cover each.
-No leaked payload was found in the retained artifacts. Measurements were not rerun
-or rewritten to benefit from these fixes; the source snapshots disclose exactly
-which cleanup implementation ran.
+No leaked payload was found in the retained artifacts. Performance measurements
+were not rerun or rewritten to benefit from these fixes; the source snapshots
+disclose exactly which cleanup implementation ran. A [post-review stock/baseline/
+cleanup smoke](cleanup-smoke/report.json) verifies the final live runner at
+`0d614e2`: all expected header/client outcomes and 128/512 totals passed, and the
+stricter cleanup verified no live owned actors. A preceding qualification attempt
+correctly marked cleanup unsuccessful when it could not inspect the still-running
+owned engine's same-UID process; its raw attempt remains local/excluded. Cleanup
+now removes the owned engine before actor absence inspection rather than skipping
+an uninspectable process or falsely reporting success.
 
 ## Recompute and audit
 

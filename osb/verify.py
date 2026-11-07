@@ -65,7 +65,8 @@ def verify_default_client_failure(path):
 def main():
     root = Path(__file__).resolve().parents[1]
     formats = {'smoke': 'legacy-smoke', 'parallel-smoke': 'legacy-parallel-smoke',
-               'boundary-smoke': 'boundary-smoke-pre-build-inputs', 'validated-smoke': 'smoke', 'campaign': 'campaign'}
+               'boundary-smoke': 'boundary-smoke-pre-build-inputs', 'validated-smoke': 'smoke',
+               'cleanup-smoke': 'smoke', 'campaign': 'campaign'}
     for directory, evidence_format in formats.items():
         report = verify_directory(root/'results/osb'/directory, legacy=directory in ('smoke', 'parallel-smoke'),
                                   expected_format=evidence_format)
