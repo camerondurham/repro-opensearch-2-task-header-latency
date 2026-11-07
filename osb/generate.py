@@ -8,7 +8,7 @@ import shutil
 def generate(path, *, smoke=False, candidate=False, control=False, quick=False):
     path = Path(path)
     path.mkdir(parents=True)
-    docs = 128 if smoke or quick else 12000
+    docs = 128 if smoke else 4800 if quick else 12000
     corpus = ''.join(json.dumps(row, separators=(',', ':')) + '\n' for i in range(docs) for row in (
         {'index': {'_index': 'fixture', '_id': str(i)}},
         {'uid': i, 'revision': 0, 'group': i % 32, 'payload': 'synthetic-' + str(i % 97)})).encode()
@@ -35,11 +35,17 @@ def generate(path, *, smoke=False, candidate=False, control=False, quick=False):
     warm['warmup-time-period'] = 2 if smoke or quick else 20
     schedule.append(warm)
     if smoke:
-        schedule.append({'operation': {'operation-type': 'header-lifecycle', 'candidate': candidate}})
+        schedule.append({'operation': {'operation-type': 'header-lifecycle', 'candidate': candidate,
+                                       'request-timeout': 180}})
         revision = 512
     else:
-        operation = {'name': 'load', 'operation-type': 'control-window', 'duration': 100} if control else {
-            'name': 'load', 'operation-type': 'verified-ubq', 'docs': docs, 'batch': 10, 'rate': 120, 'deadline': 240}
+        # OSB 2.5.0 applies request-timeout to the WHOLE custom runner, not
+        # each HTTP request. Keep the transport at 30s; bound the lifecycle separately.
+        duration = 40 if quick else 100
+        operation = {'name': 'load', 'operation-type': 'control-window', 'duration': duration,
+                     'request-timeout': duration + 10} if control else {
+            'name': 'load', 'operation-type': 'verified-ubq', 'docs': docs, 'batch': 10, 'rate': 120,
+            'deadline': 240, 'request-timeout': 245}
         schedule.append({'parallel': {'completed-by': 'load', 'tasks': [
             search('concurrent-search', 250), {'name': 'load', 'operation': operation, 'clients': 1, 'iterations': 1}]}})
         revision = 0 if control else docs

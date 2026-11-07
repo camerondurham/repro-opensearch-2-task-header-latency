@@ -7,6 +7,7 @@ import json
 import math
 from pathlib import Path
 import statistics
+from evidence import validate_completion
 
 
 def need(ok, message):
@@ -44,10 +45,11 @@ def analyze_unit(unit):
          all(e['documents'] == docs for e in correctness), 'Incorrect final corpus/revision total')
     metrics = [r for p in sorted((unit / 'raw').glob('metrics*.jsonl*')) for r in rows(p)]
     need(bool(metrics), 'Missing OSB metrics')
+    validate_completion(receipt, events, metrics)
     # Keep every observation, including coincident equal values; never deduplicate samples.
     need(all(math.isfinite(r['value']) and r['value'] >= 0 for r in metrics), 'Nonfinite/negative metric')
     errors = sum(r.get('meta', {}).get('success') is False for r in metrics if r['name'] == 'service_time')
-    timeouts = sum(r.get('meta', {}).get('timed_out') is True for r in metrics if r['name'] == 'service_time')
+    timeouts = sum((r.get('meta', {}).get('timed_out') is True or r.get('meta', {}).get('error-type') == 'timeout') for r in metrics if r['name'] == 'service_time')
     search_rows = [r for r in metrics if r.get('operation') == 'search' and r['name'] == 'service_time']
     need(search_rows and all(r['meta'].get('hits') == docs and r['meta'].get('hits_relation') == 'eq'
                             for r in search_rows), 'Missing/incorrect search hit accounting')
@@ -94,10 +96,10 @@ def analyze_unit(unit):
         lower = next(e['time'] for e in progress if e['updated'] >= .75 * docs)
         upper = max(e['request_start'] for e in progress if e['updated'] <= .95 * docs)
         summary.update(ubq_rate=docs/duration, batches=body['batches'])
-        if receipt.get('quick'):
-            need(errors == timeouts == 0, 'Parallel smoke request errors')
-            need(any(r.get('task') == 'concurrent-search' for r in metrics), 'Missing parallel OSB search')
-            return dict(summary, quick=True)
+    if receipt.get('quick'):
+        need(errors == timeouts == 0, 'Parallel smoke request errors')
+        need(any(r.get('task') == 'concurrent-search' for r in metrics), 'Missing parallel OSB search')
+        return dict(summary, quick=True)
     need(lower < upper, 'Empty progress window')
     groups = {}
     for row in metrics:

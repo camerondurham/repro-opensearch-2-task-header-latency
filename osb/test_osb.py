@@ -10,7 +10,12 @@ import logging
 import pickle
 import zlib
 import unittest
-from unittest.mock import AsyncMock, patch
+from unittest.mock import AsyncMock, Mock, patch
+import time
+from osbenchmark.context import RequestContextHolder
+from osbenchmark.worker_coordinator.worker_coordinator import AsyncExecutor
+from osbenchmark.worker_coordinator import runner as native_runner
+from workload import control
 
 import osbenchmark
 from osbenchmark import config
@@ -19,6 +24,7 @@ from analyze import paired_interval, p99, verify_hashes
 from generate import generate
 from workload import check_ubq, ubq
 from run import cleanup_owned, LABEL
+from evidence import validate_completion
 
 
 def good_response():
@@ -52,6 +58,28 @@ class WorkloadTests(unittest.TestCase):
             lines = [json.loads(line) for line in (Path(temp)/'a/corpus.json').read_text().splitlines()]
             self.assertEqual([row['index']['_id'] for row in lines[::2]], [str(i) for i in range(12000)])
             self.assertTrue(all(row['revision'] == 0 for row in lines[1::2]))
+
+    def test_native_executor_completes_control_beyond_client_timeout(self):
+        # Real OSB executor + real registered control; scale seconds for fast CI.
+        # Without operation request-timeout, OSB silently returns failure metadata
+        # even with on_error='abort', and the completed-by task can finish early.
+        with tempfile.TemporaryDirectory() as temp:
+            generate(Path(temp)/'work', control=True)
+            work = json.loads((Path(temp)/'work/workload.json').read_text())
+            params = work['test_procedures'][0]['schedule'][6]['parallel']['tasks'][1]['operation']
+            params['duration'] *= .001
+            if 'request-timeout' in params:
+                params['request-timeout'] *= .001
+            native_runner.register_runner('test-control', control, async_runner=True)
+            executor = AsyncExecutor(0, Mock(), Mock(), {'default': RequestContextHolder()},
+                                     Mock(), Mock(), Mock(), Mock(), 'abort')
+            executor.base_timeout = .03
+            executor.runner = native_runner.runner_for('test-control')
+            with patch.dict(os.environ, OSB_CAPTURE=temp):
+                result = asyncio.run(executor._execute_request(params, 0, time.perf_counter(), True))
+            events = [json.loads(line)['kind'] for line in (Path(temp)/'events.jsonl').read_text().splitlines()]
+            self.assertEqual(result['request_meta_data'], {'success': True})
+            self.assertEqual(events, ['control-start', 'control-end'])
 
     def test_failed_or_partial_updates_rejected(self):
         check_ubq(good_response(), 128)
@@ -112,6 +140,23 @@ class AnalysisTests(unittest.TestCase):
             captured = [json.loads(line) for p in Path(temp).glob('metrics-*') for line in p.read_text().splitlines()]
             self.assertEqual(len(captured), 1)
             self.assertNotIn('private', captured[0]['meta'])
+
+    def test_success_receipt_cannot_hide_truncated_control_or_executor_timeout(self):
+        receipt = dict(documents=12000, smoke=False, control=True)
+        events = [dict(kind='correctness', time=0, documents=12000, revision_sum=0),
+                  dict(kind='control-start', time=1), dict(kind='control-end', time=101),
+                  dict(kind='correctness', time=102, documents=12000, revision_sum=0)]
+        metrics = [dict(name='service_time', value=1, meta={'success': True})]
+        validate_completion(receipt, events, metrics)
+        with self.assertRaisesRegex(ValueError, 'boundaries'):
+            validate_completion(receipt, events[:2]+events[3:], metrics)
+        events[2]['time'] = 31
+        with self.assertRaisesRegex(ValueError, 'Truncated'):
+            validate_completion(receipt, events, metrics)
+        events[2]['time'] = 101
+        metrics[0]['meta'] = {'success': False, 'error-type': 'timeout'}
+        with self.assertRaisesRegex(ValueError, 'executor timeout'):
+            validate_completion(receipt, events, metrics)
 
     def test_nearest_rank_and_invalid_samples(self):
         self.assertEqual(p99(list(range(100))), 98)

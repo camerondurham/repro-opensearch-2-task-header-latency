@@ -49,6 +49,18 @@ No worker pacing modification. Two baseline
 search-only controls bracket the timing pairs for 100 seconds each. A stock
 smoke and matched-build smoke precede timing and are not performance replicates.
 
+A second setup attempt (`dadfd730`, 2026-11-05) is excluded: OSB 2.5.0's
+executor wrapped the entire custom runner in the client's 30-second timeout.
+Its timeout handler recorded failure but did not honor `--on-error=abort` there;
+the truncated control exited zero and the cancelled UBQ failed final accounting.
+Explicit operation-level `request-timeout` now bounds the control at duration+10s
+and UBQ at 245s (its own deadline remains 240s); HTTP transport timeout stays 30s.
+A native-executor regression failed before this correction and passes after it.
+Before timing, a three-node boundary smoke requires a complete 40s control and
+4,800-document UBQs exceeding 35s. Live receipts now require complete lifecycle
+and successful raw operation records, not merely process exit zero. Neither the
+performance endpoints nor the practical-effect thresholds changed.
+
 OSB owns bulk ingestion, search scheduling, warmup, parallel completion, and
 measurement. A custom UBQ runner submits/polls the missing operation, enforces
 terminal correctness, and records progress. A separate tiny header operation

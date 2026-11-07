@@ -1,0 +1,253 @@
+{
+  "name": "pair1-baseline",
+  "variant": "baseline",
+  "smoke": false,
+  "control": false,
+  "quick": false,
+  "preflight": {
+    "logical_cpus": 16,
+    "physical_cpus": 8,
+    "available_memory_bytes": 45556613120,
+    "disk_free_bytes": 879335845888,
+    "system": "Linux",
+    "architecture": "x86_64",
+    "kernel_release": "6.18.40.1-microsoft-standard-WSL2",
+    "os_id": "nixos",
+    "os_version_id": "26.11",
+    "cpu_model": "AMD Ryzen 7 7800X3D 8-Core Processor",
+    "docker_endpoint": "default local Unix socket"
+  },
+  "image": "sha256:f3dc5baf9a2ce278f9c1c19769c5923c507d070df7e2f01f8d71c85efdb8da45",
+  "start": 1793894905.4980385,
+  "nodes": 3,
+  "errors": [
+    "RuntimeError: OSB failed; inspect private/osb.log"
+  ],
+  "clean": true,
+  "osb_version": "2.5.0",
+  "python": "3.11.16",
+  "limits": {
+    "node_cpus": 2,
+    "node_memory_bytes": 3221225472,
+    "heap_bytes": 1073741824,
+    "data_bytes": 536870912
+  },
+  "config": {
+    "batch": 10,
+    "ubq_rate": 120,
+    "search_rate": 50,
+    "search_clients": 2,
+    "warmup": 20,
+    "deadline": 240,
+    "recovery": 10
+  },
+  "source_manifest_sha256": "11d7543e5647a8300effd394062b68734c1397caebe43d4aa1100c7b26312288",
+  "start_commit": "dadfd7302187308181dfd1c55645e3db02dd8891",
+  "sources": {
+    "run.py": "2f921cd1d539c3ed89770f6ec061886a3600480dfbcdb63227284888fe88b836",
+    "build.py": "83c3c11738891b4be57931a2714716161a71323aa0385caa327bb391f671f435",
+    "generate.py": "f666915dd15b192cd65d17749836053631d6793d4a4c13de57ef49c2c8a900f9",
+    "workload.py": "659072c828fe8b0209cc9d71f645d725961c307a05ef4ba22ef096fd13c3f18b",
+    "capture/sitecustomize.py": "86d92f17e0f265e401063c859e1d11793b5bf87e2a9905a2b84b2d5d78a80346",
+    "PROTOCOL.md": "750a1954078ba0c8f5a68619a18d1bc61bbed87556868d804dff83401751b39e",
+    "requirements.lock": "1c5184f2e26dbd7f3b2c6fb680b1d4316f7f225e85a31976bdd23c75c34ad5bd",
+    "freeze.py": "56421e07b85607076652f90fcc8c1b95f0428a5994c347d00a25fb27b1c4bcc3",
+    "proposed-fix.patch": "d2cb8e0ff2d74391149469d65cb939ce5c4796fe9a6d17743eba1f10ba5c45fb"
+  },
+  "documents": 12000,
+  "corpus_sha256": "59f436620a8a3f2c1bf40e92b7a80f991cc5839e58b802c76442af30a32a73ba",
+  "workload_sha256": "282b2549f7f986c84276c2c6cb8c89bd9570aa1db65b29c13cfe922fe576dafe",
+  "engine_image_ids": [
+    "sha256:f3dc5baf9a2ce278f9c1c19769c5923c507d070df7e2f01f8d71c85efdb8da45",
+    "sha256:f3dc5baf9a2ce278f9c1c19769c5923c507d070df7e2f01f8d71c85efdb8da45",
+    "sha256:f3dc5baf9a2ce278f9c1c19769c5923c507d070df7e2f01f8d71c85efdb8da45"
+  ],
+  "effective_engine_limits": [
+    {
+      "NanoCpus": 2000000000,
+      "Memory": 3221225472,
+      "MemorySwap": 3221225472,
+      "CpusetCpus": "0,1"
+    },
+    {
+      "NanoCpus": 2000000000,
+      "Memory": 3221225472,
+      "MemorySwap": 3221225472,
+      "CpusetCpus": "2,3"
+    },
+    {
+      "NanoCpus": 2000000000,
+      "Memory": 3221225472,
+      "MemorySwap": 3221225472,
+      "CpusetCpus": "4,5"
+    }
+  ],
+  "driver_limits": {
+    "cpus": [
+      6,
+      7
+    ],
+    "virtual_address_bytes_per_process": 8589934592
+  },
+  "engine_version": {
+    "distribution": "opensearch",
+    "number": "2.19.0",
+    "build_type": "tar",
+    "build_hash": "fd9a9d90df25bea1af2c6a85039692e815b894f5",
+    "build_date": "2025-02-05T16:13:36.244552508Z",
+    "build_snapshot": false,
+    "lucene_version": "9.12.1",
+    "minimum_wire_compatibility_version": "7.10.0",
+    "minimum_index_compatibility_version": "7.0.0"
+  },
+  "before_stats": {
+    "indices": {},
+    "nodes": [
+      {
+        "indices": {
+          "merges": {
+            "current": 0,
+            "current_docs": 0,
+            "current_size_in_bytes": 0,
+            "total": 1,
+            "total_time_in_millis": 103,
+            "total_docs": 1451,
+            "total_size_in_bytes": 367397,
+            "total_stopped_time_in_millis": 0,
+            "total_throttled_time_in_millis": 0,
+            "total_auto_throttle_in_bytes": 41943040,
+            "unreferenced_file_cleanups_performed": 0
+          },
+          "refresh": {
+            "total": 17,
+            "total_time_in_millis": 379,
+            "external_total": 14,
+            "external_total_time_in_millis": 355,
+            "listeners": 0
+          }
+        },
+        "jvm": {
+          "gc": {
+            "collectors": {
+              "young": {
+                "collection_count": 15,
+                "collection_time_in_millis": 120
+              },
+              "G1 Concurrent GC": {
+                "collection_count": 8,
+                "collection_time_in_millis": 21
+              },
+              "old": {
+                "collection_count": 0,
+                "collection_time_in_millis": 0
+              }
+            }
+          }
+        }
+      },
+      {
+        "indices": {
+          "merges": {
+            "current": 0,
+            "current_docs": 0,
+            "current_size_in_bytes": 0,
+            "total": 1,
+            "total_time_in_millis": 109,
+            "total_docs": 1433,
+            "total_size_in_bytes": 357469,
+            "total_stopped_time_in_millis": 0,
+            "total_throttled_time_in_millis": 0,
+            "total_auto_throttle_in_bytes": 41943040,
+            "unreferenced_file_cleanups_performed": 0
+          },
+          "refresh": {
+            "total": 23,
+            "total_time_in_millis": 471,
+            "external_total": 15,
+            "external_total_time_in_millis": 408,
+            "listeners": 0
+          }
+        },
+        "jvm": {
+          "gc": {
+            "collectors": {
+              "young": {
+                "collection_count": 15,
+                "collection_time_in_millis": 115
+              },
+              "G1 Concurrent GC": {
+                "collection_count": 8,
+                "collection_time_in_millis": 19
+              },
+              "old": {
+                "collection_count": 0,
+                "collection_time_in_millis": 0
+              }
+            }
+          }
+        }
+      },
+      {
+        "indices": {
+          "merges": {
+            "current": 0,
+            "current_docs": 0,
+            "current_size_in_bytes": 0,
+            "total": 0,
+            "total_time_in_millis": 0,
+            "total_docs": 0,
+            "total_size_in_bytes": 0,
+            "total_stopped_time_in_millis": 0,
+            "total_throttled_time_in_millis": 0,
+            "total_auto_throttle_in_bytes": 41943040,
+            "unreferenced_file_cleanups_performed": 0
+          },
+          "refresh": {
+            "total": 12,
+            "total_time_in_millis": 134,
+            "external_total": 4,
+            "external_total_time_in_millis": 0,
+            "listeners": 0
+          }
+        },
+        "jvm": {
+          "gc": {
+            "collectors": {
+              "young": {
+                "collection_count": 15,
+                "collection_time_in_millis": 132
+              },
+              "G1 Concurrent GC": {
+                "collection_count": 8,
+                "collection_time_in_millis": 14
+              },
+              "old": {
+                "collection_count": 0,
+                "collection_time_in_millis": 0
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "osb_command": [
+    "$REPO/.local/osb/venv311/bin/opensearch-benchmark",
+    "run",
+    "--pipeline=benchmark-only",
+    "--offline",
+    "--quiet",
+    "--enable-assertions",
+    "--workload-path=$REPO/.local/osb/campaign-20261105T160611Z/pair1-baseline/workload",
+    "--target-hosts=$OWNED_LOOPBACK",
+    "--on-error=abort",
+    "--test-run-id=95065b41-4fb0-4bad-8dac-b67eb449325c",
+    "--client-options=timeout:30,max_retries:0,retry_on_timeout:false",
+    "--results-format=csv",
+    "--results-file=$REPO/.local/osb/campaign-20261105T160611Z/pair1-baseline/private/summary.csv"
+  ],
+  "osb_exitcode": 64,
+  "execution_ok": false,
+  "cleanup_errors": [],
+  "end": 1793895027.386177
+}

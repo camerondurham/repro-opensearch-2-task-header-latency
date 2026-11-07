@@ -13,7 +13,7 @@ RAM and 8 GiB disk. The NixOS wrapper repairs its own inherited PATH only.
 ./osb/run.sh build           # stock + matched recompiled baseline/cleanup images
 ./osb/run.sh test
 ./osb/run.sh smoke           # stock, baseline, cleanup; tiny header/client checks
-./osb/run.sh parallel-smoke  # 128 documents, three nodes, real parallel OSB UBQ
+./osb/run.sh parallel-smoke  # three nodes: 40s control + 4,800-doc UBQ in both arms
 ./osb/run.sh campaign        # controls + four counterbalanced fresh-cluster pairs
 python3 osb/verify.py        # all published evidence, offline; no Docker or pip
 ```
@@ -58,8 +58,12 @@ exception's diagnostic 400 is not a server HTTP response status.
 OSB 2.5.0 has a parallel progress-display failure (`float` not subscriptable).
 The supported `--quiet` option avoids that display path; OSB code is unmodified.
 `--enable-assertions` verifies exact search hits and timeout flags. The driver
-disables transport retries, aborts operation errors, checks UBQ retries/failures,
-and rejects native dropped-sample warnings.
+disables transport retries, checks UBQ retries/failures, and rejects native
+dropped-sample warnings. OSB's executor timeout path does not honor `on-error=abort`;
+therefore successful raw operation records and complete lifecycle events are
+mandatory before a live receipt can succeed. Custom lifecycle operations declare
+an explicit whole-runner timeout, separate from the unchanged 30s HTTP timeout.
+See the excluded setup attempt and the >30s boundary smoke.
 
 `capture/sitecustomize.py` is a version-specific adapter for the native in-memory
 metrics store: OSB's CSV report omits per-request observations. It saves an
@@ -94,5 +98,6 @@ Official references used for implementation:
 - [Native scheduling/timing](https://github.com/opensearch-project/opensearch-benchmark/blob/445eb5a3188c1e3d3a3ca6bfe87757902ce5b10e/osbenchmark/worker_coordinator/worker_coordinator.py)
 
 Implementation, experiment operation, analysis and drafting were assisted by
-OpenAI Codex, GPT-6 Astra, xhigh reasoning. Measurements came from real local
+GPT-6 Astra with xhigh reasoning, initially through Codex and then the
+user-authorized Pi `openai/gpt-6-astra` route on the same NixOS environment. Measurements came from real local
 OpenSearch/OSB processes; this disclosure does not make them independent evidence.

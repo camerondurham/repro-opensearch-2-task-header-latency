@@ -20,6 +20,7 @@ import psutil
 
 from build import IMAGE, ROOT, DOCKER, sha
 from generate import generate
+from evidence import validate_completion
 
 LABEL = 'org.osb-task-header.owner'
 CODE = Path(__file__).resolve().parent
@@ -253,6 +254,10 @@ def run_unit(root, name, variant, smoke, control, quick=False):
         receipt['memory_store_drop_warning_count'] = log_text.count('not adding additional entries')
         if receipt['metric_drop_warning_count'] or receipt['memory_store_drop_warning_count']:
             raise RuntimeError('OSB reported dropped measurements')
+        events = [json.loads(line) for line in (capture/'events.jsonl').read_text().splitlines()]
+        metrics = [json.loads(line) for path in capture.glob('metrics-*.jsonl')
+                   for line in path.read_text().splitlines()]
+        validate_completion(receipt, events, metrics)
         receipt['after_stats'] = stats('after')
         verify_snapshot(root)
         receipt['execution_ok'] = True
@@ -290,7 +295,7 @@ def main():
         verify_snapshot(root)
         print(root, flush=True)
         shutil.copyfile(CODE / 'PROTOCOL.md', root / 'PROTOCOL.md')
-        order = [('parallel-baseline', 'baseline', False, False), ('parallel-candidate', 'candidate', False, False)] if args.mode == 'parallel-smoke' else [('stock', 'stock', True, False), ('baseline', 'baseline', True, False),
+        order = [('parallel-control', 'baseline', False, True), ('parallel-baseline', 'baseline', False, False), ('parallel-candidate', 'candidate', False, False)] if args.mode == 'parallel-smoke' else [('stock', 'stock', True, False), ('baseline', 'baseline', True, False),
                  ('candidate', 'candidate', True, False)] if args.mode == 'smoke' else [
                      ('control-before', 'baseline', False, True),
                      *[(f'pair{pair}-{variant}', variant, False, False) for pair in range(1, 5)
