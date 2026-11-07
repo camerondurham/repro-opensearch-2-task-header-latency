@@ -1,0 +1,2929 @@
+{
+  "control-before": [
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -30,
+      "first": -26.13923668861389,
+      "last": -25.01823663711548,
+      "count": 58,
+      "service_p99_ms": 34.74454709794372
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -25,
+      "first": -24.979236602783203,
+      "last": -20.01823663711548,
+      "count": 250,
+      "service_p99_ms": 15.841634012758732
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -20,
+      "first": -19.97823667526245,
+      "last": -15.017236709594727,
+      "count": 250,
+      "service_p99_ms": 10.06298791617155
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -15,
+      "first": -14.979236602783203,
+      "last": -10.018236637115479,
+      "count": 250,
+      "service_p99_ms": 33.91553496476263
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "normal",
+      "bin_start": -10,
+      "first": -6.099236726760864,
+      "last": -5.13823676109314,
+      "count": 50,
+      "service_p99_ms": 7.731943973340094
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -10,
+      "first": -9.978236675262451,
+      "last": -6.13823676109314,
+      "count": 194,
+      "service_p99_ms": 33.41006103437394
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": -5,
+      "first": -0.00823664665222168,
+      "last": -0.005236625671386719,
+      "count": 2,
+      "service_p99_ms": 4.956749966368079
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 0,
+      "first": 0.03276324272155762,
+      "last": 4.9987633228302,
+      "count": 250,
+      "service_p99_ms": 11.761551024392247
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 5,
+      "first": 5.032763242721558,
+      "last": 9.995763301849365,
+      "count": 250,
+      "service_p99_ms": 6.770218024030328
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 10,
+      "first": 10.032763242721558,
+      "last": 14.995763301849365,
+      "count": 250,
+      "service_p99_ms": 7.11501098703593
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 15,
+      "first": 15.032763242721558,
+      "last": 19.995763301849365,
+      "count": 250,
+      "service_p99_ms": 5.321058910340071
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 20,
+      "first": 20.032763242721558,
+      "last": 24.995763301849365,
+      "count": 250,
+      "service_p99_ms": 10.080510983243585
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 25,
+      "first": 25.035763263702393,
+      "last": 29.995763301849365,
+      "count": 250,
+      "service_p99_ms": 8.037996012717485
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 30,
+      "first": 30.032763242721558,
+      "last": 34.995763301849365,
+      "count": 250,
+      "service_p99_ms": 11.016368982382119
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 35,
+      "first": 35.03276324272156,
+      "last": 39.995763301849365,
+      "count": 250,
+      "service_p99_ms": 3.4539930056780577
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 40,
+      "first": 40.03276324272156,
+      "last": 44.995763301849365,
+      "count": 250,
+      "service_p99_ms": 7.644169963896275
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 45,
+      "first": 45.03276324272156,
+      "last": 49.995763301849365,
+      "count": 250,
+      "service_p99_ms": 11.785825015977025
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 50,
+      "first": 50.03276324272156,
+      "last": 54.995763301849365,
+      "count": 250,
+      "service_p99_ms": 4.04245697427541
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 55,
+      "first": 55.03276324272156,
+      "last": 59.995763301849365,
+      "count": 250,
+      "service_p99_ms": 5.943461903370917
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 60,
+      "first": 60.03276324272156,
+      "last": 64.99576330184937,
+      "count": 250,
+      "service_p99_ms": 7.337977993302047
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 65,
+      "first": 65.03376340866089,
+      "last": 69.99576330184937,
+      "count": 250,
+      "service_p99_ms": 24.322443990968168
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 70,
+      "first": 70.03276324272156,
+      "last": 74.99576330184937,
+      "count": 250,
+      "service_p99_ms": 2.3928299779072404
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 75,
+      "first": 75.03276324272156,
+      "last": 79.99576330184937,
+      "count": 250,
+      "service_p99_ms": 6.530885002575815
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 80,
+      "first": 80.03276324272156,
+      "last": 84.99576330184937,
+      "count": 250,
+      "service_p99_ms": 5.4662819020450115
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 85,
+      "first": 85.03276324272156,
+      "last": 89.99576330184937,
+      "count": 250,
+      "service_p99_ms": 4.427822073921561
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 90,
+      "first": 90.03276324272156,
+      "last": 94.99576330184937,
+      "count": 250,
+      "service_p99_ms": 9.851233917288482
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 95,
+      "first": 95.03276324272156,
+      "last": 99.99576330184937,
+      "count": 250,
+      "service_p99_ms": 2.1569100208580494
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 100,
+      "first": 100.03276324272156,
+      "last": 100.11276340484619,
+      "count": 5,
+      "service_p99_ms": 1.8455369863659143
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 105,
+      "first": 107.27476334571838,
+      "last": 109.99576330184937,
+      "count": 138,
+      "service_p99_ms": 7.97671009786427
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 110,
+      "first": 110.03476333618164,
+      "last": 114.99576330184937,
+      "count": 250,
+      "service_p99_ms": 10.718250996433198
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 115,
+      "first": 115.03476333618164,
+      "last": 117.27576327323914,
+      "count": 114,
+      "service_p99_ms": 3.6384400445967913
+    }
+  ],
+  "pair1-baseline": [
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -30,
+      "first": -26.142285108566284,
+      "last": -25.016284942626953,
+      "count": 58,
+      "service_p99_ms": 36.91416000947356
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -25,
+      "first": -24.981285095214844,
+      "last": -20.016284942626953,
+      "count": 250,
+      "service_p99_ms": 11.187308002263308
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -20,
+      "first": -19.980284929275513,
+      "last": -15.015285015106201,
+      "count": 250,
+      "service_p99_ms": 13.979695970192552
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -15,
+      "first": -14.980284929275513,
+      "last": -10.016284942626953,
+      "count": 250,
+      "service_p99_ms": 12.643707916140556
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "normal",
+      "bin_start": -10,
+      "first": -6.101284980773926,
+      "last": -5.136285066604614,
+      "count": 50,
+      "service_p99_ms": 8.915303973481059
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -10,
+      "first": -9.981285095214844,
+      "last": -6.136285066604614,
+      "count": 194,
+      "service_p99_ms": 43.926003971137106
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": -5,
+      "first": -0.007285118103027344,
+      "last": -0.002285003662109375,
+      "count": 2,
+      "service_p99_ms": 7.246189983561635
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 0,
+      "first": 0.033715009689331055,
+      "last": 4.997714996337891,
+      "count": 250,
+      "service_p99_ms": 11.193709913641214
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 5,
+      "first": 5.033715009689331,
+      "last": 9.99771499633789,
+      "count": 250,
+      "service_p99_ms": 20.137441926635802
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 10,
+      "first": 10.033715009689331,
+      "last": 14.99771499633789,
+      "count": 250,
+      "service_p99_ms": 13.91794893424958
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 15,
+      "first": 15.033715009689331,
+      "last": 19.99771499633789,
+      "count": 250,
+      "service_p99_ms": 19.19562800321728
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 20,
+      "first": 20.03371500968933,
+      "last": 24.99771499633789,
+      "count": 250,
+      "service_p99_ms": 8.845794014632702
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 25,
+      "first": 25.03371500968933,
+      "last": 29.998714923858643,
+      "count": 250,
+      "service_p99_ms": 9.287358028814197
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 30,
+      "first": 30.03371500968933,
+      "last": 34.99771499633789,
+      "count": 250,
+      "service_p99_ms": 8.26887704897672
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 35,
+      "first": 35.03371500968933,
+      "last": 39.99771499633789,
+      "count": 250,
+      "service_p99_ms": 25.849600904621184
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 40,
+      "first": 40.03371500968933,
+      "last": 44.99771499633789,
+      "count": 250,
+      "service_p99_ms": 6.216502981260419
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 45,
+      "first": 45.03371500968933,
+      "last": 49.99771499633789,
+      "count": 250,
+      "service_p99_ms": 13.651749934069812
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 50,
+      "first": 50.03371500968933,
+      "last": 54.99771499633789,
+      "count": 250,
+      "service_p99_ms": 22.251754999160767
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 55,
+      "first": 55.03371500968933,
+      "last": 59.99771499633789,
+      "count": 250,
+      "service_p99_ms": 5.948171019554138
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 60,
+      "first": 60.03371500968933,
+      "last": 64.99771499633789,
+      "count": 250,
+      "service_p99_ms": 9.372432949021459
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 65,
+      "first": 65.03371500968933,
+      "last": 69.99771499633789,
+      "count": 250,
+      "service_p99_ms": 23.552304017357528
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 70,
+      "first": 70.03371500968933,
+      "last": 74.99771499633789,
+      "count": 250,
+      "service_p99_ms": 9.92392806801945
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 75,
+      "first": 75.03371500968933,
+      "last": 79.99771499633789,
+      "count": 250,
+      "service_p99_ms": 26.39868191909045
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 80,
+      "first": 80.03371500968933,
+      "last": 84.99871492385864,
+      "count": 250,
+      "service_p99_ms": 6.524821976199746
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 85,
+      "first": 85.03371500968933,
+      "last": 89.99771499633789,
+      "count": 250,
+      "service_p99_ms": 18.243769998662174
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 90,
+      "first": 90.03371500968933,
+      "last": 94.99771499633789,
+      "count": 250,
+      "service_p99_ms": 6.811643950641155
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 95,
+      "first": 95.03371500968933,
+      "last": 99.99771499633789,
+      "count": 250,
+      "service_p99_ms": 27.45590906124562
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 100,
+      "first": 100.03271508216858,
+      "last": 104.99871492385864,
+      "count": 250,
+      "service_p99_ms": 9.257513098418713
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 105,
+      "first": 105.03471493721008,
+      "last": 109.99771499633789,
+      "count": 250,
+      "service_p99_ms": 9.962809970602393
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 110,
+      "first": 110.03371500968933,
+      "last": 110.07871508598328,
+      "count": 4,
+      "service_p99_ms": 3.1331880018115044
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 115,
+      "first": 117.34171485900879,
+      "last": 119.98371505737305,
+      "count": 134,
+      "service_p99_ms": 13.94035597331822
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 120,
+      "first": 120.02371501922607,
+      "last": 124.98271489143372,
+      "count": 250,
+      "service_p99_ms": 26.55534096993506
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 125,
+      "first": 125.02271485328674,
+      "last": 127.34271502494812,
+      "count": 118,
+      "service_p99_ms": 2.5142000522464514
+    }
+  ],
+  "pair1-candidate": [
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -30,
+      "first": -26.136760473251343,
+      "last": -25.00976037979126,
+      "count": 58,
+      "service_p99_ms": 41.49724100716412
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -25,
+      "first": -24.976760387420654,
+      "last": -20.008760452270508,
+      "count": 250,
+      "service_p99_ms": 10.252821957692504
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -20,
+      "first": -19.976760387420654,
+      "last": -15.008760452270508,
+      "count": 250,
+      "service_p99_ms": 31.114330980926752
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -15,
+      "first": -14.975760459899902,
+      "last": -10.007760524749756,
+      "count": 250,
+      "service_p99_ms": 10.536472080275416
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "normal",
+      "bin_start": -10,
+      "first": -6.0957605838775635,
+      "last": -5.127760410308838,
+      "count": 50,
+      "service_p99_ms": 5.667828023433685
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -10,
+      "first": -9.975760459899902,
+      "last": -6.128760576248169,
+      "count": 194,
+      "service_p99_ms": 8.154572919011116
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": -5,
+      "first": -0.0007605552673339844,
+      "last": -0.0007605552673339844,
+      "count": 1,
+      "service_p99_ms": 7.363877026364207
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 0,
+      "first": 0.0032393932342529297,
+      "last": 4.999239444732666,
+      "count": 250,
+      "service_p99_ms": 10.676012025214732
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 5,
+      "first": 5.007239580154419,
+      "last": 9.964239597320557,
+      "count": 249,
+      "service_p99_ms": 11.366161983460188
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 10,
+      "first": 10.000239610671997,
+      "last": 14.964239597320557,
+      "count": 250,
+      "service_p99_ms": 10.358931962400675
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 15,
+      "first": 15.000239610671997,
+      "last": 19.999239444732666,
+      "count": 251,
+      "service_p99_ms": 9.958922979421914
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 20,
+      "first": 20.004239559173584,
+      "last": 24.999239444732666,
+      "count": 250,
+      "service_p99_ms": 8.004433009773493
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 25,
+      "first": 25.004239559173584,
+      "last": 29.964239597320557,
+      "count": 249,
+      "service_p99_ms": 12.996077071875334
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 30,
+      "first": 30.000239610671997,
+      "last": 34.999239444732666,
+      "count": 251,
+      "service_p99_ms": 7.299495977349579
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 35,
+      "first": 35.004239559173584,
+      "last": 39.96423959732056,
+      "count": 249,
+      "service_p99_ms": 7.261414080858231
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 40,
+      "first": 40.000239610672,
+      "last": 44.999239444732666,
+      "count": 251,
+      "service_p99_ms": 5.986934062093496
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 45,
+      "first": 45.004239559173584,
+      "last": 49.999239444732666,
+      "count": 250,
+      "service_p99_ms": 11.353367939591408
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 50,
+      "first": 50.004239559173584,
+      "last": 54.999239444732666,
+      "count": 250,
+      "service_p99_ms": 7.113537983968854
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 55,
+      "first": 55.004239559173584,
+      "last": 59.999239444732666,
+      "count": 250,
+      "service_p99_ms": 6.859514047391713
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 60,
+      "first": 60.004239559173584,
+      "last": 64.96423959732056,
+      "count": 249,
+      "service_p99_ms": 6.455685012042522
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 65,
+      "first": 65.000239610672,
+      "last": 69.99923944473267,
+      "count": 251,
+      "service_p99_ms": 3.6837109364569187
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 70,
+      "first": 70.00423955917358,
+      "last": 74.99923944473267,
+      "count": 250,
+      "service_p99_ms": 2.8742689173668623
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 75,
+      "first": 75.00423955917358,
+      "last": 79.99923944473267,
+      "count": 250,
+      "service_p99_ms": 16.277346992865205
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 80,
+      "first": 80.00423955917358,
+      "last": 84.96423959732056,
+      "count": 249,
+      "service_p99_ms": 9.578312980011106
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 85,
+      "first": 85.000239610672,
+      "last": 89.99923944473267,
+      "count": 251,
+      "service_p99_ms": 12.452943017706275
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 90,
+      "first": 90.00423955917358,
+      "last": 94.99923944473267,
+      "count": 250,
+      "service_p99_ms": 2.8521170606836677
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 95,
+      "first": 95.00423955917358,
+      "last": 99.99923944473267,
+      "count": 250,
+      "service_p99_ms": 17.853301018476486
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 100,
+      "first": 100.00423955917358,
+      "last": 104.99923944473267,
+      "count": 250,
+      "service_p99_ms": 7.776407059282064
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 105,
+      "first": 105.00423955917358,
+      "last": 105.08423948287964,
+      "count": 5,
+      "service_p99_ms": 3.0445209704339504
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 110,
+      "first": 112.32423949241638,
+      "last": 114.96623945236206,
+      "count": 134,
+      "service_p99_ms": 49.243419081903994
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 115,
+      "first": 115.00523948669434,
+      "last": 119.96623945236206,
+      "count": 250,
+      "service_p99_ms": 7.674020016565919
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 120,
+      "first": 120.00523948669434,
+      "last": 122.32723951339722,
+      "count": 118,
+      "service_p99_ms": 6.870615063235164
+    }
+  ],
+  "pair2-candidate": [
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -30,
+      "first": -26.142916440963745,
+      "last": -25.019916534423828,
+      "count": 58,
+      "service_p99_ms": 41.85928904917091
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -25,
+      "first": -24.981916427612305,
+      "last": -20.02091646194458,
+      "count": 250,
+      "service_p99_ms": 37.36309497617185
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -20,
+      "first": -19.982916593551636,
+      "last": -15.018916368484497,
+      "count": 250,
+      "service_p99_ms": 11.25629700254649
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -15,
+      "first": -14.981916427612305,
+      "last": -10.018916368484497,
+      "count": 250,
+      "service_p99_ms": 13.022847007960081
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "normal",
+      "bin_start": -10,
+      "first": -6.101916551589966,
+      "last": -5.138916492462158,
+      "count": 50,
+      "service_p99_ms": 24.69079103320837
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -10,
+      "first": -9.981916427612305,
+      "last": -6.140916585922241,
+      "count": 194,
+      "service_p99_ms": 6.339055020362139
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": -5,
+      "first": -0.006916522979736328,
+      "last": -0.0009164810180664062,
+      "count": 2,
+      "service_p99_ms": 8.088147966191173
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 0,
+      "first": 0.033083438873291016,
+      "last": 4.999083518981934,
+      "count": 250,
+      "service_p99_ms": 11.310487985610962
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 5,
+      "first": 5.033083438873291,
+      "last": 9.994083404541016,
+      "count": 249,
+      "service_p99_ms": 13.089535990729928
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 10,
+      "first": 10.001083612442017,
+      "last": 14.993083477020264,
+      "count": 250,
+      "service_p99_ms": 17.10533699952066
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 15,
+      "first": 15.000083446502686,
+      "last": 19.994083404541016,
+      "count": 250,
+      "service_p99_ms": 13.005657936446369
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 20,
+      "first": 20.000083446502686,
+      "last": 24.993083477020264,
+      "count": 250,
+      "service_p99_ms": 9.157371008768678
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 25,
+      "first": 25.000083446502686,
+      "last": 29.994083404541016,
+      "count": 250,
+      "service_p99_ms": 9.206798044033349
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 30,
+      "first": 30.000083446502686,
+      "last": 34.999083518981934,
+      "count": 251,
+      "service_p99_ms": 8.55157000478357
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 35,
+      "first": 35.03308343887329,
+      "last": 39.993083477020264,
+      "count": 249,
+      "service_p99_ms": 7.5816219905391335
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 40,
+      "first": 40.000083446502686,
+      "last": 44.999083518981934,
+      "count": 251,
+      "service_p99_ms": 25.175416958518326
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 45,
+      "first": 45.03308343887329,
+      "last": 49.999083518981934,
+      "count": 250,
+      "service_p99_ms": 7.379774935543537
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 50,
+      "first": 50.03308343887329,
+      "last": 54.999083518981934,
+      "count": 250,
+      "service_p99_ms": 9.218780091032386
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 55,
+      "first": 55.03308343887329,
+      "last": 59.999083518981934,
+      "count": 250,
+      "service_p99_ms": 6.121514947153628
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 60,
+      "first": 60.03308343887329,
+      "last": 64.99308347702026,
+      "count": 249,
+      "service_p99_ms": 5.266146967187524
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 65,
+      "first": 65.00008344650269,
+      "last": 69.99308347702026,
+      "count": 250,
+      "service_p99_ms": 8.406162960454822
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 70,
+      "first": 70.00008344650269,
+      "last": 74.99308347702026,
+      "count": 250,
+      "service_p99_ms": 8.805002085864544
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 75,
+      "first": 75.00008344650269,
+      "last": 79.99308347702026,
+      "count": 250,
+      "service_p99_ms": 5.556554067879915
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 80,
+      "first": 80.00008344650269,
+      "last": 84.99308347702026,
+      "count": 250,
+      "service_p99_ms": 25.018885964527726
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 85,
+      "first": 85.00008344650269,
+      "last": 89.99308347702026,
+      "count": 250,
+      "service_p99_ms": 7.72426906041801
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 90,
+      "first": 90.00008344650269,
+      "last": 94.99908351898193,
+      "count": 251,
+      "service_p99_ms": 6.735912058502436
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 95,
+      "first": 95.03308343887329,
+      "last": 99.99908351898193,
+      "count": 250,
+      "service_p99_ms": 2.2353261010721326
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 100,
+      "first": 100.03308343887329,
+      "last": 104.99908351898193,
+      "count": 250,
+      "service_p99_ms": 10.71936299558729
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 105,
+      "first": 105.03308343887329,
+      "last": 105.12008357048035,
+      "count": 6,
+      "service_p99_ms": 2.311473013833165
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 110,
+      "first": 112.31708359718323,
+      "last": 114.99808359146118,
+      "count": 136,
+      "service_p99_ms": 10.3579229908064
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 115,
+      "first": 115.03708362579346,
+      "last": 119.99708342552185,
+      "count": 250,
+      "service_p99_ms": 9.61446005385369
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 120,
+      "first": 120.03808355331421,
+      "last": 122.31808352470398,
+      "count": 116,
+      "service_p99_ms": 6.203948985785246
+    }
+  ],
+  "pair2-baseline": [
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -30,
+      "first": -26.13620352745056,
+      "last": -25.014203548431396,
+      "count": 58,
+      "service_p99_ms": 38.12569903675467
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -25,
+      "first": -24.976203441619873,
+      "last": -20.014203548431396,
+      "count": 250,
+      "service_p99_ms": 14.429174945689738
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -20,
+      "first": -19.97520351409912,
+      "last": -15.013203382492065,
+      "count": 250,
+      "service_p99_ms": 13.113436987623572
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -15,
+      "first": -14.975203514099121,
+      "last": -10.012203454971313,
+      "count": 250,
+      "service_p99_ms": 11.899917968548834
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "normal",
+      "bin_start": -10,
+      "first": -6.095203399658203,
+      "last": -5.133203506469727,
+      "count": 50,
+      "service_p99_ms": 11.165556032210588
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -10,
+      "first": -9.976203441619873,
+      "last": -6.1342034339904785,
+      "count": 194,
+      "service_p99_ms": 35.67087301053107
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": -5,
+      "first": -0.0002033710479736328,
+      "last": -0.0002033710479736328,
+      "count": 1,
+      "service_p99_ms": 6.6241740714758635
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 0,
+      "first": 0.004796504974365234,
+      "last": 4.964796543121338,
+      "count": 249,
+      "service_p99_ms": 15.243115019984543
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 5,
+      "first": 5.000796556472778,
+      "last": 9.999796628952026,
+      "count": 251,
+      "service_p99_ms": 9.145443909801543
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 10,
+      "first": 10.005796432495117,
+      "last": 14.999796628952026,
+      "count": 250,
+      "service_p99_ms": 7.878278032876551
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 15,
+      "first": 15.004796504974365,
+      "last": 19.999796628952026,
+      "count": 250,
+      "service_p99_ms": 9.468086063861847
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 20,
+      "first": 20.005796432495117,
+      "last": 24.999796628952026,
+      "count": 250,
+      "service_p99_ms": 6.291551981121302
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 25,
+      "first": 25.004796504974365,
+      "last": 29.999796628952026,
+      "count": 250,
+      "service_p99_ms": 15.01198299229145
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 30,
+      "first": 30.004796504974365,
+      "last": 34.999796628952026,
+      "count": 250,
+      "service_p99_ms": 9.302694001235068
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 35,
+      "first": 35.004796504974365,
+      "last": 39.999796628952026,
+      "count": 250,
+      "service_p99_ms": 17.483599949628115
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 40,
+      "first": 40.00579643249512,
+      "last": 44.999796628952026,
+      "count": 250,
+      "service_p99_ms": 4.5492579229176044
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 45,
+      "first": 45.004796504974365,
+      "last": 49.999796628952026,
+      "count": 250,
+      "service_p99_ms": 11.299566947855055
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 50,
+      "first": 50.00579643249512,
+      "last": 54.96579647064209,
+      "count": 249,
+      "service_p99_ms": 11.633099988102913
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 55,
+      "first": 55.00079655647278,
+      "last": 59.96579647064209,
+      "count": 250,
+      "service_p99_ms": 6.0468659503385425
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 60,
+      "first": 60.00079655647278,
+      "last": 64.99979662895203,
+      "count": 251,
+      "service_p99_ms": 15.462242998182774
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 65,
+      "first": 65.00579643249512,
+      "last": 69.99979662895203,
+      "count": 250,
+      "service_p99_ms": 7.391559076495469
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 70,
+      "first": 70.00479650497437,
+      "last": 74.99979662895203,
+      "count": 250,
+      "service_p99_ms": 10.250548017211258
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 75,
+      "first": 75.00479650497437,
+      "last": 79.99979662895203,
+      "count": 250,
+      "service_p99_ms": 19.85460997093469
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 80,
+      "first": 80.00579643249512,
+      "last": 84.96479654312134,
+      "count": 249,
+      "service_p99_ms": 5.851942929439247
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 85,
+      "first": 85.00079655647278,
+      "last": 89.99979662895203,
+      "count": 251,
+      "service_p99_ms": 16.79711800534278
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 90,
+      "first": 90.00479650497437,
+      "last": 94.99979662895203,
+      "count": 250,
+      "service_p99_ms": 19.554347964003682
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 95,
+      "first": 95.00479650497437,
+      "last": 99.99979662895203,
+      "count": 250,
+      "service_p99_ms": 6.410208996385336
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 100,
+      "first": 100.00579643249512,
+      "last": 104.99979662895203,
+      "count": 250,
+      "service_p99_ms": 6.98965706396848
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 105,
+      "first": 105.00479650497437,
+      "last": 109.96479654312134,
+      "count": 249,
+      "service_p99_ms": 22.80708495527506
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 110,
+      "first": 110.00079655647278,
+      "last": 110.11979651451111,
+      "count": 7,
+      "service_p99_ms": 3.2159669790416956
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 115,
+      "first": 117.33279657363892,
+      "last": 119.9747965335846,
+      "count": 134,
+      "service_p99_ms": 10.351767065003514
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 120,
+      "first": 120.01479649543762,
+      "last": 124.9747965335846,
+      "count": 250,
+      "service_p99_ms": 6.0045759892091155
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 125,
+      "first": 125.01379656791687,
+      "last": 127.33379650115967,
+      "count": 118,
+      "service_p99_ms": 19.508420955389738
+    }
+  ],
+  "pair3-baseline": [
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -30,
+      "first": -26.141562700271606,
+      "last": -25.014562606811523,
+      "count": 58,
+      "service_p99_ms": 43.697412009350955
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -25,
+      "first": -24.980562686920166,
+      "last": -20.014562606811523,
+      "count": 250,
+      "service_p99_ms": 12.870261911302805
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -20,
+      "first": -19.979562759399414,
+      "last": -15.015562772750854,
+      "count": 250,
+      "service_p99_ms": 13.308820081874728
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -15,
+      "first": -14.980562686920166,
+      "last": -10.014562606811523,
+      "count": 250,
+      "service_p99_ms": 11.837853933684528
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "normal",
+      "bin_start": -10,
+      "first": -6.101562738418579,
+      "last": -5.1355626583099365,
+      "count": 50,
+      "service_p99_ms": 9.130769991315901
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -10,
+      "first": -9.980562686920166,
+      "last": -6.134562730789185,
+      "count": 194,
+      "service_p99_ms": 8.53314995765686
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": -5,
+      "first": -0.008562803268432617,
+      "last": -0.0025627613067626953,
+      "count": 2,
+      "service_p99_ms": 5.386792938224971
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 0,
+      "first": 0.03243732452392578,
+      "last": 4.992437362670898,
+      "count": 249,
+      "service_p99_ms": 11.072703986428678
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 5,
+      "first": 5.001437425613403,
+      "last": 9.998437404632568,
+      "count": 251,
+      "service_p99_ms": 14.819593983702362
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 10,
+      "first": 10.032437324523926,
+      "last": 14.998437404632568,
+      "count": 250,
+      "service_p99_ms": 9.112662984989583
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 15,
+      "first": 15.033437252044678,
+      "last": 19.99843740463257,
+      "count": 250,
+      "service_p99_ms": 22.981896996498108
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 20,
+      "first": 20.031437397003174,
+      "last": 24.99843740463257,
+      "count": 250,
+      "service_p99_ms": 8.958855061791837
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 25,
+      "first": 25.032437324523926,
+      "last": 29.99843740463257,
+      "count": 250,
+      "service_p99_ms": 9.532055002637208
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 30,
+      "first": 30.032437324523926,
+      "last": 34.99843740463257,
+      "count": 250,
+      "service_p99_ms": 9.823845932260156
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 35,
+      "first": 35.032437324523926,
+      "last": 39.99843740463257,
+      "count": 250,
+      "service_p99_ms": 24.051990010775626
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 40,
+      "first": 40.032437324523926,
+      "last": 44.99843740463257,
+      "count": 250,
+      "service_p99_ms": 8.991556009277701
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 45,
+      "first": 45.031437397003174,
+      "last": 49.99843740463257,
+      "count": 250,
+      "service_p99_ms": 12.960862019099295
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 50,
+      "first": 50.032437324523926,
+      "last": 54.99843740463257,
+      "count": 250,
+      "service_p99_ms": 18.96617899183184
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 55,
+      "first": 55.032437324523926,
+      "last": 59.99843740463257,
+      "count": 250,
+      "service_p99_ms": 9.101010044105351
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 60,
+      "first": 60.032437324523926,
+      "last": 64.99843740463257,
+      "count": 250,
+      "service_p99_ms": 9.600288001820445
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 65,
+      "first": 65.03243732452393,
+      "last": 69.99843740463257,
+      "count": 250,
+      "service_p99_ms": 8.8921959977597
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 70,
+      "first": 70.03243732452393,
+      "last": 74.99843740463257,
+      "count": 250,
+      "service_p99_ms": 7.274083909578621
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 75,
+      "first": 75.03343725204468,
+      "last": 79.99843740463257,
+      "count": 250,
+      "service_p99_ms": 9.494285099208355
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 80,
+      "first": 80.03343725204468,
+      "last": 84.99843740463257,
+      "count": 250,
+      "service_p99_ms": 15.487261000089347
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 85,
+      "first": 85.03243732452393,
+      "last": 89.99843740463257,
+      "count": 250,
+      "service_p99_ms": 12.012821971438825
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 90,
+      "first": 90.03243732452393,
+      "last": 94.99743723869324,
+      "count": 250,
+      "service_p99_ms": 7.829975918866694
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 95,
+      "first": 95.03143739700317,
+      "last": 99.99943733215332,
+      "count": 250,
+      "service_p99_ms": 11.314857052639127
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 100,
+      "first": 100.03143739700317,
+      "last": 104.99843740463257,
+      "count": 250,
+      "service_p99_ms": 12.760828016325831
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 105,
+      "first": 105.03243732452393,
+      "last": 109.99843740463257,
+      "count": 250,
+      "service_p99_ms": 9.584996034391224
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 110,
+      "first": 110.03143739700317,
+      "last": 110.11843729019165,
+      "count": 6,
+      "service_p99_ms": 1.801270991563797
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 115,
+      "first": 117.35143733024597,
+      "last": 119.99343729019165,
+      "count": 134,
+      "service_p99_ms": 28.032921953126788
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 120,
+      "first": 120.03143739700317,
+      "last": 124.99343729019165,
+      "count": 250,
+      "service_p99_ms": 11.684856959618628
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 125,
+      "first": 125.03243732452393,
+      "last": 127.35343742370605,
+      "count": 118,
+      "service_p99_ms": 9.223890956491232
+    }
+  ],
+  "pair3-candidate": [
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -30,
+      "first": -26.13895058631897,
+      "last": -25.01395058631897,
+      "count": 58,
+      "service_p99_ms": 71.40614802483469
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -25,
+      "first": -24.97895073890686,
+      "last": -20.0149507522583,
+      "count": 250,
+      "service_p99_ms": 13.279556995257735
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -20,
+      "first": -19.97895073890686,
+      "last": -15.0149507522583,
+      "count": 250,
+      "service_p99_ms": 11.31812296807766
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -15,
+      "first": -14.97795057296753,
+      "last": -10.0149507522583,
+      "count": 250,
+      "service_p99_ms": 16.678835963830352
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "normal",
+      "bin_start": -10,
+      "first": -6.098950624465942,
+      "last": -5.133950710296631,
+      "count": 50,
+      "service_p99_ms": 6.6969189792871475
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -10,
+      "first": -9.97795057296753,
+      "last": -6.133950710296631,
+      "count": 194,
+      "service_p99_ms": 26.08157100621611
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": -5,
+      "first": -0.00895071029663086,
+      "last": -0.00895071029663086,
+      "count": 2,
+      "service_p99_ms": 7.969967904500663
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 0,
+      "first": 0.031049251556396484,
+      "last": 4.998049259185791,
+      "count": 250,
+      "service_p99_ms": 14.996783924289048
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 5,
+      "first": 5.0310492515563965,
+      "last": 9.9920494556427,
+      "count": 250,
+      "service_p99_ms": 9.90407110657543
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 10,
+      "first": 10.032049417495728,
+      "last": 14.9920494556427,
+      "count": 250,
+      "service_p99_ms": 9.334917063824832
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 15,
+      "first": 15.031049251556396,
+      "last": 19.9920494556427,
+      "count": 250,
+      "service_p99_ms": 7.317540002986789
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 20,
+      "first": 20.031049251556396,
+      "last": 24.993049383163452,
+      "count": 250,
+      "service_p99_ms": 7.457883097231388
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 25,
+      "first": 25.037049293518066,
+      "last": 29.9920494556427,
+      "count": 250,
+      "service_p99_ms": 14.54525999724865
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 30,
+      "first": 30.031049251556396,
+      "last": 34.9920494556427,
+      "count": 250,
+      "service_p99_ms": 9.954102919436991
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 35,
+      "first": 35.0310492515564,
+      "last": 39.9920494556427,
+      "count": 250,
+      "service_p99_ms": 6.250716978684068
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 40,
+      "first": 40.0310492515564,
+      "last": 44.9920494556427,
+      "count": 250,
+      "service_p99_ms": 14.714016928337514
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 45,
+      "first": 45.0310492515564,
+      "last": 49.9920494556427,
+      "count": 250,
+      "service_p99_ms": 7.842118968255818
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 50,
+      "first": 50.0310492515564,
+      "last": 54.9920494556427,
+      "count": 250,
+      "service_p99_ms": 7.3377760127186775
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 55,
+      "first": 55.0310492515564,
+      "last": 59.9920494556427,
+      "count": 250,
+      "service_p99_ms": 30.267901020124555
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 60,
+      "first": 60.0310492515564,
+      "last": 64.9920494556427,
+      "count": 250,
+      "service_p99_ms": 4.440926946699619
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 65,
+      "first": 65.0310492515564,
+      "last": 69.9920494556427,
+      "count": 250,
+      "service_p99_ms": 7.085700053721666
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 70,
+      "first": 70.0310492515564,
+      "last": 74.9920494556427,
+      "count": 250,
+      "service_p99_ms": 7.342997007071972
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 75,
+      "first": 75.0310492515564,
+      "last": 79.9920494556427,
+      "count": 250,
+      "service_p99_ms": 4.05132700689137
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 80,
+      "first": 80.03204941749573,
+      "last": 84.9920494556427,
+      "count": 250,
+      "service_p99_ms": 12.988343019969761
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 85,
+      "first": 85.0310492515564,
+      "last": 89.9920494556427,
+      "count": 250,
+      "service_p99_ms": 23.418469936586916
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 90,
+      "first": 90.0310492515564,
+      "last": 94.9920494556427,
+      "count": 250,
+      "service_p99_ms": 4.023505956865847
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 95,
+      "first": 95.0310492515564,
+      "last": 99.9920494556427,
+      "count": 250,
+      "service_p99_ms": 2.863098052330315
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 100,
+      "first": 100.0310492515564,
+      "last": 104.9920494556427,
+      "count": 250,
+      "service_p99_ms": 7.021617027930915
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 105,
+      "first": 105.0310492515564,
+      "last": 105.11204934120178,
+      "count": 6,
+      "service_p99_ms": 1.9551520235836506
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 110,
+      "first": 112.303049325943,
+      "last": 114.98604941368103,
+      "count": 136,
+      "service_p99_ms": 12.273140018805861
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 115,
+      "first": 115.02404928207397,
+      "last": 119.98604941368103,
+      "count": 250,
+      "service_p99_ms": 14.733673073351383
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 120,
+      "first": 120.02404928207397,
+      "last": 122.30504941940308,
+      "count": 116,
+      "service_p99_ms": 2.4831730406731367
+    }
+  ],
+  "pair4-candidate": [
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -30,
+      "first": -26.142586946487427,
+      "last": -25.021587133407593,
+      "count": 58,
+      "service_p99_ms": 35.422239918261766
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -25,
+      "first": -24.982587099075317,
+      "last": -20.021587133407593,
+      "count": 250,
+      "service_p99_ms": 36.465698038227856
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -20,
+      "first": -19.982587099075317,
+      "last": -15.022587060928345,
+      "count": 250,
+      "service_p99_ms": 11.589133064262569
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -15,
+      "first": -14.982587099075317,
+      "last": -10.022587060928345,
+      "count": 250,
+      "service_p99_ms": 14.538781950250268
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "normal",
+      "bin_start": -10,
+      "first": -6.102586984634399,
+      "last": -5.140587091445923,
+      "count": 50,
+      "service_p99_ms": 24.424514966085553
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -10,
+      "first": -9.981587171554565,
+      "last": -6.141587018966675,
+      "count": 194,
+      "service_p99_ms": 10.326393996365368
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": -5,
+      "first": -0.008587121963500977,
+      "last": -0.0025870800018310547,
+      "count": 2,
+      "service_p99_ms": 7.244013017043471
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 0,
+      "first": 0.03241300582885742,
+      "last": 4.999413013458252,
+      "count": 250,
+      "service_p99_ms": 9.047170053236187
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 5,
+      "first": 5.032413005828857,
+      "last": 9.998412847518921,
+      "count": 250,
+      "service_p99_ms": 27.641151915304363
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 10,
+      "first": 10.032413005828857,
+      "last": 14.998412847518921,
+      "count": 250,
+      "service_p99_ms": 12.781145051121712
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 15,
+      "first": 15.032413005828857,
+      "last": 19.99841284751892,
+      "count": 250,
+      "service_p99_ms": 9.059987962245941
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 20,
+      "first": 20.031412839889526,
+      "last": 24.99841284751892,
+      "count": 250,
+      "service_p99_ms": 10.147965978831053
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 25,
+      "first": 25.03441286087036,
+      "last": 29.99841284751892,
+      "count": 250,
+      "service_p99_ms": 8.508543949574232
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 30,
+      "first": 30.032413005828857,
+      "last": 34.99841284751892,
+      "count": 250,
+      "service_p99_ms": 6.629344075918198
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 35,
+      "first": 35.03241300582886,
+      "last": 39.99841284751892,
+      "count": 250,
+      "service_p99_ms": 5.349523038603365
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 40,
+      "first": 40.031412839889526,
+      "last": 44.99841284751892,
+      "count": 250,
+      "service_p99_ms": 5.42069599032402
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 45,
+      "first": 45.03341293334961,
+      "last": 49.99841284751892,
+      "count": 250,
+      "service_p99_ms": 23.836637963540852
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 50,
+      "first": 50.03241300582886,
+      "last": 54.99841284751892,
+      "count": 250,
+      "service_p99_ms": 11.714112013578415
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 55,
+      "first": 55.03241300582886,
+      "last": 59.99841284751892,
+      "count": 250,
+      "service_p99_ms": 4.612072021700442
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 60,
+      "first": 60.03241300582886,
+      "last": 64.99841284751892,
+      "count": 250,
+      "service_p99_ms": 5.038311937823892
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 65,
+      "first": 65.03141283988953,
+      "last": 69.99841284751892,
+      "count": 250,
+      "service_p99_ms": 5.567429936490953
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 70,
+      "first": 70.03241300582886,
+      "last": 74.99841284751892,
+      "count": 250,
+      "service_p99_ms": 7.986600045114756
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 75,
+      "first": 75.03241300582886,
+      "last": 79.99841284751892,
+      "count": 250,
+      "service_p99_ms": 5.469036055728793
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 80,
+      "first": 80.03241300582886,
+      "last": 84.99841284751892,
+      "count": 250,
+      "service_p99_ms": 11.012887000106275
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 85,
+      "first": 85.03141283988953,
+      "last": 89.99841284751892,
+      "count": 250,
+      "service_p99_ms": 9.244128013961017
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 90,
+      "first": 90.03241300582886,
+      "last": 94.99841284751892,
+      "count": 250,
+      "service_p99_ms": 5.729692988097668
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 95,
+      "first": 95.03241300582886,
+      "last": 99.99941301345825,
+      "count": 250,
+      "service_p99_ms": 3.3212939742952585
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 100,
+      "first": 100.03241300582886,
+      "last": 104.99841284751892,
+      "count": 250,
+      "service_p99_ms": 7.440128014422953
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 105,
+      "first": 105.03241300582886,
+      "last": 105.11241292953491,
+      "count": 5,
+      "service_p99_ms": 2.0252929534763098
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 110,
+      "first": 112.31941294670105,
+      "last": 114.96241283416748,
+      "count": 134,
+      "service_p99_ms": 10.012685088440776
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 115,
+      "first": 115.000412940979,
+      "last": 119.96141290664673,
+      "count": 250,
+      "service_p99_ms": 26.254454045556486
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 120,
+      "first": 120.000412940979,
+      "last": 122.32141304016113,
+      "count": 118,
+      "service_p99_ms": 2.833393053151667
+    }
+  ],
+  "pair4-baseline": [
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -30,
+      "first": -26.13876485824585,
+      "last": -25.012764930725098,
+      "count": 58,
+      "service_p99_ms": 49.339166027493775
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -25,
+      "first": -24.97876501083374,
+      "last": -20.012764930725098,
+      "count": 250,
+      "service_p99_ms": 14.937572996132076
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -20,
+      "first": -19.97876501083374,
+      "last": -15.011765003204346,
+      "count": 250,
+      "service_p99_ms": 10.26899297721684
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -15,
+      "first": -14.97776484489441,
+      "last": -10.012764930725098,
+      "count": 250,
+      "service_p99_ms": 8.108487003482878
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "normal",
+      "bin_start": -10,
+      "first": -6.096764802932739,
+      "last": -5.13276481628418,
+      "count": 50,
+      "service_p99_ms": 9.000213001854718
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -10,
+      "first": -9.97876501083374,
+      "last": -6.131764888763428,
+      "count": 194,
+      "service_p99_ms": 63.84491198696196
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": -5,
+      "first": -0.0047647953033447266,
+      "last": -0.0027649402618408203,
+      "count": 2,
+      "service_p99_ms": 20.60051297303289
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 0,
+      "first": 0.03523516654968262,
+      "last": 4.999235153198242,
+      "count": 249,
+      "service_p99_ms": 14.222156954929233
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 5,
+      "first": 5.000235080718994,
+      "last": 9.998234987258911,
+      "count": 251,
+      "service_p99_ms": 10.83670393563807
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 10,
+      "first": 10.036235094070435,
+      "last": 14.998234987258911,
+      "count": 250,
+      "service_p99_ms": 16.443848027847707
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 15,
+      "first": 15.036235094070435,
+      "last": 19.99723505973816,
+      "count": 250,
+      "service_p99_ms": 8.533911895938218
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 20,
+      "first": 20.036235094070435,
+      "last": 24.99723505973816,
+      "count": 250,
+      "service_p99_ms": 16.625836957246065
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 25,
+      "first": 25.036235094070435,
+      "last": 29.99723505973816,
+      "count": 250,
+      "service_p99_ms": 10.216233902610838
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 30,
+      "first": 30.036235094070435,
+      "last": 34.99723505973816,
+      "count": 250,
+      "service_p99_ms": 31.88231703825295
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 35,
+      "first": 35.036235094070435,
+      "last": 39.99823498725891,
+      "count": 250,
+      "service_p99_ms": 9.050587890669703
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 40,
+      "first": 40.036235094070435,
+      "last": 44.99723505973816,
+      "count": 250,
+      "service_p99_ms": 21.60571003332734
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 45,
+      "first": 45.036235094070435,
+      "last": 49.99723505973816,
+      "count": 250,
+      "service_p99_ms": 6.521382019855082
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 50,
+      "first": 50.036235094070435,
+      "last": 54.99723505973816,
+      "count": 250,
+      "service_p99_ms": 9.6239079721272
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 55,
+      "first": 55.036235094070435,
+      "last": 59.99823498725891,
+      "count": 250,
+      "service_p99_ms": 12.284848024137318
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 60,
+      "first": 60.03523516654968,
+      "last": 64.99823498725891,
+      "count": 250,
+      "service_p99_ms": 15.145707060582936
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 65,
+      "first": 65.03623509407043,
+      "last": 69.99723505973816,
+      "count": 250,
+      "service_p99_ms": 24.66467395424843
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 70,
+      "first": 70.03623509407043,
+      "last": 74.99723505973816,
+      "count": 250,
+      "service_p99_ms": 6.4933099783957005
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 75,
+      "first": 75.03723502159119,
+      "last": 79.99723505973816,
+      "count": 250,
+      "service_p99_ms": 9.610356064513326
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 80,
+      "first": 80.03623509407043,
+      "last": 84.99723505973816,
+      "count": 250,
+      "service_p99_ms": 12.689498951658607
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 85,
+      "first": 85.03623509407043,
+      "last": 89.99823498725891,
+      "count": 250,
+      "service_p99_ms": 11.697832029312849
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 90,
+      "first": 90.03523516654968,
+      "last": 94.99723505973816,
+      "count": 250,
+      "service_p99_ms": 10.311632067896426
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 95,
+      "first": 95.03623509407043,
+      "last": 99.99723505973816,
+      "count": 250,
+      "service_p99_ms": 4.564931965433061
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 100,
+      "first": 100.03523516654968,
+      "last": 104.99823498725891,
+      "count": 250,
+      "service_p99_ms": 23.993561044335365
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 105,
+      "first": 105.03623509407043,
+      "last": 109.99723505973816,
+      "count": 250,
+      "service_p99_ms": 25.195715948939323
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 110,
+      "first": 110.03523516654968,
+      "last": 110.11523509025574,
+      "count": 5,
+      "service_p99_ms": 2.6659099385142326
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 115,
+      "first": 117.34323501586914,
+      "last": 119.98623514175415,
+      "count": 134,
+      "service_p99_ms": 11.679448070935905
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 120,
+      "first": 120.0242350101471,
+      "last": 124.9872350692749,
+      "count": 250,
+      "service_p99_ms": 5.585132050327957
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 125,
+      "first": 125.02523517608643,
+      "last": 127.3472352027893,
+      "count": 118,
+      "service_p99_ms": 2.3063019616529346
+    }
+  ],
+  "control-after": [
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -30,
+      "first": -26.143605709075928,
+      "last": -25.01960563659668,
+      "count": 58,
+      "service_p99_ms": 36.1446519382298
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -25,
+      "first": -24.98360562324524,
+      "last": -20.01960563659668,
+      "count": 250,
+      "service_p99_ms": 13.023589039221406
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -20,
+      "first": -19.98360562324524,
+      "last": -15.01960563659668,
+      "count": 250,
+      "service_p99_ms": 10.948851937428117
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -15,
+      "first": -14.982605695724487,
+      "last": -10.020605564117432,
+      "count": 250,
+      "service_p99_ms": 35.6936069438234
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "normal",
+      "bin_start": -10,
+      "first": -6.103605508804321,
+      "last": -5.139605522155762,
+      "count": 50,
+      "service_p99_ms": 11.5825270768255
+    },
+    {
+      "task": "warmup-search",
+      "sample_type": "warmup",
+      "bin_start": -10,
+      "first": -9.98360562324524,
+      "last": -6.140605688095093,
+      "count": 194,
+      "service_p99_ms": 18.739871913567185
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": -5,
+      "first": -0.0056056976318359375,
+      "last": -0.0036056041717529297,
+      "count": 2,
+      "service_p99_ms": 7.369135972112417
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 0,
+      "first": 0.03539443016052246,
+      "last": 4.994394302368164,
+      "count": 249,
+      "service_p99_ms": 9.573979070410132
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 5,
+      "first": 5.000394344329834,
+      "last": 9.997394323348999,
+      "count": 251,
+      "service_p99_ms": 5.266648018732667
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 10,
+      "first": 10.035394430160522,
+      "last": 14.997394323348999,
+      "count": 250,
+      "service_p99_ms": 8.773428970016539
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 15,
+      "first": 15.035394430160522,
+      "last": 19.997394323349,
+      "count": 250,
+      "service_p99_ms": 11.099709081463516
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 20,
+      "first": 20.035394430160522,
+      "last": 24.997394323349,
+      "count": 250,
+      "service_p99_ms": 10.169586981646717
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 25,
+      "first": 25.037394285202026,
+      "last": 29.997394323349,
+      "count": 250,
+      "service_p99_ms": 20.6861209589988
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 30,
+      "first": 30.03439450263977,
+      "last": 34.997394323349,
+      "count": 250,
+      "service_p99_ms": 9.264355059713125
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 35,
+      "first": 35.03439450263977,
+      "last": 39.997394323349,
+      "count": 250,
+      "service_p99_ms": 4.882920999079943
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 40,
+      "first": 40.03539443016052,
+      "last": 44.997394323349,
+      "count": 250,
+      "service_p99_ms": 9.589163004420698
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 45,
+      "first": 45.03439450263977,
+      "last": 49.997394323349,
+      "count": 250,
+      "service_p99_ms": 14.560769079253078
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 50,
+      "first": 50.03539443016052,
+      "last": 54.997394323349,
+      "count": 250,
+      "service_p99_ms": 8.764212019741535
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 55,
+      "first": 55.03439450263977,
+      "last": 59.997394323349,
+      "count": 250,
+      "service_p99_ms": 5.864985985681415
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 60,
+      "first": 60.03439450263977,
+      "last": 64.997394323349,
+      "count": 250,
+      "service_p99_ms": 12.451560003682971
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 65,
+      "first": 65.03439450263977,
+      "last": 69.997394323349,
+      "count": 250,
+      "service_p99_ms": 18.307107966393232
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 70,
+      "first": 70.03439450263977,
+      "last": 74.997394323349,
+      "count": 250,
+      "service_p99_ms": 3.5081530222669244
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 75,
+      "first": 75.03539443016052,
+      "last": 79.997394323349,
+      "count": 250,
+      "service_p99_ms": 6.782809970900416
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 80,
+      "first": 80.03439450263977,
+      "last": 84.997394323349,
+      "count": 250,
+      "service_p99_ms": 9.440471068955958
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 85,
+      "first": 85.03439450263977,
+      "last": 89.997394323349,
+      "count": 250,
+      "service_p99_ms": 6.948178983293474
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 90,
+      "first": 90.03439450263977,
+      "last": 94.997394323349,
+      "count": 250,
+      "service_p99_ms": 6.355252000503242
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 95,
+      "first": 95.03439450263977,
+      "last": 99.997394323349,
+      "count": 250,
+      "service_p99_ms": 8.90500599052757
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 100,
+      "first": 100.03539443016052,
+      "last": 104.997394323349,
+      "count": 250,
+      "service_p99_ms": 3.370136022567749
+    },
+    {
+      "task": "concurrent-search",
+      "sample_type": "normal",
+      "bin_start": 105,
+      "first": 105.03539443016052,
+      "last": 105.11739444732666,
+      "count": 6,
+      "service_p99_ms": 2.237620996311307
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 110,
+      "first": 112.30839443206787,
+      "last": 114.99039435386658,
+      "count": 136,
+      "service_p99_ms": 12.95359805226326
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 115,
+      "first": 115.0283944606781,
+      "last": 119.98939442634583,
+      "count": 250,
+      "service_p99_ms": 9.987025987356901
+    },
+    {
+      "task": "recovery-search",
+      "sample_type": "normal",
+      "bin_start": 120,
+      "first": 120.02939438819885,
+      "last": 122.30939435958862,
+      "count": 116,
+      "service_p99_ms": 2.190330997109413
+    }
+  ]
+}

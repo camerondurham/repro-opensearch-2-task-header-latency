@@ -32,6 +32,9 @@ records the starting Git commit and source hashes, then executes a new interpret
 from that snapshot. Every unit verifies the same files and build manifest before
 and after work. Editing checkout documentation or analysis does not alter a run.
 The public campaign includes the executed snapshot, software inventory and hashes.
+Build inputs (compiler script, Java sources and contract, patch, build script) are
+retained separately and bound to the images. Snapshot cleanliness covers executed
+inputs only; independent analysis/docs may change during measurement.
 Hardware receipts read architecture, kernel, OS version and CPU model without a
 hostname. Cleanup attempts all owned resources despite log/inspection failures;
 failed ownership checks prohibit removal, and any cleanup error fails the run
@@ -81,6 +84,13 @@ one-second boundary allowance. It does not claim exact accounting of every
 unsent opportunity. A counterpart check rejects missing latency/service/processing
 records; native log checks reject known sampling drops. No imputation or request
 sample independence assumption is used.
+
+The recorded results and all limits are in [the evidence report](../results/osb/REPORT.md).
+`python3 osb/plot.py --verify` checks the full-duration plot without plotting dependencies;
+regeneration instructions and the separate hash-locked plot environment are in the report.
+The historical `reproduce.py` stays byte-identical for provenance/offline checks;
+`run-reproduction.sh` now forwards live use to OSB rather than maintaining a second
+public live shell procedure.
 
 To recompute a private run: `python3 osb/analyze.py .local/osb/<run-directory>`.
 To create an auditable public projection, use

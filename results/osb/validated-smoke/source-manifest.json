@@ -1,0 +1,21 @@
+{
+  "start_commit": "cf95f7dc1fc9ab8a3b50d9bae64ddf7a99d2bf3d",
+  "worktree_status": [],
+  "worktree_status_scope": "executed snapshot inputs only; independent offline analysis/docs may change",
+  "files": {
+    "run.py": "5f26cd626c10e3e50a70ddf2cf03a860d6098f61477876390e673b529bc654a4",
+    "build.py": "f16fa74f9533e084e33b22a3204b77ffd18aae86d7efce0a5906715df1addc8e",
+    "generate.py": "d515d94e2cb2bedd5315c855f3d66b7aa6eebfdb446a253c24cd59e7b284d4f6",
+    "workload.py": "659072c828fe8b0209cc9d71f645d725961c307a05ef4ba22ef096fd13c3f18b",
+    "capture/sitecustomize.py": "86d92f17e0f265e401063c859e1d11793b5bf87e2a9905a2b84b2d5d78a80346",
+    "PROTOCOL.md": "013293ec2887ca16c77fc4ad4a6493fd20c67510c01fdb5404975133e074719e",
+    "requirements.lock": "1c5184f2e26dbd7f3b2c6fb680b1d4316f7f225e85a31976bdd23c75c34ad5bd",
+    "freeze.py": "99e7ec7285ac817087efee258483fdd538417c8cc30341676100ae9cde0a535b",
+    "evidence.py": "e31627ae82914298be3a42feeada5107c07063be59077c0fb863e0c06b9dcf5b",
+    "proposed-fix.patch": "d2cb8e0ff2d74391149469d65cb939ce5c4796fe9a6d17743eba1f10ba5c45fb"
+  },
+  "build_manifest_sha256": "3a44bea7e4af95e03919e15be680617a5e560c6b56be51f2d9770d274e4aaae4",
+  "execution": "fresh interpreter executes code/run.py; workload and metrics hook loaded from this snapshot",
+  "python": "3.11.16 (main, Aug 14 2026, 15:35:36) [Clang 22.1.3 ]",
+  "started_utc": "2026-11-07T07:10:12Z"
+}

@@ -20,6 +20,8 @@ jobs:
           python-version: '3.11'
       - name: Recompute new and historical evidence without Docker or network
         run: python3 osb/verify.py
+      - name: Verify historical analysis also rejects invalid data under optimized Python
+        run: python3 -O results/performance/recompute_late_p99.py
       - name: Install pinned OSB for native workload and failure-path tests
         run: python3 -m pip install --require-hashes -r osb/requirements.lock
       - name: Validate actual OSB parser, runners, capture, and evidence analysis
