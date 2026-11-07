@@ -2,6 +2,8 @@
 """Build a matched one-class intervention with the stock bundled compiler."""
 import hashlib
 import copy
+import fcntl
+import uuid
 import json
 import os
 from pathlib import Path
@@ -58,15 +60,30 @@ done
 "$JDK/java" -ea -cp "/work/test-classes:/work/candidate/classes:$LIB/*" org.opensearch.action.search.LifecycleContract > /work/contract.txt
 '''
     (OUT / 'compile.sh').write_text(script)
+    shutil.copyfile(__file__, OUT / 'build.py')
+    shutil.copyfile(ROOT / 'proposed-fix.patch', OUT / 'proposed-fix.patch')
+    inputs = ['build.py', 'compile.sh', 'LifecycleContract.java', 'proposed-fix.patch',
+              'baseline/' + JAVA, 'candidate/' + JAVA]
+    input_hashes = {name: sha(OUT/name) for name in inputs}
     # No server, networking, or privileges needed for this bounded compiler container.
-    log = run(DOCKER + ['run', '--rm', '--network', 'none', '--cpus', '2', '--memory', '2g',
-                       '--memory-swap', '2g', '--user', '0', '--label', 'org.osb-task-header=build',
-                       '-v', f'{OUT}:/work', '--entrypoint', 'bash', IMAGE, '/work/compile.sh'])
+    owner = 'osbth-build-' + uuid.uuid4().hex[:12]
+    try:
+        log = run(DOCKER + ['run', '--rm', '--name', owner, '--network', 'none', '--cpus', '2', '--memory', '2g',
+                           '--memory-swap', '2g', '--user', '0', '--label', 'org.osb-task-header.build=' + owner,
+                           '-v', f'{OUT}:/work', '--entrypoint', 'bash', IMAGE, '/work/compile.sh'])
+    finally:
+        for cid in run(DOCKER + ['ps', '-aq', '--filter', 'label=org.osb-task-header.build=' + owner]).split():
+            node = json.loads(run(DOCKER + ['inspect', cid]))[0]
+            if node['Name'] != '/' + owner or node['Config']['Labels'].get('org.osb-task-header.build') != owner:
+                raise RuntimeError('Compiler container ownership mismatch; refusing removal')
+            run(DOCKER + ['rm', '-f', cid])
+    if any(sha(OUT/name) != digest for name, digest in input_hashes.items()):
+        raise RuntimeError('Build inputs changed during compilation')
     (OUT / 'build.log').write_text(log)
     manifest = {'source_commit': SOURCE, 'source_blob': blob, 'stock_image': IMAGE,
                 'patch_sha256': sha(ROOT / 'proposed-fix.patch'), 'jdk': (OUT / 'jdk.txt').read_text(),
                 'compiler': 'javac --release 11 -proc:none', 'contract': (OUT / 'contract.txt').read_text(),
-                'variants': {}}
+                'input_sha256': input_hashes, 'variants': {}}
     original = zipfile.ZipFile(OUT / 'stock.jar')
     for mode in ('baseline', 'candidate'):
         generated = list((OUT / mode / 'classes').rglob('*.class'))
@@ -98,4 +115,6 @@ done
 
 
 if __name__ == '__main__':
-    main()
+    with open('/tmp/opensearch-regression-lab.lock', 'a') as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        main()

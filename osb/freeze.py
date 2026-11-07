@@ -35,12 +35,22 @@ def main():
     if any(digest(path) != hashes[name] for name, path in originals.items()):
         raise RuntimeError('Executable inputs changed while capturing; no run started')
     manifest = {'start_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
-                'worktree_status': subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT, text=True).splitlines(),
+                'worktree_status': subprocess.check_output(['git', 'status', '--porcelain', '--',
+                     *['osb/' + name for name in INPUTS], 'proposed-fix.patch'], cwd=ROOT, text=True).splitlines(),
+                'worktree_status_scope': 'executed snapshot inputs only; independent offline analysis/docs may change',
                 'files': hashes, 'build_manifest_sha256': digest(ROOT/'.local/osb/build/manifest.json'),
                 'execution': 'fresh interpreter executes code/run.py; workload and metrics hook loaded from this snapshot',
                 'python': sys.version, 'started_utc': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())}
     (out/'source-manifest.json').write_text(json.dumps(manifest, indent=2)+'\n')
     shutil.copyfile(ROOT/'.local/osb/build/manifest.json', out/'build.json')
+    build = json.loads((out/'build.json').read_text())
+    for name, expected in build.get('input_sha256', {}).items():
+        source = ROOT/'.local/osb/build'/name
+        if digest(source) != expected:
+            raise RuntimeError('Build input changed: ' + name)
+        target = out/'build-inputs'/name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, target)
     import osbenchmark
     package = Path(osbenchmark.__file__).parent
     software = {'distributions': dict(sorted((d.metadata['Name'], d.version) for d in importlib.metadata.distributions())),
