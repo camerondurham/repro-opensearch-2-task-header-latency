@@ -100,7 +100,13 @@ operation errors, OSB executor/server timeouts, known native sample-drop warning
 UBQ failures, version conflicts or retries. All **96,000** requested updates
 completed across eight fresh 12,000-document fixtures. Control revision sums
 remained zero. No swap delta, unrelated-container observation, or declared CPU
-contention gate failed. Receipts confirm all owned resources cleaned.
+contention gate failed. Receipts confirm owned Docker resources cleaned and normal
+OSB exit. A later review found that the original interruption cleanup could miss
+detached Thespian actors; those historical receipts do **not** prove actor cleanup
+on interruption. A post-campaign inspection found no live processes with this
+campaign's capture-path environment. The current runner adds exact-owner actor
+termination/absence checks, with a real setsid/fork regression; it does not retrofit
+that guarantee onto the measurement snapshot or alter the measured results.
 
 Offered/achieved load is explicit in [report.json](campaign/report.json). The
 candidate achieved 3.9–4.4% higher UBQ rates, inside the predeclared 10% tolerance;
@@ -155,6 +161,20 @@ resource-accounting or plugin safety. These limits survive the positive endpoint
   and `parallel-smoke/` as legacy, without fabricated source snapshots.
 - [Original default-client integration failure](default-client-original-failure/)
   remains a failure, not relabeled a successful smoke.
+
+## Review corrections after measurement
+
+Both independent Astra/xhigh reviews identified the detached-actor interruption
+cleanup gap; the standards review also demonstrated unchecked allowed event values
+in the exporter. The final runner tracks actors through an inherited random owner
+marker plus capture path/executable/user/start-time checks and bounded termination.
+Its real Thespian test stops an already-detached administrator after the CLI exits,
+verifies no live owned process remains, and leaves a different-owner process alive.
+The exporter now rejects nonnumeric search timing/timeout fields and outcome-
+inappropriate default-client diagnostic fields. Negative mutation tests cover each.
+No leaked payload was found in the retained artifacts. Measurements were not rerun
+or rewritten to benefit from these fixes; the source snapshots disclose exactly
+which cleanup implementation ran.
 
 ## Recompute and audit
 

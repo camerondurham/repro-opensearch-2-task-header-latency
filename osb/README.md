@@ -38,7 +38,11 @@ inputs only; independent analysis/docs may change during measurement.
 Hardware receipts read architecture, kernel, OS version and CPU model without a
 hostname. Cleanup attempts all owned resources despite log/inspection failures;
 failed ownership checks prohibit removal, and any cleanup error fails the run
-while preserving its receipt.
+while preserving its receipt. OSB's Thespian actors can detach with setsid/fork;
+current cleanup separately verifies an inherited random owner marker, unit capture
+path, Python executable, user and launch-time bound, then performs bounded
+termination/rescans. Unknown or uninspectable live processes are never killed.
+The real detached-actor regression also proves that a different owner survives.
 
 The build uses the stock image's Temurin 21.0.6 compiler with `--release 11`,
 compiles the pinned public `TransportSearchScrollAction.java` for both arms,

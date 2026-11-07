@@ -64,7 +64,7 @@ def rows(path):
 
 
 CODE_FILES = {'run.py', 'build.py', 'generate.py', 'workload.py', 'capture/sitecustomize.py',
-              'PROTOCOL.md', 'requirements.lock', 'freeze.py', 'evidence.py', 'proposed-fix.patch'}
+              'PROTOCOL.md', 'requirements.lock', 'freeze.py', 'evidence.py', 'proposed-fix.patch', 'processes.py'}
 JAVA = 'server/src/main/java/org/opensearch/action/search/TransportSearchScrollAction.java'
 BUILD_FILES = {'build.py', 'compile.sh', 'LifecycleContract.java', 'proposed-fix.patch',
                'baseline/' + JAVA, 'candidate/' + JAVA}
@@ -130,7 +130,7 @@ def locked_distributions(path):
 
 def validate_snapshot(root, build, boundary):
     source = load_json(safe_file(root, 'source-manifest.json'))
-    need(set(source['files']) == CODE_FILES, 'Unexpected frozen source inventory')
+    need(set(source['files']) in (CODE_FILES, CODE_FILES - {'processes.py'}), 'Unexpected frozen source inventory')
     need(source['worktree_status'] == [] and re.fullmatch('[0-9a-f]{40}', source['start_commit']),
          'Unclean/invalid start source')
     snapshot_files(root, 'code', source['files'], allow_cache=True)

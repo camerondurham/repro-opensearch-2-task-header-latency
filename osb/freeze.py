@@ -12,7 +12,7 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 INPUTS = ('run.py', 'build.py', 'generate.py', 'workload.py', 'capture/sitecustomize.py',
-          'PROTOCOL.md', 'requirements.lock', 'freeze.py', 'evidence.py')
+          'PROTOCOL.md', 'requirements.lock', 'freeze.py', 'evidence.py', 'processes.py')
 
 
 def digest(path):

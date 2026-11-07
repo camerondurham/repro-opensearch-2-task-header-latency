@@ -435,6 +435,19 @@ class PublicationTests(TemporaryEvidence):
             with self.assertRaisesRegex(ValueError, 'Unsafe'): publish(self.source, self.root/'out')
             self.assertFalse((self.root/'out').exists())
 
+    def test_reject_private_values_inside_allowed_event_fields(self):
+        for unit, mutation in [('stock', lambda es: es[1]['response'].update(took='private')),
+                ('stock', lambda es: es[1]['response'].update(timed_out={'private': 'payload'})),
+                *[('candidate', lambda es, key=key: next(e for e in es if e['kind'] == 'default-client').update({key: 'private'}))
+                  for key in ('message', 'exception_type', 'parser_diagnostic_status')]]:
+            path = self.source/unit/'raw/events.jsonl'
+            original = path.read_bytes()
+            edit_rows(path, mutation)
+            with self.assertRaisesRegex(ValueError, 'Unsafe'):
+                publish(self.source, self.root/'out')
+            self.assertFalse((self.root/'out').exists())
+            path.write_bytes(original)
+
     def test_reject_private_event_and_metric_fields(self):
         path = self.source/'stock/raw/events.jsonl'; original = path.read_bytes()
         mutations = [lambda es: es[0].update(authorization='secret'),

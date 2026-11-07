@@ -21,6 +21,7 @@ import psutil
 from build import IMAGE, ROOT, DOCKER, sha
 from generate import generate
 from evidence import validate_completion
+from processes import stop_owned_processes
 
 LABEL = 'org.osb-task-header.owner'
 CODE = Path(__file__).resolve().parent
@@ -74,7 +75,7 @@ def preflight():
                 docker_endpoint='default local Unix socket')
 
 
-def cleanup_owned(owner, network, known_containers, private, child):
+def cleanup_owned(owner, network, known_containers, private, child, process_owner=None):
     """Attempt every cleanup independently; an inspection failure never authorizes removal."""
     errors = []
     def attempt(label, action):
@@ -92,6 +93,8 @@ def cleanup_owned(owner, network, known_containers, private, child):
             attempt('reap OSB', lambda: child.wait(10))
         except BaseException as exc:
             errors.append('reap OSB: ' + str(exc))
+    if process_owner is not None:
+        attempt('stop and verify detached OSB actors', lambda: stop_owned_processes(process_owner))
     listing = attempt('list owned containers', lambda: command(DOCKER + [
         'ps', '-aq', '--no-trunc', '--filter', 'label=' + LABEL + '=' + owner]))
     owned = set(known_containers) | set((listing or '').split())
@@ -217,7 +220,7 @@ def run_unit(root, name, variant, smoke, control, quick=False):
         home = private / 'home'
         home.mkdir()
         env = dict(os.environ, HOME=str(home), BENCHMARK_HOME=str(home),
-                   OSB_CAPTURE=str(capture), OSB_TARGET=target,
+                   OSB_CAPTURE=str(capture), OSB_TARGET=target, OSB_PROCESS_OWNER=owner,
                    PYTHONPATH=str(CODE / 'capture'), OPENBLAS_NUM_THREADS='1', OMP_NUM_THREADS='1')
         exe = str(Path(sys.executable).parent / 'opensearch-benchmark')
         argv = [exe, 'run', '--pipeline=benchmark-only', '--offline', '--quiet', '--enable-assertions',
@@ -267,7 +270,9 @@ def run_unit(root, name, variant, smoke, control, quick=False):
         raise
     finally:
         try:
-            receipt['cleanup_errors'] = cleanup_owned(owner, network, containers, private, child)
+            receipt['cleanup_errors'] = cleanup_owned(owner, network, containers, private, child,
+                process_owner=dict(token=owner, capture=str(capture), python=str(Path(sys.executable).resolve()),
+                                   started=receipt['start'] - 1))
         except BaseException as exc:
             # Preserve the primary failure and a durable receipt even if cleanup itself has a programming error.
             receipt['cleanup_errors'] = ['unexpected cleanup failure: ' + type(exc).__name__ + ': ' + str(exc)]

@@ -154,6 +154,8 @@ def validate_events(events):
                 fields(response['hits'], 'hits max_score total', 'search hits')
                 need(response['hits']['hits'] == [] and response['hits']['max_score'] is None and
                      response['hits']['total'] == {'relation': 'eq', 'value': 128}, 'Unsafe search hits')
+                need(type(response['took']) is int and response['took'] >= 0 and
+                     type(response['timed_out']) is bool, 'Unsafe search response scalar')
                 numeric_tree(response['_shards'], 'failed skipped successful total', 'search shards')
             else:
                 fields(response, UBQ_FIELDS, 'UBQ response')
@@ -169,6 +171,10 @@ def validate_events(events):
         if kind == 'default-client':
             need(event['aiohttp'] == '3.14.5' and event['outcome'] in ('accepted', 'client-parser-rejection'),
                  'Unsafe default-client metadata')
+            common = {'kind', 'time', 'aiohttp', 'outcome', 'server_status'}
+            extra = {'response'} if event['outcome'] == 'accepted' else {
+                'exception_type', 'message', 'parser_diagnostic_status'}
+            need(set(event) == common | extra, 'Unsafe outcome-specific default-client fields')
             if event['outcome'] == 'client-parser-rejection':
                 need(event['exception_type'] == 'ClientResponseError' and event['message'] == 'Too many headers received' and
                      event['parser_diagnostic_status'] == 400, 'Unsafe client exception')
@@ -251,7 +257,7 @@ def metric_files(unit):
 def source_files(source, report):
     allowed = {'order.json', 'build.json', 'PROTOCOL.md'}
     if (source/'source-manifest.json').exists():
-        allowed |= {'source-manifest.json', 'software.json'} | {'code/' + name for name in CODE_FILES}
+        allowed |= {'source-manifest.json', 'software.json'} | {'code/' + name for name in load_json(source/'source-manifest.json')['files']}
         if 'input_sha256' in load_json(source/'build.json'):
             allowed |= {'build-inputs/' + name for name in BUILD_FILES}
     for name in report['runs']:
