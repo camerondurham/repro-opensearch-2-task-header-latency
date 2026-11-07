@@ -93,8 +93,6 @@ def cleanup_owned(owner, network, known_containers, private, child, process_owne
             attempt('reap OSB', lambda: child.wait(10))
         except BaseException as exc:
             errors.append('reap OSB: ' + str(exc))
-    if process_owner is not None:
-        attempt('stop and verify detached OSB actors', lambda: stop_owned_processes(process_owner))
     listing = attempt('list owned containers', lambda: command(DOCKER + [
         'ps', '-aq', '--no-trunc', '--filter', 'label=' + LABEL + '=' + owner]))
     owned = set(known_containers) | set((listing or '').split())
@@ -129,6 +127,11 @@ def cleanup_owned(owner, network, known_containers, private, child, process_owne
         'network', 'ls', '-q', '--filter', 'label=' + LABEL + '=' + owner]))
     if remaining or remaining_networks:
         errors.append('owned resources remain after cleanup')
+    # Remove our engine first: container Java may share the host UID but deny
+    # /proc environment inspection. Do not weaken actor verification to skip
+    # unknown live same-user processes; fail closed if it is still uncertain.
+    if process_owner is not None:
+        attempt('stop and verify detached OSB actors', lambda: stop_owned_processes(process_owner))
     return errors
 
 
