@@ -1,0 +1,7 @@
+{
+  "projection": "OSB metric allowlist at creation; exact concatenation, no deduplication or sampling",
+  "raw_concatenation_sha256": "914e431bf90a414a8b519881a8ab074d818bca1d2d5c379ef5cb45d99a7e5e45",
+  "source_metric_file_sha256": [
+    "914e431bf90a414a8b519881a8ab074d818bca1d2d5c379ef5cb45d99a7e5e45"
+  ]
+}

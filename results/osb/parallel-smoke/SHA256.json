@@ -1,0 +1,20 @@
+{
+  "PROTOCOL.md": "214f7b39f55bb2c66577114ab03d83750bb900efa308a6997216581bc32f2f3b",
+  "build.json": "5f938895cf92cbf100c7e4196da2d5c9d0165c86e8976993407ac5c3ce57dc54",
+  "order.json": "435b84dab5a3fea4343a3fd5910451b34d2e6b19ddf0f8ef3df57e87a1b9de80",
+  "parallel-baseline/host.json": "0a47c324b5c998e29d7cbc6d3030d831fabbdc0fa9f4a2baf2f964797e0fe8cc",
+  "parallel-baseline/provenance.json": "3b33584df52fecd1e421c72b6d808fd84c117e13496ef0449681c7c9965f590f",
+  "parallel-baseline/raw/events.jsonl": "bbafec6b4eef7a7d273dba1724fa428cc7f5ed0fdc5d5385d8f43d3be99f9230",
+  "parallel-baseline/raw/metrics.jsonl.gz": "83f35d2fa1db5c8cbf29759af042b3620c10c495f6ec101955e5ce18a161e467",
+  "parallel-baseline/receipt.json": "b7076116b263c59cedce4a1a198ea9b1da625d27e7f39a4a0a8df8fa6e0199a8",
+  "parallel-baseline/workload/index.json": "86ab1bbaefa537510a34c82836ad167ee9bd35b67f3d20a62bd7f00ef4714757",
+  "parallel-baseline/workload/workload.json": "b4c3f07abd610c794ff10163bcb0290fd62f70690fa0b865d8df77a4af5f9808",
+  "parallel-candidate/host.json": "eafdfa0940d3b4ff3d0bbaf8d261f8976ab8b8dd3d1be75afe6bde58e812d4b7",
+  "parallel-candidate/provenance.json": "559a64d98aafc10697838bd317e33e34b23557e85ea5384f2fc3c12850cfd585",
+  "parallel-candidate/raw/events.jsonl": "c424f755761c0b404468fdea19abbd7caa3a5c951ef7e645e811843b2d672f0d",
+  "parallel-candidate/raw/metrics.jsonl.gz": "8d02d3bf93455b5328ec0d45efaf4f3523b939d6d3893f2e1ed8a3a0229d9dc8",
+  "parallel-candidate/receipt.json": "ccbc32bfd08a5a37371861abd08b9eec621f09791e6975e87f6e9bcc0af89442",
+  "parallel-candidate/workload/index.json": "86ab1bbaefa537510a34c82836ad167ee9bd35b67f3d20a62bd7f00ef4714757",
+  "parallel-candidate/workload/workload.json": "b4c3f07abd610c794ff10163bcb0290fd62f70690fa0b865d8df77a4af5f9808",
+  "report.json": "f596d26e465822779fa9f9bf1bbffe782fd9f10b27d144df5d5efad77a1da1f1"
+}

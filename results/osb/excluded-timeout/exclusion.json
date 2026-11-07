@@ -1,0 +1,7 @@
+{
+  "excluded": true,
+  "start_commit": "dadfd7302187308181dfd1c55645e3db02dd8891",
+  "source_manifest_sha256": "11d7543e5647a8300effd394062b68734c1397caebe43d4aa1100c7b26312288",
+  "reason": "OSB whole-runner timeout at 30s; incomplete control and cancelled UBQ, not an engine accounting failure. No candidate or remaining pair executed. Original receipt execution_ok=true for the control is not validation.",
+  "earlier_attempt": "2026-11-05 automatic-document-ID control stopped before paired timing; excluded for unmatched shard placement."
+}

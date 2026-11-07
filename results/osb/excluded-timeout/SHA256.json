@@ -1,0 +1,9 @@
+{
+  "control-before/raw/events.jsonl": "811112ae2a36d3e6b75b019bf5f677bb135abf1678d33e992ebda9c13c92f1a1",
+  "control-before/raw/metrics.jsonl.gz": "4c4682d3a82cb52fb4533e3400d3a60932a3f123605e9d8050f41115589ab734",
+  "control-before/receipt.json": "f8737eb7f7a7f8a471a208caf4d6a9c74d47cb752f6f1f84582bc7e9e7c82763",
+  "exclusion.json": "9d8e30739b32d03268e304d13ce39bed14a1f1e772e0f8bb1545d31bfa42117a",
+  "pair1-baseline/raw/events.jsonl": "eb7da78d7ea8e2b1e7251681aae7b4c9a642c56804ad392ddc288066fb681230",
+  "pair1-baseline/raw/metrics.jsonl.gz": "822ad1d3645b8a4c74422f484094ff1eb517182de79fbb3a5b2f5f6c797c6b21",
+  "pair1-baseline/receipt.json": "a064de9e277c9582e1acedfbd79b320f8da31475aad0d9c9848543c1856d5967"
+}

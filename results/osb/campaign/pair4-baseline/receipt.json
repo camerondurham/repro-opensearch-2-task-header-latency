@@ -1,0 +1,748 @@
+{
+  "name": "pair4-baseline",
+  "variant": "baseline",
+  "smoke": false,
+  "control": false,
+  "quick": false,
+  "preflight": {
+    "logical_cpus": 16,
+    "physical_cpus": 8,
+    "available_memory_bytes": 45144203264,
+    "disk_free_bytes": 879114534912,
+    "system": "Linux",
+    "architecture": "x86_64",
+    "kernel_release": "6.18.40.1-microsoft-standard-WSL2",
+    "os_id": "nixos",
+    "os_version_id": "26.11",
+    "cpu_model": "AMD Ryzen 7 7800X3D 8-Core Processor",
+    "docker_endpoint": "default local Unix socket"
+  },
+  "image": "sha256:f3dc5baf9a2ce278f9c1c19769c5923c507d070df7e2f01f8d71c85efdb8da45",
+  "start": 1794034963.832615,
+  "nodes": 3,
+  "errors": [],
+  "clean": true,
+  "osb_version": "2.5.0",
+  "python": "3.11.16",
+  "limits": {
+    "node_cpus": 2,
+    "node_memory_bytes": 3221225472,
+    "heap_bytes": 1073741824,
+    "data_bytes": 536870912
+  },
+  "config": {
+    "batch": 10,
+    "ubq_rate": 120,
+    "search_rate": 50,
+    "search_clients": 2,
+    "warmup": 20,
+    "deadline": 240,
+    "recovery": 10
+  },
+  "source_manifest_sha256": "d251281ce5127432bc91fddf4c8039c54201d375d76ff29bf66933a14f5fff21",
+  "start_commit": "cf95f7dc1fc9ab8a3b50d9bae64ddf7a99d2bf3d",
+  "sources": {
+    "run.py": "5f26cd626c10e3e50a70ddf2cf03a860d6098f61477876390e673b529bc654a4",
+    "build.py": "f16fa74f9533e084e33b22a3204b77ffd18aae86d7efce0a5906715df1addc8e",
+    "generate.py": "d515d94e2cb2bedd5315c855f3d66b7aa6eebfdb446a253c24cd59e7b284d4f6",
+    "workload.py": "659072c828fe8b0209cc9d71f645d725961c307a05ef4ba22ef096fd13c3f18b",
+    "capture/sitecustomize.py": "86d92f17e0f265e401063c859e1d11793b5bf87e2a9905a2b84b2d5d78a80346",
+    "PROTOCOL.md": "013293ec2887ca16c77fc4ad4a6493fd20c67510c01fdb5404975133e074719e",
+    "requirements.lock": "1c5184f2e26dbd7f3b2c6fb680b1d4316f7f225e85a31976bdd23c75c34ad5bd",
+    "freeze.py": "99e7ec7285ac817087efee258483fdd538417c8cc30341676100ae9cde0a535b",
+    "evidence.py": "e31627ae82914298be3a42feeada5107c07063be59077c0fb863e0c06b9dcf5b",
+    "proposed-fix.patch": "d2cb8e0ff2d74391149469d65cb939ce5c4796fe9a6d17743eba1f10ba5c45fb"
+  },
+  "documents": 12000,
+  "corpus_sha256": "59f436620a8a3f2c1bf40e92b7a80f991cc5839e58b802c76442af30a32a73ba",
+  "workload_sha256": "1581f24265c1d5ee77c5f2ee8e576fa88b112fc0c81214972935692273310672",
+  "engine_image_ids": [
+    "sha256:f3dc5baf9a2ce278f9c1c19769c5923c507d070df7e2f01f8d71c85efdb8da45",
+    "sha256:f3dc5baf9a2ce278f9c1c19769c5923c507d070df7e2f01f8d71c85efdb8da45",
+    "sha256:f3dc5baf9a2ce278f9c1c19769c5923c507d070df7e2f01f8d71c85efdb8da45"
+  ],
+  "effective_engine_limits": [
+    {
+      "NanoCpus": 2000000000,
+      "Memory": 3221225472,
+      "MemorySwap": 3221225472,
+      "CpusetCpus": "0,1"
+    },
+    {
+      "NanoCpus": 2000000000,
+      "Memory": 3221225472,
+      "MemorySwap": 3221225472,
+      "CpusetCpus": "2,3"
+    },
+    {
+      "NanoCpus": 2000000000,
+      "Memory": 3221225472,
+      "MemorySwap": 3221225472,
+      "CpusetCpus": "4,5"
+    }
+  ],
+  "driver_limits": {
+    "cpus": [
+      6,
+      7
+    ],
+    "virtual_address_bytes_per_process": 8589934592
+  },
+  "engine_version": {
+    "distribution": "opensearch",
+    "number": "2.19.0",
+    "build_type": "tar",
+    "build_hash": "fd9a9d90df25bea1af2c6a85039692e815b894f5",
+    "build_date": "2025-02-05T16:13:36.244552508Z",
+    "build_snapshot": false,
+    "lucene_version": "9.12.1",
+    "minimum_wire_compatibility_version": "7.10.0",
+    "minimum_index_compatibility_version": "7.0.0"
+  },
+  "before_stats": {
+    "indices": {},
+    "nodes": [
+      {
+        "indices": {
+          "merges": {
+            "current": 0,
+            "current_docs": 0,
+            "current_size_in_bytes": 0,
+            "total": 0,
+            "total_time_in_millis": 0,
+            "total_docs": 0,
+            "total_size_in_bytes": 0,
+            "total_stopped_time_in_millis": 0,
+            "total_throttled_time_in_millis": 0,
+            "total_auto_throttle_in_bytes": 41943040,
+            "unreferenced_file_cleanups_performed": 0
+          },
+          "refresh": {
+            "total": 20,
+            "total_time_in_millis": 246,
+            "external_total": 13,
+            "external_total_time_in_millis": 251,
+            "listeners": 0
+          }
+        },
+        "jvm": {
+          "gc": {
+            "collectors": {
+              "young": {
+                "collection_count": 15,
+                "collection_time_in_millis": 130
+              },
+              "G1 Concurrent GC": {
+                "collection_count": 8,
+                "collection_time_in_millis": 22
+              },
+              "old": {
+                "collection_count": 0,
+                "collection_time_in_millis": 0
+              }
+            }
+          }
+        }
+      },
+      {
+        "indices": {
+          "merges": {
+            "current": 0,
+            "current_docs": 0,
+            "current_size_in_bytes": 0,
+            "total": 0,
+            "total_time_in_millis": 0,
+            "total_docs": 0,
+            "total_size_in_bytes": 0,
+            "total_stopped_time_in_millis": 0,
+            "total_throttled_time_in_millis": 0,
+            "total_auto_throttle_in_bytes": 41943040,
+            "unreferenced_file_cleanups_performed": 0
+          },
+          "refresh": {
+            "total": 12,
+            "total_time_in_millis": 122,
+            "external_total": 4,
+            "external_total_time_in_millis": 0,
+            "listeners": 0
+          }
+        },
+        "jvm": {
+          "gc": {
+            "collectors": {
+              "young": {
+                "collection_count": 15,
+                "collection_time_in_millis": 124
+              },
+              "G1 Concurrent GC": {
+                "collection_count": 8,
+                "collection_time_in_millis": 17
+              },
+              "old": {
+                "collection_count": 0,
+                "collection_time_in_millis": 0
+              }
+            }
+          }
+        }
+      },
+      {
+        "indices": {
+          "merges": {
+            "current": 0,
+            "current_docs": 0,
+            "current_size_in_bytes": 0,
+            "total": 0,
+            "total_time_in_millis": 0,
+            "total_docs": 0,
+            "total_size_in_bytes": 0,
+            "total_stopped_time_in_millis": 0,
+            "total_throttled_time_in_millis": 0,
+            "total_auto_throttle_in_bytes": 41943040,
+            "unreferenced_file_cleanups_performed": 0
+          },
+          "refresh": {
+            "total": 14,
+            "total_time_in_millis": 234,
+            "external_total": 12,
+            "external_total_time_in_millis": 236,
+            "listeners": 0
+          }
+        },
+        "jvm": {
+          "gc": {
+            "collectors": {
+              "young": {
+                "collection_count": 15,
+                "collection_time_in_millis": 118
+              },
+              "G1 Concurrent GC": {
+                "collection_count": 8,
+                "collection_time_in_millis": 23
+              },
+              "old": {
+                "collection_count": 0,
+                "collection_time_in_millis": 0
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "osb_command": [
+    "$REPO/.local/osb/venv311/bin/opensearch-benchmark",
+    "run",
+    "--pipeline=benchmark-only",
+    "--offline",
+    "--quiet",
+    "--enable-assertions",
+    "--workload-path=$REPO/.local/osb/campaign-20261107T063521Z/pair4-baseline/workload",
+    "--target-hosts=$OWNED_LOOPBACK",
+    "--on-error=abort",
+    "--test-run-id=5a5432d2-39bc-44a1-a8ff-dc4e06408852",
+    "--client-options=timeout:30,max_retries:0,retry_on_timeout:false",
+    "--results-format=csv",
+    "--results-file=$REPO/.local/osb/campaign-20261107T063521Z/pair4-baseline/private/summary.csv"
+  ],
+  "osb_exitcode": 0,
+  "metric_drop_warning_count": 0,
+  "memory_store_drop_warning_count": 0,
+  "after_stats": {
+    "indices": {
+      "_all": {
+        "primaries": {
+          "docs": {
+            "count": 12000,
+            "deleted": 0
+          },
+          "store": {
+            "size_in_bytes": 829407,
+            "reserved_in_bytes": 0
+          },
+          "indexing": {
+            "index_total": 24000,
+            "index_time_in_millis": 900,
+            "index_current": 0,
+            "index_failed": 0,
+            "delete_total": 0,
+            "delete_time_in_millis": 0,
+            "delete_current": 0,
+            "noop_update_total": 0,
+            "is_throttled": false,
+            "throttle_time_in_millis": 0,
+            "doc_status": {}
+          },
+          "get": {
+            "total": 0,
+            "getTime": "0s",
+            "time_in_millis": 0,
+            "exists_total": 0,
+            "exists_time_in_millis": 0,
+            "missing_total": 0,
+            "missing_time_in_millis": 0,
+            "current": 0
+          },
+          "search": {
+            "open_contexts": 0,
+            "query_total": 24792,
+            "query_time_in_millis": 1273,
+            "query_current": 0,
+            "concurrent_query_total": 0,
+            "concurrent_query_time_in_millis": 0,
+            "concurrent_query_current": 0,
+            "concurrent_avg_slice_count": 0.0,
+            "fetch_total": 24757,
+            "fetch_time_in_millis": 1134,
+            "fetch_current": 0,
+            "scroll_total": 3,
+            "scroll_time_in_millis": 324239,
+            "scroll_current": 0,
+            "point_in_time_total": 0,
+            "point_in_time_time_in_millis": 0,
+            "point_in_time_current": 0,
+            "suggest_total": 0,
+            "suggest_time_in_millis": 0,
+            "suggest_current": 0,
+            "search_idle_reactivate_count_total": 0
+          },
+          "merges": {
+            "current": 0,
+            "current_docs": 0,
+            "current_size_in_bytes": 0,
+            "total": 0,
+            "total_time_in_millis": 0,
+            "total_docs": 0,
+            "total_size_in_bytes": 0,
+            "total_stopped_time_in_millis": 0,
+            "total_throttled_time_in_millis": 0,
+            "total_auto_throttle_in_bytes": 62914560,
+            "unreferenced_file_cleanups_performed": 0
+          },
+          "refresh": {
+            "total": 18,
+            "total_time_in_millis": 224,
+            "external_total": 15,
+            "external_total_time_in_millis": 228,
+            "listeners": 0
+          },
+          "flush": {
+            "total": 0,
+            "periodic": 0,
+            "total_time_in_millis": 0
+          },
+          "warmer": {
+            "current": 0,
+            "total": 12,
+            "total_time_in_millis": 0
+          },
+          "query_cache": {
+            "memory_size_in_bytes": 0,
+            "total_count": 0,
+            "hit_count": 0,
+            "miss_count": 0,
+            "cache_size": 0,
+            "cache_count": 0,
+            "evictions": 0
+          },
+          "fielddata": {
+            "memory_size_in_bytes": 0,
+            "evictions": 0
+          },
+          "completion": {
+            "size_in_bytes": 0
+          },
+          "segments": {
+            "count": 3,
+            "memory_in_bytes": 0,
+            "terms_memory_in_bytes": 0,
+            "stored_fields_memory_in_bytes": 0,
+            "term_vectors_memory_in_bytes": 0,
+            "norms_memory_in_bytes": 0,
+            "points_memory_in_bytes": 0,
+            "doc_values_memory_in_bytes": 0,
+            "index_writer_memory_in_bytes": 0,
+            "version_map_memory_in_bytes": 0,
+            "fixed_bit_set_memory_in_bytes": 0,
+            "max_unsafe_auto_id_timestamp": -1,
+            "remote_store": {
+              "upload": {
+                "total_upload_size": {
+                  "started_bytes": 0,
+                  "succeeded_bytes": 0,
+                  "failed_bytes": 0
+                },
+                "refresh_size_lag": {
+                  "total_bytes": 0,
+                  "max_bytes": 0
+                },
+                "max_refresh_time_lag_in_millis": 0,
+                "total_time_spent_in_millis": 0,
+                "pressure": {
+                  "total_rejections": 0
+                }
+              },
+              "download": {
+                "total_download_size": {
+                  "started_bytes": 0,
+                  "succeeded_bytes": 0,
+                  "failed_bytes": 0
+                },
+                "total_time_spent_in_millis": 0
+              }
+            },
+            "segment_replication": {
+              "max_bytes_behind": 0,
+              "total_bytes_behind": 0,
+              "max_replication_lag": 0
+            },
+            "file_sizes": {}
+          },
+          "translog": {
+            "operations": 12000,
+            "size_in_bytes": 1316955,
+            "uncommitted_operations": 12000,
+            "uncommitted_size_in_bytes": 1316955,
+            "earliest_last_modified_age": 29204,
+            "remote_store": {
+              "upload": {
+                "total_uploads": {
+                  "started": 0,
+                  "failed": 0,
+                  "succeeded": 0
+                },
+                "total_upload_size": {
+                  "started_bytes": 0,
+                  "failed_bytes": 0,
+                  "succeeded_bytes": 0
+                }
+              }
+            }
+          },
+          "request_cache": {
+            "memory_size_in_bytes": 2124,
+            "evictions": 0,
+            "hit_count": 0,
+            "miss_count": 6
+          },
+          "recovery": {
+            "current_as_source": 0,
+            "current_as_target": 0,
+            "throttle_time_in_millis": 0
+          }
+        },
+        "total": {
+          "docs": {
+            "count": 12000,
+            "deleted": 0
+          },
+          "store": {
+            "size_in_bytes": 829407,
+            "reserved_in_bytes": 0
+          },
+          "indexing": {
+            "index_total": 24000,
+            "index_time_in_millis": 900,
+            "index_current": 0,
+            "index_failed": 0,
+            "delete_total": 0,
+            "delete_time_in_millis": 0,
+            "delete_current": 0,
+            "noop_update_total": 0,
+            "is_throttled": false,
+            "throttle_time_in_millis": 0,
+            "doc_status": {}
+          },
+          "get": {
+            "total": 0,
+            "getTime": "0s",
+            "time_in_millis": 0,
+            "exists_total": 0,
+            "exists_time_in_millis": 0,
+            "missing_total": 0,
+            "missing_time_in_millis": 0,
+            "current": 0
+          },
+          "search": {
+            "open_contexts": 0,
+            "query_total": 24792,
+            "query_time_in_millis": 1273,
+            "query_current": 0,
+            "concurrent_query_total": 0,
+            "concurrent_query_time_in_millis": 0,
+            "concurrent_query_current": 0,
+            "concurrent_avg_slice_count": 0.0,
+            "fetch_total": 24757,
+            "fetch_time_in_millis": 1134,
+            "fetch_current": 0,
+            "scroll_total": 3,
+            "scroll_time_in_millis": 324239,
+            "scroll_current": 0,
+            "point_in_time_total": 0,
+            "point_in_time_time_in_millis": 0,
+            "point_in_time_current": 0,
+            "suggest_total": 0,
+            "suggest_time_in_millis": 0,
+            "suggest_current": 0,
+            "search_idle_reactivate_count_total": 0
+          },
+          "merges": {
+            "current": 0,
+            "current_docs": 0,
+            "current_size_in_bytes": 0,
+            "total": 0,
+            "total_time_in_millis": 0,
+            "total_docs": 0,
+            "total_size_in_bytes": 0,
+            "total_stopped_time_in_millis": 0,
+            "total_throttled_time_in_millis": 0,
+            "total_auto_throttle_in_bytes": 62914560,
+            "unreferenced_file_cleanups_performed": 0
+          },
+          "refresh": {
+            "total": 18,
+            "total_time_in_millis": 224,
+            "external_total": 15,
+            "external_total_time_in_millis": 228,
+            "listeners": 0
+          },
+          "flush": {
+            "total": 0,
+            "periodic": 0,
+            "total_time_in_millis": 0
+          },
+          "warmer": {
+            "current": 0,
+            "total": 12,
+            "total_time_in_millis": 0
+          },
+          "query_cache": {
+            "memory_size_in_bytes": 0,
+            "total_count": 0,
+            "hit_count": 0,
+            "miss_count": 0,
+            "cache_size": 0,
+            "cache_count": 0,
+            "evictions": 0
+          },
+          "fielddata": {
+            "memory_size_in_bytes": 0,
+            "evictions": 0
+          },
+          "completion": {
+            "size_in_bytes": 0
+          },
+          "segments": {
+            "count": 3,
+            "memory_in_bytes": 0,
+            "terms_memory_in_bytes": 0,
+            "stored_fields_memory_in_bytes": 0,
+            "term_vectors_memory_in_bytes": 0,
+            "norms_memory_in_bytes": 0,
+            "points_memory_in_bytes": 0,
+            "doc_values_memory_in_bytes": 0,
+            "index_writer_memory_in_bytes": 0,
+            "version_map_memory_in_bytes": 0,
+            "fixed_bit_set_memory_in_bytes": 0,
+            "max_unsafe_auto_id_timestamp": -1,
+            "remote_store": {
+              "upload": {
+                "total_upload_size": {
+                  "started_bytes": 0,
+                  "succeeded_bytes": 0,
+                  "failed_bytes": 0
+                },
+                "refresh_size_lag": {
+                  "total_bytes": 0,
+                  "max_bytes": 0
+                },
+                "max_refresh_time_lag_in_millis": 0,
+                "total_time_spent_in_millis": 0,
+                "pressure": {
+                  "total_rejections": 0
+                }
+              },
+              "download": {
+                "total_download_size": {
+                  "started_bytes": 0,
+                  "succeeded_bytes": 0,
+                  "failed_bytes": 0
+                },
+                "total_time_spent_in_millis": 0
+              }
+            },
+            "segment_replication": {
+              "max_bytes_behind": 0,
+              "total_bytes_behind": 0,
+              "max_replication_lag": 0
+            },
+            "file_sizes": {}
+          },
+          "translog": {
+            "operations": 12000,
+            "size_in_bytes": 1316955,
+            "uncommitted_operations": 12000,
+            "uncommitted_size_in_bytes": 1316955,
+            "earliest_last_modified_age": 29204,
+            "remote_store": {
+              "upload": {
+                "total_uploads": {
+                  "started": 0,
+                  "failed": 0,
+                  "succeeded": 0
+                },
+                "total_upload_size": {
+                  "started_bytes": 0,
+                  "failed_bytes": 0,
+                  "succeeded_bytes": 0
+                }
+              }
+            }
+          },
+          "request_cache": {
+            "memory_size_in_bytes": 2124,
+            "evictions": 0,
+            "hit_count": 0,
+            "miss_count": 6
+          },
+          "recovery": {
+            "current_as_source": 0,
+            "current_as_target": 0,
+            "throttle_time_in_millis": 0
+          }
+        }
+      }
+    },
+    "nodes": [
+      {
+        "indices": {
+          "merges": {
+            "current": 0,
+            "current_docs": 0,
+            "current_size_in_bytes": 0,
+            "total": 0,
+            "total_time_in_millis": 0,
+            "total_docs": 0,
+            "total_size_in_bytes": 0,
+            "total_stopped_time_in_millis": 0,
+            "total_throttled_time_in_millis": 0,
+            "total_auto_throttle_in_bytes": 104857600,
+            "unreferenced_file_cleanups_performed": 0
+          },
+          "refresh": {
+            "total": 34,
+            "total_time_in_millis": 366,
+            "external_total": 23,
+            "external_total_time_in_millis": 368,
+            "listeners": 0
+          }
+        },
+        "jvm": {
+          "gc": {
+            "collectors": {
+              "young": {
+                "collection_count": 30,
+                "collection_time_in_millis": 440
+              },
+              "G1 Concurrent GC": {
+                "collection_count": 18,
+                "collection_time_in_millis": 98
+              },
+              "old": {
+                "collection_count": 0,
+                "collection_time_in_millis": 0
+              }
+            }
+          }
+        }
+      },
+      {
+        "indices": {
+          "merges": {
+            "current": 0,
+            "current_docs": 0,
+            "current_size_in_bytes": 0,
+            "total": 0,
+            "total_time_in_millis": 0,
+            "total_docs": 0,
+            "total_size_in_bytes": 0,
+            "total_stopped_time_in_millis": 0,
+            "total_throttled_time_in_millis": 0,
+            "total_auto_throttle_in_bytes": 125829120,
+            "unreferenced_file_cleanups_performed": 0
+          },
+          "refresh": {
+            "total": 37,
+            "total_time_in_millis": 234,
+            "external_total": 17,
+            "external_total_time_in_millis": 110,
+            "listeners": 0
+          }
+        },
+        "jvm": {
+          "gc": {
+            "collectors": {
+              "young": {
+                "collection_count": 23,
+                "collection_time_in_millis": 310
+              },
+              "G1 Concurrent GC": {
+                "collection_count": 12,
+                "collection_time_in_millis": 45
+              },
+              "old": {
+                "collection_count": 0,
+                "collection_time_in_millis": 0
+              }
+            }
+          }
+        }
+      },
+      {
+        "indices": {
+          "merges": {
+            "current": 0,
+            "current_docs": 0,
+            "current_size_in_bytes": 0,
+            "total": 0,
+            "total_time_in_millis": 0,
+            "total_docs": 0,
+            "total_size_in_bytes": 0,
+            "total_stopped_time_in_millis": 0,
+            "total_throttled_time_in_millis": 0,
+            "total_auto_throttle_in_bytes": 104857600,
+            "unreferenced_file_cleanups_performed": 0
+          },
+          "refresh": {
+            "total": 30,
+            "total_time_in_millis": 318,
+            "external_total": 22,
+            "external_total_time_in_millis": 314,
+            "listeners": 0
+          }
+        },
+        "jvm": {
+          "gc": {
+            "collectors": {
+              "young": {
+                "collection_count": 23,
+                "collection_time_in_millis": 318
+              },
+              "G1 Concurrent GC": {
+                "collection_count": 12,
+                "collection_time_in_millis": 53
+              },
+              "old": {
+                "collection_count": 0,
+                "collection_time_in_millis": 0
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "execution_ok": true,
+  "cleanup_errors": [],
+  "end": 1794035176.879909
+}

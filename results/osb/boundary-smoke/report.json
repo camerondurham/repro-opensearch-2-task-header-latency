@@ -1,0 +1,44 @@
+{
+  "runs": {
+    "parallel-control": {
+      "variant": "baseline",
+      "smoke": false,
+      "control": true,
+      "documents": 4800,
+      "revision_sum": 0,
+      "osb_operation_errors": 0,
+      "osb_operation_timeouts": 0,
+      "duration_seconds": 40.038559436798096,
+      "quick": true
+    },
+    "parallel-baseline": {
+      "variant": "baseline",
+      "smoke": false,
+      "control": false,
+      "documents": 4800,
+      "revision_sum": 4800,
+      "osb_operation_errors": 0,
+      "osb_operation_timeouts": 0,
+      "duration_seconds": 43.17359662055969,
+      "ubq_rate": 111.17906256886165,
+      "batches": 480,
+      "quick": true
+    },
+    "parallel-candidate": {
+      "variant": "candidate",
+      "smoke": false,
+      "control": false,
+      "documents": 4800,
+      "revision_sum": 4800,
+      "osb_operation_errors": 0,
+      "osb_operation_timeouts": 0,
+      "duration_seconds": 42.18197727203369,
+      "ubq_rate": 113.79267427519007,
+      "batches": 480,
+      "quick": true
+    }
+  },
+  "evidence_format": "boundary-smoke-pre-build-inputs",
+  "capture_limitation": "Counterpart checks and offered-load tolerance detect partial loss, but whole-triplet loss cannot be categorically ruled out.",
+  "provenance_limitation": "Frozen execution sources, but no frozen build inputs; boundary validation only."
+}

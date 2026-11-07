@@ -1,0 +1,33 @@
+{
+  "source_commit": "fd9a9d90df25bea1af2c6a85039692e815b894f5",
+  "source_blob": "4713d03c93bacd7a4f2564b00ffcd3a379957a92",
+  "stock_image": "opensearchproject/opensearch@sha256:1f8b88245a6af61e7aa500afe0e87d43401e4b33140bb47230a919428ce3f7cb",
+  "patch_sha256": "d2cb8e0ff2d74391149469d65cb939ce5c4796fe9a6d17743eba1f10ba5c45fb",
+  "jdk": "openjdk version \"21.0.6\" 2025-01-21 LTS\nOpenJDK Runtime Environment Temurin-21.0.6+7 (build 21.0.6+7-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.6+7 (build 21.0.6+7-LTS, mixed mode, sharing)\n",
+  "compiler": "javac --release 11 -proc:none",
+  "contract": "PASS: success, failure, cancellation callback, context capture, unrelated state\n",
+  "variants": {
+    "baseline": {
+      "image_id": "sha256:f3dc5baf9a2ce278f9c1c19769c5923c507d070df7e2f01f8d71c85efdb8da45",
+      "jar_sha256": "f5a3e13add65cba6bc4b72a83ceda263b702efeb06dfb073dcf7c7224ef26d56",
+      "class_sha256": "082f4a89e10feb9d99cabf20bd0f91c8b34124cfd418628661a5c465b33cd629",
+      "source_sha256": "336395d8a11e8368cf6a746fae93281e8fd698ee76749552076145fad679b523",
+      "changed_entries_from_stock": [
+        "org/opensearch/action/search/TransportSearchScrollAction.class"
+      ]
+    },
+    "candidate": {
+      "image_id": "sha256:f467123acb766105a0df9c70464405c98716e8554b7013e223ac02a308c699be",
+      "jar_sha256": "1e4f6556f00f87c1528a21281cf749f54d8d9ac889508237d4f572426096e141",
+      "class_sha256": "fbd6103e0e0f6060636e1747f5e73f8466bd532e6daa7184598a8f0bf65007e6",
+      "source_sha256": "e0cdd00411b1fa54540b1191dba9bd5424d85eef8fc9e9747fa5e4fec29fc90a",
+      "changed_entries_from_stock": [
+        "org/opensearch/action/search/TransportSearchScrollAction.class"
+      ]
+    }
+  },
+  "sole_intervention_entries": [
+    "org/opensearch/action/search/TransportSearchScrollAction.class"
+  ],
+  "stock_jar_sha256": "fb05259b5f9af46111925f49392f4d902af0fa10d6514d7a262bd33783ce9f64"
+}

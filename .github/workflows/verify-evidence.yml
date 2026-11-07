@@ -1,0 +1,28 @@
+name: Verify published reproduction evidence
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recompute new and historical evidence without Docker or network
+        run: python3 osb/verify.py
+      - name: Verify historical analysis also rejects invalid data under optimized Python
+        run: python3 -O results/performance/recompute_late_p99.py
+      - name: Install pinned OSB for native workload and failure-path tests
+        run: python3 -m pip install --require-hashes -r osb/requirements.lock
+      - name: Validate actual OSB parser, runners, capture, and evidence analysis
+        run: python3 -m unittest discover -s osb -v

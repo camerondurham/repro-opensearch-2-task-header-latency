@@ -1,0 +1,209 @@
+{
+  "version": 2,
+  "description": "Synthetic scroll task-header lifecycle and concurrent search",
+  "indices": [
+    {
+      "name": "fixture",
+      "body": "index.json"
+    }
+  ],
+  "corpora": [
+    {
+      "name": "synthetic",
+      "documents": [
+        {
+          "source-file": "corpus.json",
+          "document-count": 12000,
+          "uncompressed-bytes": 1268790,
+          "includes-action-and-meta-data": true,
+          "target-index": "fixture"
+        }
+      ]
+    }
+  ],
+  "test_procedures": [
+    {
+      "name": "controlled",
+      "default": true,
+      "schedule": [
+        {
+          "operation": {
+            "operation-type": "create-index"
+          }
+        },
+        {
+          "operation": {
+            "operation-type": "bulk",
+            "bulk-size": 1000
+          },
+          "clients": 1
+        },
+        {
+          "operation": {
+            "operation-type": "refresh",
+            "index": "fixture"
+          }
+        },
+        {
+          "operation": {
+            "operation-type": "force-merge",
+            "index": "fixture",
+            "max-num-segments": 1
+          }
+        },
+        {
+          "name": "initial-correctness",
+          "operation": {
+            "operation-type": "verify-corpus",
+            "docs": 12000,
+            "revision": 0
+          }
+        },
+        {
+          "name": "warmup-search",
+          "operation": {
+            "name": "search",
+            "operation-type": "search",
+            "index": "fixture",
+            "cache": false,
+            "detailed-results": true,
+            "body": {
+              "size": 10,
+              "track_total_hits": true,
+              "query": {
+                "match_all": {}
+              },
+              "sort": [
+                {
+                  "uid": "asc"
+                }
+              ]
+            },
+            "assertions": [
+              {
+                "property": "hits",
+                "condition": "==",
+                "value": 12000
+              },
+              {
+                "property": "timed_out",
+                "condition": "==",
+                "value": false
+              }
+            ]
+          },
+          "clients": 2,
+          "time-period": 1,
+          "target-throughput": 50,
+          "schedule": "deterministic",
+          "warmup-time-period": 20
+        },
+        {
+          "parallel": {
+            "completed-by": "load",
+            "tasks": [
+              {
+                "name": "concurrent-search",
+                "operation": {
+                  "name": "search",
+                  "operation-type": "search",
+                  "index": "fixture",
+                  "cache": false,
+                  "detailed-results": true,
+                  "body": {
+                    "size": 10,
+                    "track_total_hits": true,
+                    "query": {
+                      "match_all": {}
+                    },
+                    "sort": [
+                      {
+                        "uid": "asc"
+                      }
+                    ]
+                  },
+                  "assertions": [
+                    {
+                      "property": "hits",
+                      "condition": "==",
+                      "value": 12000
+                    },
+                    {
+                      "property": "timed_out",
+                      "condition": "==",
+                      "value": false
+                    }
+                  ]
+                },
+                "clients": 2,
+                "time-period": 250,
+                "target-throughput": 50,
+                "schedule": "deterministic"
+              },
+              {
+                "name": "load",
+                "operation": {
+                  "name": "load",
+                  "operation-type": "verified-ubq",
+                  "docs": 12000,
+                  "batch": 10,
+                  "rate": 120,
+                  "deadline": 240,
+                  "request-timeout": 245
+                },
+                "clients": 1,
+                "iterations": 1
+              }
+            ]
+          }
+        },
+        {
+          "name": "final-correctness",
+          "operation": {
+            "operation-type": "verify-corpus",
+            "docs": 12000,
+            "revision": 12000
+          }
+        },
+        {
+          "name": "recovery-search",
+          "operation": {
+            "name": "search",
+            "operation-type": "search",
+            "index": "fixture",
+            "cache": false,
+            "detailed-results": true,
+            "body": {
+              "size": 10,
+              "track_total_hits": true,
+              "query": {
+                "match_all": {}
+              },
+              "sort": [
+                {
+                  "uid": "asc"
+                }
+              ]
+            },
+            "assertions": [
+              {
+                "property": "hits",
+                "condition": "==",
+                "value": 12000
+              },
+              {
+                "property": "timed_out",
+                "condition": "==",
+                "value": false
+              }
+            ]
+          },
+          "clients": 2,
+          "time-period": 10,
+          "target-throughput": 50,
+          "schedule": "deterministic"
+        }
+      ]
+    }
+  ]
+}
